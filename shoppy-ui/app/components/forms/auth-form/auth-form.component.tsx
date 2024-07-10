@@ -17,9 +17,16 @@ function AuthForm({ type }: AuthFormPops) {
       <Button variant='contained'>{isSignup ? "Sign up" : "Login"}</Button>
       <Box
         borderTop={1}
+        gap={1}
         borderColor={"#222229"}
         className="flex items-center justify-center pt-2"
       >
+        {
+          isSignup ?
+            "Don't have an account?" :
+            "Already have an account"
+        }
+
         <Link component={NextLink}
           style={{ textDecoration: 'none' }}
           href={`/auth/${isSignup ? "login" : "signup"}`}>
