@@ -6,7 +6,7 @@ function AuthForm({ type }: AuthFormPops) {
   const isSignup = type === "signup";
 
   return (
-    <Stack spacing={3} className='w-full max-w-md border border-slate-500 rounded-lg' padding={8}>
+    <Stack spacing={3} className='w-full max-w-md border border-[#222229] rounded-lg' padding={8}>
       <Typography variant="h3" className='self-center'>{isSignup ? "Sign up" : "Login"}</Typography>
       <TextField label="Email" variant='filled' type='email' />
       <TextField label="Password" variant='filled' type='password' />
@@ -17,7 +17,7 @@ function AuthForm({ type }: AuthFormPops) {
       <Button variant='contained'>{isSignup ? "Sign up" : "Login"}</Button>
       <Box
         borderTop={1}
-        borderColor={"#1A1A1E"}
+        borderColor={"#222229"}
         className="flex items-center justify-center pt-2"
       >
         <Link component={NextLink}
