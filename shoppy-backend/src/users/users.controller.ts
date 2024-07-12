@@ -1,7 +1,9 @@
-import { Body, Controller, Delete, Get, Param, Post, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseInterceptors } from '@nestjs/common';
 import { CreateUserRequest } from './dto/create-user.request';
 import { UsersService } from './users.service';
 import { NoFilesInterceptor } from '@nestjs/platform-express';
+import { parseAndValidateId } from 'src/utils/parseAndValidateId';
+import { UpdateUserRequest } from './dto/update-user.request';
 
 @Controller('users')
 export class UsersController {
@@ -18,9 +20,22 @@ export class UsersController {
     return this.userService.getUsers();
   }
 
+  @Patch(':userID')
+  updateUser(@Param() params: { userID: string }, @Body() request: UpdateUserRequest) {
+    const userId = parseAndValidateId(params.userID);
+    return this.userService.updateUserById(userId, request);
+  }
+
+
+  @Get(':userID')
+  getUserById(@Param() params: { userID: string }) {
+    const userId = parseAndValidateId(params.userID);
+    return this.userService.getUserById(userId);
+  }
+
   @Delete(':userID')
   deleteUser(@Param() params: { userID: string }) {
-    const userId = parseInt(params.userID, 10);
+    const userId = parseAndValidateId(params.userID);
     return this.userService.deleteUser(userId);
   }
 }
