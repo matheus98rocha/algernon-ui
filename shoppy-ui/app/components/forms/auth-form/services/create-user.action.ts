@@ -5,11 +5,9 @@ import { getErrorMessage } from "@/app/utils/getErrorMessage";
 import { redirect } from "next/navigation";
 
 interface UserResponse {
-
   message?: string,
   error?: string,
   statusCode?: number
-
   data: {
     email: string,
     id: number
@@ -17,7 +15,6 @@ interface UserResponse {
 }
 
 export default async function createUser(
-  _prevState: any,
   formData: FormData
 ) {
   const res = await fetchWrapper<UserResponse>('users', {

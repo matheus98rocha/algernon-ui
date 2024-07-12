@@ -1,47 +1,74 @@
 'use client'
-import createUser from '@/app/auth/signup/services/create-user.action';
-import { Box, Button, Fade, Link, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Link, Stack, TextField, Typography } from '@mui/material'
 import NextLink from 'next/link'
 import React from 'react'
-import { useFormState } from 'react-dom';
+import { useAuthForm } from './hooks/authForm';
+import { ValidatePassword } from './components/ValidatePassword.component';
+import { AuthFormProps } from './auth-form.types';
 
-function AuthForm({ type }: AuthFormPops) {
-  const isSignup = type === "signup";
-  const [state, formAction] = useFormState(createUser, {
-    error: ""
-  })
+function AuthForm({ type }: AuthFormProps) {
+  const { errors, handleSubmit, isSignup, onSubmit, register, watch } = useAuthForm({
+    type
+  });
+
+  const password = watch("password")
+  const canShowPasswordValidation = password?.length > 0 && isSignup
+
   return (
-    <form action={formAction} className='w-full max-w-md border border-[#222229] rounded-lg'>
+    <form onSubmit={handleSubmit(onSubmit)} className='w-full max-w-md border border-[#222229] rounded-lg'>
       <Stack spacing={3} padding={8}>
-        <Typography variant="h3" className='self-center'>{isSignup ? "Sign up" : "Login"}</Typography>
-        <TextField name="email" label="Email" variant='filled' type='email' helperText={state.error} error={!!state.error} />
-        <TextField name="password" label="Password" variant='filled' type='password' helperText={state.error} error={!!state.error} />
+        <Typography variant="h3" className='self-center'>{isSignup ? 'Sign up' : 'Login'}</Typography>
+        <TextField
+          {...register('email')}
+          label="Email"
+          variant='filled'
+          type='email'
+          helperText={errors.email?.message}
+          error={!!errors.email}
+        />
+        <TextField
+          {...register('password')}
+          label="Password"
+          variant='filled'
+          type='password'
+          helperText={errors.password?.message}
+          error={!!errors.password}
+        />
         {
-          isSignup &&
-          <TextField label="Confirm Password" variant='filled' type='password' />
+          canShowPasswordValidation &&
+          <ValidatePassword password={
+            password
+          } />
         }
-        <Button type={'submit'} variant='contained'>{isSignup ? "Sign up" : "Login"}</Button>
+        {isSignup && (
+          <TextField
+            {...register('confirmPassword')}
+            label="Confirm Password"
+            variant='filled'
+            type='password'
+            helperText={errors.confirmPassword?.message}
+            error={!!errors.confirmPassword}
+          />
+        )}
+        <Button type={'submit'} variant='contained'>{isSignup ? 'Sign up' : 'Login'}</Button>
         <Box
           borderTop={1}
           gap={1}
           borderColor={"#222229"}
           className="flex items-center justify-center pt-2"
         >
-          {
-            isSignup ?
-              "Don't have an account?" :
-              "Already have an account"
-          }
-
-          <Link component={NextLink}
+          {isSignup ? "Don't have an account?" : "Already have an account"}
+          <Link
+            component={NextLink}
             style={{ textDecoration: 'none' }}
-            href={`/auth/${isSignup ? "login" : "signup"}`}>
-            {isSignup ? "Login" : "Sign up"}
+            href={`/auth/${isSignup ? 'login' : 'signup'}`}
+          >
+            {isSignup ? 'Login' : 'Sign up'}
           </Link>
         </Box>
       </Stack>
-    </form>
-  )
+    </form >
+  );
 }
 
-export default AuthForm
+export default AuthForm;
