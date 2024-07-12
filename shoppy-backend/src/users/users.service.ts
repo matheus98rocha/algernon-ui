@@ -30,4 +30,33 @@ export class UsersService {
     }
 
   }
+
+  async getUsers(): Promise<Partial<User>[]> {
+    const users = await this.prismaService.user.findMany()
+    const formatedUsers = users.map(user => {
+      return {
+        id: user.id,
+        email: user.email,
+      }
+    })
+    return formatedUsers
+  }
+
+  async deleteUser(userId: number): Promise<string> {
+    try {
+      console.log(userId)
+      await this.prismaService.user.delete({
+        where: {
+          id: userId
+        }
+      })
+      return `User with id: ${userId} deleted successfully`
+    } catch (error) {
+
+      if (error.code === 'P2025') {
+        throw new UnprocessableEntityException(`User with id: ${userId} not found`)
+      }
+      throw error
+    }
+  }
 }
