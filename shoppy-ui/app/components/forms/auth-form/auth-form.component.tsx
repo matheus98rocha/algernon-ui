@@ -1,13 +1,14 @@
 'use client'
-import { Box, Button, Link, Stack, TextField, Typography } from '@mui/material'
+import { Box, CircularProgress, Link, Stack, TextField, Typography } from '@mui/material'
 import NextLink from 'next/link'
 import React from 'react'
 import { useAuthForm } from './hooks/authForm';
 import { ValidatePassword } from './components/ValidatePassword.component';
 import { AuthFormProps } from './auth-form.types';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 function AuthForm({ type }: AuthFormProps) {
-  const { errors, handleSubmit, isSignup, onSubmit, register, watch } = useAuthForm({
+  const { errors, handleSubmit, isSignup, onSubmit, register, watch, isLoadingSignup } = useAuthForm({
     type
   });
 
@@ -50,7 +51,9 @@ function AuthForm({ type }: AuthFormProps) {
             error={!!errors.confirmPassword}
           />
         )}
-        <Button type={'submit'} variant='contained'>{isSignup ? 'Sign up' : 'Login'}</Button>
+        <LoadingButton type={'submit'} variant='contained' loading={isLoadingSignup} loadingPosition='center' loadingIndicator={
+          <CircularProgress color="info" size={16} />
+        }>{isSignup ? 'Sign up' : 'Login'}</LoadingButton>
         <Box
           borderTop={1}
           gap={1}

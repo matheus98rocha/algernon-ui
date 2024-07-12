@@ -21,6 +21,7 @@ export type useAuthFormReturn = {
   register: UseFormRegister<createUserFormData>,
   errors: FieldErrors<createUserFormData>,
   watch: UseFormWatch<createUserFormData>
+  isLoadingSignup: boolean
 }
 
 export type AuthFormProps = {

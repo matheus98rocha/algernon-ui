@@ -1,11 +1,13 @@
-import {  useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { createUserFormData, createUserFormSchema } from "../schema/user-signup.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import createUser from "../services/create-user.action";
 import { AuthFormProps, useAuthFormReturn } from "../auth-form.types";
+import { useState } from "react";
 
 export function useAuthForm({ type }: AuthFormProps): useAuthFormReturn {
   const isSignup = type === 'signup';
+  const [isLoadingSignup, setIsLoadingSignup] = useState<boolean>(false)
 
   const {
     register,
@@ -23,7 +25,8 @@ export function useAuthForm({ type }: AuthFormProps): useAuthFormReturn {
     formData.append('password', data.password);
 
     if (isSignup) {
-      const res = await createUser(formData);
+      setIsLoadingSignup(true)
+      const res = await createUser(formData).finally(() => setIsLoadingSignup(false));
       if (res && res.error) {
         if (res.error.includes("Email")) {
           setError("email", {
@@ -42,6 +45,7 @@ export function useAuthForm({ type }: AuthFormProps): useAuthFormReturn {
     onSubmit,
     register,
     errors,
-    watch
+    watch,
+    isLoadingSignup
   }
 }
