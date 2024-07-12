@@ -1,10 +1,14 @@
 import React from 'react'
-
-import AuthForm from '@/app/components/forms/auth-form/auth-form.component'
+import dynamic from 'next/dynamic'
+import { CircularProgress } from '@mui/material'
+const DynamicAuthForm = dynamic(() => import('@/app/components/forms/auth-form/auth-form.component'),
+  {
+    loading: () => <CircularProgress />,
+  })
 
 function Login() {
   return (
-    <AuthForm type='login' />
+    <DynamicAuthForm type='login' />
   )
 }
 
