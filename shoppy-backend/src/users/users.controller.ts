@@ -20,17 +20,16 @@ export class UsersController {
     return this.userService.getUsers();
   }
 
-  @Patch(':userID')
-  updateUser(@Param() params: { userID: string }, @Body() request: UpdateUserRequest) {
-    const userId = parseAndValidateId(params.userID);
-    return this.userService.updateUserById(userId, request);
-  }
-
-
   @Get(':userID')
   getUserById(@Param() params: { userID: string }) {
     const userId = parseAndValidateId(params.userID);
     return this.userService.getUserById(userId);
+  }
+
+  @Patch(':userID')
+  updateUser(@Param() params: { userID: string }, @Body() request: UpdateUserRequest) {
+    const userId = parseAndValidateId(params.userID);
+    return this.userService.updateUserById(userId, request);
   }
 
   @Delete(':userID')
@@ -38,4 +37,5 @@ export class UsersController {
     const userId = parseAndValidateId(params.userID);
     return this.userService.deleteUser(userId);
   }
+  
 }

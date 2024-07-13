@@ -2,7 +2,7 @@ import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { CreateUserRequest } from './dto/create-user.request';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { User } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 import { UpdateUserRequest } from './dto/update-user.request';
 
 @Injectable()
@@ -83,7 +83,6 @@ export class UsersService {
     }
   }
 
-
   async deleteUser(userId: number): Promise<string> {
     try {
       await this.prismaService.user.delete({
@@ -96,5 +95,11 @@ export class UsersService {
       }
       throw error;
     }
+  }
+
+  async getUserForAuth(filter: Prisma.UserWhereUniqueInput) {
+    return this.prismaService.user.findUniqueOrThrow({
+      where: filter,
+    })
   }
 }
