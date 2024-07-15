@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { createUserFormData, createUserFormSchema } from "../schema/user-signup.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateUserFormReturn } from "../signup-form.types";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import createUser from "../services/create-user.service";
 
 export function useCreateUserForm(): useCreateUserFormReturn {
@@ -13,7 +13,7 @@ export function useCreateUserForm(): useCreateUserFormReturn {
     handleSubmit,
     formState: { errors },
     setError,
-    watch
+    watch,
   } = useForm<createUserFormData>({
     resolver: zodResolver(createUserFormSchema),
   });
@@ -24,8 +24,9 @@ export function useCreateUserForm(): useCreateUserFormReturn {
     formData.append('password', data.password);
 
     setIsLoading(true)
-    const response = await createUser(formData).catch(error=> console.log(error)).finally(() => setIsLoading(false));
+    const response = await createUser(formData).finally(() => setIsLoading(false));
     if (response && response.message) {
+      // Verificando sem o e-mail já existe
       setError("email", {
         message: response.message,
         type: 'validate',
