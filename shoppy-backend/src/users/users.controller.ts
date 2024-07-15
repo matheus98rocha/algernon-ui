@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, InternalServerErrorException, Param, Patch, Post, UseFilters, UseGuards, UseInterceptors } from '@nestjs/common';
 import { CreateUserRequest } from './dto/create-user.request';
 import { UsersService } from './users.service';
 import { NoFilesInterceptor } from '@nestjs/platform-express';
@@ -7,13 +7,13 @@ import { UpdateUserRequest } from './dto/update-user.request';
 import { JwrAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { TokenPayload } from 'src/auth/interfaces/token-payload.interface';
+import { HttpExceptionFilter } from 'src/filters/http-exception.filter';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly userService: UsersService) { }
 
   @Post()
-  @UseInterceptors(NoFilesInterceptor())
   createUser(@Body() request: CreateUserRequest) {
     return this.userService.createUser(request);
   }
@@ -44,7 +44,6 @@ export class UsersController {
   @Get('me')
   @UseGuards(JwrAuthGuard)
   getCurrentUser(@CurrentUser() user: TokenPayload) {
-    console.log("aqui", user)
     return user;
   }
 }

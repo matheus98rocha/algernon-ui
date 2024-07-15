@@ -7,6 +7,7 @@ import ms from 'ms'
 import { ConfigService } from '@nestjs/config';
 import { TokenPayload } from './interfaces/token-payload.interface';
 import { JwtService } from '@nestjs/jwt';
+import { handleErrors } from 'src/utils/handleErrors';
 
 @Injectable()
 export class AuthService {
@@ -48,7 +49,7 @@ export class AuthService {
       }
       return user;
     } catch (error) {
-      throw new UnauthorizedException('Credentials are not valid.')
+      handleErrors(error)
     }
   }
 }

@@ -1,9 +1,10 @@
-import { Injectable, UnprocessableEntityException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { CreateUserRequest } from './dto/create-user.request';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Prisma, User } from '@prisma/client';
 import { UpdateUserRequest } from './dto/update-user.request';
+import { handleErrors } from 'src/utils/handleErrors';
 
 @Injectable()
 export class UsersService {
@@ -25,10 +26,8 @@ export class UsersService {
       });
       return user;
     } catch (error) {
-      if (error.code === 'P2002') {
-        throw new UnprocessableEntityException('Email already exists.');
-      }
-      throw error;
+      console.log(error)
+      handleErrors(error)
     }
   }
 
@@ -50,10 +49,7 @@ export class UsersService {
       }
       return user;
     } catch (error) {
-      if (error.code === 'P2025') {
-        throw new UnprocessableEntityException(`User with id: ${userId} not found`);
-      }
-      throw error;
+      handleErrors(error)
     }
   }
 
@@ -72,14 +68,7 @@ export class UsersService {
       }
       return user;
     } catch (error) {
-      if (error.code === 'P2025') {
-        throw new UnprocessableEntityException(`User with id: ${userId} not found`);
-      }
-
-      if (error.code === 'P2002') {
-        throw new UnprocessableEntityException('Email already exists.');
-      }
-      throw error;
+      handleErrors(error)
     }
   }
 
@@ -90,10 +79,7 @@ export class UsersService {
       });
       return `User with id: ${userId} deleted successfully`;
     } catch (error) {
-      if (error.code === 'P2025') {
-        throw new UnprocessableEntityException(`User with id: ${userId} not found`);
-      }
-      throw error;
+      handleErrors(error)
     }
   }
 
