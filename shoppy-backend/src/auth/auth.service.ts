@@ -43,6 +43,11 @@ export class AuthService {
   async verifyUser(email: string, password: string) {
     try {
       const user = await this.userService.getUserForAuth({ email })
+
+      if(!user){
+        throw new UnauthorizedException()
+      }
+
       const authUser = await bcrypt.compare(password, user.password)
       if (!authUser) {
         throw new UnauthorizedException()

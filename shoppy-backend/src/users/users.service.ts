@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException, UnauthorizedException, UnprocessableEntityException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { CreateUserRequest } from './dto/create-user.request';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -26,7 +26,6 @@ export class UsersService {
       });
       return user;
     } catch (error) {
-      console.log(error)
       handleErrors(error)
     }
   }
@@ -84,8 +83,9 @@ export class UsersService {
   }
 
   async getUserForAuth(filter: Prisma.UserWhereUniqueInput) {
-    return this.prismaService.user.findUniqueOrThrow({
+    return await this.prismaService.user.findUnique({
       where: filter,
     })
+
   }
 }
