@@ -2,23 +2,27 @@
 import { Box, CircularProgress, Link, Stack, TextField, Typography } from '@mui/material'
 import NextLink from 'next/link'
 import React from 'react'
-import { useAuthForm } from './hooks/authForm';
 import { ValidatePassword } from './components/ValidatePassword.component';
-import { AuthFormProps } from './auth-form.types';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { useCreateUserForm } from './hooks/useCreateUser';
 
-function AuthForm({ type }: AuthFormProps) {
-  const { errors, handleSubmit, isSignup, onSubmit, register, watch, isLoadingSignup } = useAuthForm({
-    type
-  });
+function SignupForm() {
+  const {
+    errors,
+    handleSubmit,
+    onSubmit,
+    register,
+    watch,
+    isLoading
+  } = useCreateUserForm()
 
   const password = watch("password")
-  const canShowPasswordValidation = password?.length > 0 && isSignup
+  const canShowPasswordValidation = password?.length > 0
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='w-full max-w-md border border-[#222229] rounded-lg'>
       <Stack spacing={3} padding={8}>
-        <Typography variant="h3" className='self-center'>{isSignup ? 'Sign up' : 'Login'}</Typography>
+        <Typography variant="h3" className='self-center'>{'Sign up'}</Typography>
         <TextField
           {...register('email')}
           label="Email"
@@ -41,32 +45,31 @@ function AuthForm({ type }: AuthFormProps) {
             password
           } />
         }
-        {isSignup && (
-          <TextField
-            {...register('confirmPassword')}
-            label="Confirm Password"
-            variant='filled'
-            type='password'
-            helperText={errors.confirmPassword?.message}
-            error={!!errors.confirmPassword}
-          />
-        )}
-        <LoadingButton type={'submit'} variant='contained' loading={isLoadingSignup} loadingPosition='center' loadingIndicator={
+        <TextField
+          {...register('confirmPassword')}
+          label="Confirm Password"
+          variant='filled'
+          type='password'
+          helperText={errors.confirmPassword?.message}
+          error={!!errors.confirmPassword}
+        />
+        <LoadingButton type={'submit'} variant='contained' loading={isLoading} loadingPosition='center' loadingIndicator={
           <CircularProgress color="info" size={16} />
-        }>{isSignup ? 'Sign up' : 'Login'}</LoadingButton>
+        }>{'Sign up'}</LoadingButton>
+        <span className={`text-xs text-red-500`}>{errors.root?.message}</span>
         <Box
           borderTop={1}
           gap={1}
           borderColor={"#222229"}
           className="flex items-center justify-center pt-2"
         >
-          {isSignup ? "Don't have an account?" : "Already have an account"}
+          {"Don't have an account?"}
           <Link
             component={NextLink}
             style={{ textDecoration: 'none' }}
-            href={`/auth/${isSignup ? 'login' : 'signup'}`}
+            href={'/auth/login'}
           >
-            {isSignup ? 'Login' : 'Sign up'}
+            Sign up
           </Link>
         </Box>
       </Stack>
@@ -74,4 +77,4 @@ function AuthForm({ type }: AuthFormProps) {
   );
 }
 
-export default AuthForm;
+export default SignupForm;
