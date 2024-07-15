@@ -69,7 +69,7 @@ function SignupForm() {
             style={{ textDecoration: 'none' }}
             href={'/auth/login'}
           >
-            Sign up
+            Sign in
           </Link>
         </Box>
       </Stack>
