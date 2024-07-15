@@ -18,33 +18,21 @@ export function useCreateUserForm(): useCreateUserFormReturn {
     resolver: zodResolver(createUserFormSchema),
   });
 
-  const handleGetError = useCallback((error: string) => {
-    if (error.includes("Email")) {
-      setError("email", {
-        message: error,
-        type: 'validate',
-      })
-    }
-  },[])
-
   const onSubmit = async (data: createUserFormData) => {
     const formData = new FormData();
     formData.append('email', data.email);
     formData.append('password', data.password);
 
     setIsLoading(true)
-    const res = await createUser(formData).finally(() => setIsLoading(false));
-    console.log("->",res)
-    console.log("->", res?.message)
-    // if (res && res.error) {
-    //   if (res.error.includes("Email")) {
-    //     setError("email", {
-    //       message: res.error,
-    //       type: 'validate',
-    //     })
-    //   }
-    // }
+    const response = await createUser(formData).catch(error=> console.log(error)).finally(() => setIsLoading(false));
+    if (response && response.message) {
+      setError("email", {
+        message: response.message,
+        type: 'validate',
+      })
+    }
   };
+
   return {
     handleSubmit,
     onSubmit,

@@ -13,15 +13,18 @@ interface UserResponse extends Error {
 
 export default async function createUser(
   formData: FormData
-) {
-  try{
-
-    const res = await fetchWrapper<UserResponse>('users', formData, {
-      method: "POST",
-    });
-    return res;
-  }catch(err){
-    console.log(err)
-    throw err
+){
+  const res = await fetchWrapper<UserResponse>('users', formData, {
+    method: "POST",
+  });
+  if (!!res.message) {
+    return {
+      message: res.message,
+      statusCode: res.statusCode,
+      timestamp: res.timestamp,
+      path: res.path
+    }
+  } else {
+    redirect("/")
   }
 } 

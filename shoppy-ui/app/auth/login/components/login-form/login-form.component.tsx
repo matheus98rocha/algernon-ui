@@ -43,7 +43,7 @@ function LoginForm() {
           borderColor={"#222229"}
           className="flex items-center justify-center pt-2"
         >
-          {"Already have an account"}
+          {"Don't have an account?"}
           <Link
             component={NextLink}
             style={{ textDecoration: 'none' }}

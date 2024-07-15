@@ -23,14 +23,12 @@ export function useLoginUserForm(): useLoginFormReturn {
     formData.append('password', data.password);
 
     setIsLoading(true)
-    const res = await loginUser(formData).finally(() => setIsLoading(false));
-    if (res && res.error) {
+    const response = await loginUser(formData).finally(() => setIsLoading(false));
+    if (response && response.message) {
       setError("password", {
-        message: res.error
+        message: response.message
       })
     }
-
-    console.log(res);
   };
   return {
     handleSubmit,

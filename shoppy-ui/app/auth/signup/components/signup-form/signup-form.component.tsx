@@ -63,7 +63,7 @@ function SignupForm() {
           borderColor={"#222229"}
           className="flex items-center justify-center pt-2"
         >
-          {"Don't have an account?"}
+          {"Already have an account?"}
           <Link
             component={NextLink}
             style={{ textDecoration: 'none' }}
