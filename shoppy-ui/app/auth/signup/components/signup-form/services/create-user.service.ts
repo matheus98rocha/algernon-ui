@@ -1,7 +1,7 @@
 "use server";
 
 import { Error } from "@/app/types/error";
-import { fetchWrapper } from "@/app/utils/fetchWrapper";
+import { post } from "@/app/utils/fetchWrapper";
 import { redirect } from "next/navigation";
 
 interface UserResponse extends Error {
@@ -13,16 +13,15 @@ interface UserResponse extends Error {
 
 export default async function createUser(
   formData: FormData
-){
-  const res = await fetchWrapper<UserResponse>('users', formData, {
-    method: "POST",
-  });
-  if (!!res.message) {
+) {
+  const res = await post<UserResponse>('users', formData);
+  const isOk = res.data.ok;
+  if (!isOk) {
     return {
-      message: res.message,
-      statusCode: res.statusCode,
-      timestamp: res.timestamp,
-      path: res.path
+      message: res.result.message,
+      statusCode: res.result.statusCode,
+      timestamp: res.result.timestamp,
+      path: res.result.path
     }
   } else {
     redirect("/")

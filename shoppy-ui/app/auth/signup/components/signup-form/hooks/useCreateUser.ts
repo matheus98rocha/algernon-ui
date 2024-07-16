@@ -25,8 +25,9 @@ export function useCreateUserForm(): useCreateUserFormReturn {
 
     setIsLoading(true)
     const response = await createUser(formData).finally(() => setIsLoading(false));
-    if (response && response.message) {
-      // Verificando sem o e-mail já existe
+    
+    // Verificando sem o e-mail já existe
+    if (response && response.statusCode === 422) {
       setError("email", {
         message: response.message,
         type: 'validate',
