@@ -1,7 +1,8 @@
 'use server'
 
-import { Error } from "@/app/types/error";
-import { post } from "@/app/utils/fetchWrapper"
+import { AUTHENTICATION_COOKIE } from "@/app/common/constants/auth-cookie.constant";
+import { Error } from "@/app/common/types/error";
+import { post } from "@/app/common/utils/fetchWrapper";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -30,7 +31,7 @@ const setAuthCookie = (response: Response) => {
     const token = setCookieHeader.split(';')[0].split('=')[1];
 
     cookies().set({
-      name: "Authentication",
+      name: AUTHENTICATION_COOKIE,
       value: token,
       secure: true,
       httpOnly: true,

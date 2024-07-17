@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
+
 import { Container, CssBaseline, ThemeProvider } from "@mui/material";
-import darkTheme from "./theme/dark.theme";
-import { useState } from "react";
+
+import Header from "./components/header/header.component";
+import Providers from "./providers";
+import authenticated from "./auth/services/authenticated";
+import logout from "./auth/services/logout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,24 +16,22 @@ export const metadata: Metadata = {
   description: "Ecommerce Application",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isAuthenticated = authenticated();
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AppRouterCacheProvider>
-          <ThemeProvider
-            theme={darkTheme}
-          >
-            <CssBaseline />
-            <Container>
-              {children}
-            </Container>
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+        <Providers authenticated={isAuthenticated}>
+          <CssBaseline />
+          <Header logout={logout} />
+          <Container>
+            {children}
+          </Container>
+        </Providers>
       </body>
     </html>
   );

@@ -1,7 +1,7 @@
 "use server";
 
-import { Error } from "@/app/types/error";
-import { post } from "@/app/utils/fetchWrapper";
+import { Error } from "@/app/common/types/error";
+import { post } from "@/app/common/utils/fetchWrapper";
 import { redirect } from "next/navigation";
 
 interface UserResponse extends Error {
