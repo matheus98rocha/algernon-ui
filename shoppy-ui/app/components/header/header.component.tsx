@@ -49,7 +49,7 @@ function Header({logout}:HeaderProps) {
               textDecoration: 'none',
             }}
           >
-            Shoppy
+            Algernon
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -108,7 +108,7 @@ function Header({logout}:HeaderProps) {
               textDecoration: 'none',
             }}
           >
-            Shoppy
+            Algernon
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
