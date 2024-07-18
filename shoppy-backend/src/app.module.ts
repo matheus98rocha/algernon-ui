@@ -6,6 +6,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_FILTER } from '@nestjs/core';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
+import { BooksModule } from './books/books.module';
 
 @Module({
   imports: [
@@ -28,7 +29,7 @@ import { HttpExceptionFilter } from './filters/http-exception.filter';
       },
       inject: [ConfigService]
     }),
-    ConfigModule.forRoot(), UsersModule, AuthModule],
+    ConfigModule.forRoot(), UsersModule, AuthModule, BooksModule],
   controllers: [],
   providers: [    {
     provide: APP_FILTER,

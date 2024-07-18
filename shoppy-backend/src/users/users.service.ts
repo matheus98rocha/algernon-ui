@@ -1,9 +1,9 @@
 import { Injectable, InternalServerErrorException, NotFoundException, UnauthorizedException, UnprocessableEntityException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { CreateUserRequest } from './dto/create-user.request';
+import { CreateUserDto } from './dto/create-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Prisma, User } from '@prisma/client';
-import { UpdateUserRequest } from './dto/update-user.request';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { handleErrors } from 'src/utils/handleErrors';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class UsersService {
     email: true,
   };
 
-  async createUser(data: CreateUserRequest): Promise<Partial<User>> {
+  async createUser(data: CreateUserDto): Promise<Partial<User>> {
     try {
       const user = await this.prismaService.user.create({
         data: {
@@ -52,7 +52,7 @@ export class UsersService {
     }
   }
 
-  async updateUserById(userId: number, data: UpdateUserRequest): Promise<Partial<User>> {
+  async updateUserById(userId: number, data: UpdateUserDto): Promise<Partial<User>> {
     try {
       const user = await this.prismaService.user.update({
         where: { id: userId },

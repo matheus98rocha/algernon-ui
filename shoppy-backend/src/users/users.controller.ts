@@ -1,9 +1,8 @@
 import { Body, Controller, Delete, Get, InternalServerErrorException, Param, Patch, Post, UseFilters, UseGuards, UseInterceptors } from '@nestjs/common';
-import { CreateUserRequest } from './dto/create-user.request';
+import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
-import { NoFilesInterceptor } from '@nestjs/platform-express';
 import { parseAndValidateId } from 'src/utils/parseAndValidateId';
-import { UpdateUserRequest } from './dto/update-user.request';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { JwrAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { TokenPayload } from 'src/auth/interfaces/token-payload.interface';
@@ -14,7 +13,7 @@ export class UsersController {
   constructor(private readonly userService: UsersService) { }
 
   @Post()
-  createUser(@Body() request: CreateUserRequest) {
+  createUser(@Body() request: CreateUserDto) {
     return this.userService.createUser(request);
   }
 
@@ -30,7 +29,7 @@ export class UsersController {
   }
 
   @Patch('by-id/:userID')
-  updateUser(@Param() params: { userID: string }, @Body() request: UpdateUserRequest) {
+  updateUser(@Param() params: { userID: string }, @Body() request: UpdateUserDto) {
     const userId = parseAndValidateId(params.userID);
     return this.userService.updateUserById(userId, request);
   }

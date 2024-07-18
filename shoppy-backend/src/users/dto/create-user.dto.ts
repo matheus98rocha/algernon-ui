@@ -1,9 +1,8 @@
-import { IsEmail, IsOptional, IsStrongPassword } from "class-validator"
+import { IsEmail, IsStrongPassword } from "class-validator"
 
-export class UpdateUserRequest {
+export class CreateUserDto {
 
   @IsEmail()
-  @IsOptional()
   email: string
 
   @IsStrongPassword({
@@ -13,6 +12,5 @@ export class UpdateUserRequest {
     minSymbols: 1,
     minUppercase: 1
   })
-  @IsOptional()
   password: string;
 }
