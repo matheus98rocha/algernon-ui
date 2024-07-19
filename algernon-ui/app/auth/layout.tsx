@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Grow } from "@mui/material";
 
 export default function AuthLayout({
   children,
@@ -6,8 +6,10 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Box className="h-screen flex items-center justify-center">
-      {children}
-    </Box>
+    <Grow in={true}>
+      <Box className="h-screen flex items-center justify-center">
+        {children}
+      </Box>
+    </Grow>
   );
 }

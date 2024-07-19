@@ -10,7 +10,7 @@ const ValidationItem = ({ condition, text }: { condition: boolean, text: string 
     ) : (
       <CloseIcon fontSize={'small'} color={"error"} />
     )}
-    <span className={`text-xs ${condition ? 'text-green-500' : 'text-red-500'}`}>{text}</span>
+    <span className={`text-xs ${condition ? 'text-green-500' : 'text-red-500'} font-bold`}>{text}</span>
   </div>
 );
 

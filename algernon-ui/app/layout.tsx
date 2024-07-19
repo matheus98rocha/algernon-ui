@@ -12,8 +12,8 @@ import logout from "./auth/services/logout";
 const inter = Noto_Serif({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Shoppy",
-  description: "Ecommerce Application",
+  title: "Algernon",
+  description: "An app for save your favorites books",
 };
 
 export default async function RootLayout({
