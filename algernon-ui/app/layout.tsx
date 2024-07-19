@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Noto_Serif } from "next/font/google";
 import "./globals.css";
 
 import { Container, CssBaseline, ThemeProvider } from "@mui/material";
@@ -9,7 +9,7 @@ import Providers from "./providers";
 import authenticated from "./auth/services/authenticated";
 import logout from "./auth/services/logout";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Noto_Serif({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Shoppy",
