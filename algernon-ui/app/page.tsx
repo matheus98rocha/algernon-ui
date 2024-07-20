@@ -1,10 +1,9 @@
-import getMe from './services/get-me';
+import FloatingButton from './book/components/floating-button/floating-button.component';
+
 export default async function Home() {
-
-  const me = await getMe()
-
   return (
     <main>
+      <FloatingButton/>
     </main>
   );
 }

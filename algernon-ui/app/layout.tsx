@@ -4,7 +4,7 @@ import "./globals.css";
 
 import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 
-import Header from "./components/header/header.component";
+import Header from "./components/layout/header/header.component";
 import Providers from "./providers";
 import authenticated from "./auth/services/authenticated";
 import logout from "./auth/services/logout";
