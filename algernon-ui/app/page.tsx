@@ -1,9 +1,16 @@
-import FloatingButton from './book/components/floating-button/floating-button.component';
+import { Suspense } from "react";
+import Books from "./books/components/books/books.component";
+import FloatingButton from "./books/components/floating-button/floating-button.component";
+import LoadingContainer from "./components/layout/loading/loading.component";
+
 
 export default async function Home() {
   return (
     <main>
-      <FloatingButton/>
+      <Suspense fallback={<LoadingContainer/>}>
+        <Books />
+      </Suspense>
+      <FloatingButton />
     </main>
   );
 }

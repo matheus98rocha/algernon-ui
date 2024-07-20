@@ -27,12 +27,15 @@ export async function post<T = unknown>(
   };
 }
 
-export const get = async (path: string) => {
+export const get = async <T>(path: string, tags?: string[]) => {
   const res = await fetch(`${API_URL}/${path}`, {
     headers: { ...getHeader() },
+    next: {
+      tags,
+    },
   });
 
-  return res.json();
+  return res.json() as T;
 };
 
 export async function authPost<T = unknown>(

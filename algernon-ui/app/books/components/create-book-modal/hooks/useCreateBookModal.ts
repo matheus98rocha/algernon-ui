@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import {
   createBookFormData,
   createBookFormSchema,
-} from "@/app/book/schema/create-book.schema";
+} from "@/app/books/schema/create-book.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import createBook from "@/app/book/services/create-book-modal.service";
+import createBook from "@/app/books/services/create-book-modal.service";
 
 export function useCreateModal({
   handleClose,
@@ -19,6 +19,7 @@ export function useCreateModal({
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm<createBookFormData>({
     resolver: zodResolver(createBookFormSchema),
   });
@@ -31,7 +32,8 @@ export function useCreateModal({
     // TODO: Precisa tratar os erros
     setIsLoading(true);
     const res = await createBook(formData).finally(() => setIsLoading(false));
-    if (res === undefined) {
+    if (res.statusCode === 200) {
+      reset()
       handleClose();
     }
   }
