@@ -57,7 +57,7 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
           <Stack spacing={3}>
             <TextField
               {...register("book")}
-              label="Book Name"
+              label="Nome do Livro"
               variant="outlined"
               type="text"
               helperText={errors.book?.message}
@@ -66,7 +66,7 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
 
             <TextField
               {...register("author")}
-              label="Author Name"
+              label="Nome do Autor"
               variant="outlined"
               type="text"
               helperText={errors.author?.message}
@@ -77,7 +77,7 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
             <TextField
               multiline={true}
               rows={3}
-              label="Description"
+              label="Descrição do livro"
               placeholder="Description"
               autoComplete="off"
               variant="outlined"
@@ -94,7 +94,7 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
               loadingPosition="center"
               loadingIndicator={<CircularProgress color="info" size={16} />}
             >
-              {"Create Book"}
+              {"Criar"}
             </LoadingButton>
           </Stack>
         </form>

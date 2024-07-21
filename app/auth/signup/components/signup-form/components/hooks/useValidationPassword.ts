@@ -17,26 +17,25 @@ export function useValidationPassword({ password }: ValidationProps): useValidat
   const validationItems = [
     {
       condition: hasMinimumLength,
-      text: "Minimum of 8 characters"
+      text: "Mínimo de 8 caracteres"
     },
     {
-
       condition: hasMinimumLowercase,
-      text: "At least 1 lowercase letter"
+      text: "Pelo menos 1 letra minúscula"
     },
     {
       condition: hasMinimumUppercase,
-      text: "At least 1 uppercase letter"
+      text: "Pelo menos 1 letra maiúscula"
     },
     {
       condition: hasMinimumNumbers,
-      text: "At least 1 number"
+      text: "Pelo menos 1 número"
     },
     {
       condition: hasMinimumSymbols,
-      text: "At least 1 special symbol"
+      text: "Pelo menos 1 símbolo especial"
     }
-  ]
+  ];
 
   return {
     validationItems

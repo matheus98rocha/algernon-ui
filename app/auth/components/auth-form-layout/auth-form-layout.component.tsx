@@ -1,24 +1,40 @@
-import { Box, Stack, Typography } from '@mui/material'
-import React from 'react'
-import { FieldValues, UseFormHandleSubmit } from 'react-hook-form';
-import { AuthFormLayoutProps } from './auth-form-layout.types';
+import { Box, Stack, Typography } from "@mui/material";
+import React from "react";
+import { FieldValues } from "react-hook-form";
+import { AuthFormLayoutProps } from "./auth-form-layout.types";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 
-function AuthFormLayout<T extends FieldValues>({ handleSubmit, onSubmit, titleForm, children }: AuthFormLayoutProps<T>) {
+function AuthFormLayout<T extends FieldValues>({
+  handleSubmit,
+  onSubmit,
+  titleForm,
+  children,
+}: AuthFormLayoutProps<T>) {
   return (
     <Box
-      component={'form'}
+      component={"form"}
       onSubmit={handleSubmit(onSubmit)}
-      className='w-full max-w-md border rounded-lg'
+      className="w-full max-w-md border rounded-lg"
       sx={{
-        boxShadow: 3
+        boxShadow: 3,
       }}
     >
       <Stack spacing={3} padding={8}>
-        <Typography variant="h3" className='self-center'>{titleForm}</Typography>
+        <Box 
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 2
+          }}
+        >
+          <MenuBookIcon color="secondary"/>
+          <Typography variant="h4" fontSize={"1.3rem"} color={"secondary"}>{titleForm}</Typography>
+        </Box>
         {children}
       </Stack>
     </Box>
-  )
+  );
 }
 
-export default AuthFormLayout
+export default AuthFormLayout;

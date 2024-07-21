@@ -1,10 +1,20 @@
-import { Avatar, Box, IconButton, Menu, MenuItem, Tooltip, Typography } from '@mui/material'
-import React from 'react'
-import { useSettings } from './hooks/useSettings';
-import { SettingsProps } from './settings.type';
+import {
+  Avatar,
+  Box,
+  IconButton,
+  Menu,
+  MenuItem,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import React from "react";
+import { useSettings } from "./hooks/useSettings";
+import { SettingsProps } from "./settings.type";
 
-function Settings({logout}:SettingsProps) {
-  const { anchorElUser, handleCloseUserMenu, handleOpenUserMenu } = useSettings({logout});
+function Settings({ logout }: SettingsProps) {
+  const { anchorElUser, handleCloseUserMenu, handleOpenUserMenu } = useSettings(
+    { logout }
+  );
   return (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
@@ -13,27 +23,27 @@ function Settings({logout}:SettingsProps) {
         </IconButton>
       </Tooltip>
       <Menu
-        sx={{ mt: '45px' }}
+        sx={{ mt: "45px" }}
         id="menu-appbar"
         anchorEl={anchorElUser}
         anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          vertical: "top",
+          horizontal: "right",
         }}
         keepMounted
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          vertical: "top",
+          horizontal: "right",
         }}
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-          <MenuItem key={"logout"} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">{"Logout"}</Typography>
-          </MenuItem>
+        <MenuItem key={"logout"} onClick={handleCloseUserMenu}>
+          <Typography textAlign="center">{"Sair"}</Typography>
+        </MenuItem>
       </Menu>
     </Box>
-  )
+  );
 }
 
-export default Settings
+export default Settings;
