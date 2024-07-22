@@ -27,7 +27,9 @@ export default async function RootLayout({
         <Providers authenticated={isAuthenticated}>
           <CssBaseline />
           <Header logout={logout} />
-          <Container >
+          <Container sx={{
+            marginTop: "42px",
+          }}>
             {children}
           </Container>
         </Providers>

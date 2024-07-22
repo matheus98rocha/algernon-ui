@@ -8,8 +8,9 @@ import {
   Link,
   TextField,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import NextLink from "next/link";
 import React from "react";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useLoginUserForm } from "./hooks/useLoginUser";
@@ -24,6 +25,9 @@ function LoginForm() {
   const { errors, handleSubmit, onSubmit, register, isLoading } =
     useLoginUserForm();
 
+  const theme = useTheme();
+  const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <AuthFormLayout
       titleForm={"Acesse sua conta"}
@@ -32,7 +36,7 @@ function LoginForm() {
     >
       <TextField
         {...register("email")}
-        label="Email"
+        label="E-mail"
         variant="outlined"
         type="email"
         helperText={errors.email?.message}
@@ -40,7 +44,7 @@ function LoginForm() {
       />
       <TextField
         {...register("password")}
-        label="Password"
+        label="Senha"
         variant="outlined"
         type="password"
         helperText={errors.password?.message}
@@ -62,7 +66,8 @@ function LoginForm() {
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
+          gridTemplateColumns: onlySmallScreen ? "1fr" : "1fr 1fr",
+          gap: onlySmallScreen ? 3 : 0,
           borderTop: "2px solid #E0E0E0",
           paddingTop: 4,
         }}

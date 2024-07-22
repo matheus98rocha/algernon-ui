@@ -1,17 +1,22 @@
+"use client";
 import Providers from "@/app/providers";
-import { Box, Grow } from "@mui/material";
+import { Box, Grow, ThemeProvider, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/image";
 
-import AlgernonLogo from '../../assets/logo-algernon.png'
+import AlgernonLogo from "../../assets/logo-algernon.png";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import darkTheme from "@/app/theme/dark.theme";
 
 export default function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const theme = useTheme();
+  const onlyMediaScreen = useMediaQuery(theme.breakpoints.up("md"));
   return (
-    <Providers authenticated={false}>
-      <>
+    <AppRouterCacheProvider>
+      <ThemeProvider theme={darkTheme}>
         <Grow in={true}>
           <Box
             sx={{
@@ -23,11 +28,11 @@ export default function AuthLayout({
               gap: 10,
             }}
           >
-            <Image src={AlgernonLogo} alt="algernon-log"/>
+            {onlyMediaScreen && <Image src={AlgernonLogo} alt="algernon-log" />}
             {children}
           </Box>
         </Grow>
-      </>
-    </Providers>
+      </ThemeProvider>
+    </AppRouterCacheProvider>
   );
 }

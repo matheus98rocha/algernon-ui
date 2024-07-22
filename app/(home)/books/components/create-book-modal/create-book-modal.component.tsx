@@ -6,7 +6,6 @@ import {
   Modal,
   Stack,
   TextField,
-  Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
