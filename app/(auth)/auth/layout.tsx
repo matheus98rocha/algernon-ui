@@ -1,5 +1,4 @@
 "use client";
-import Providers from "@/app/providers";
 import { Box, Grow, ThemeProvider, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/image";
 
@@ -28,7 +27,11 @@ export default function AuthLayout({
               gap: 10,
             }}
           >
-            {onlyMediaScreen && <Image src={AlgernonLogo} alt="algernon-log" />}
+            {onlyMediaScreen && <Image 
+            src={AlgernonLogo} 
+            alt="algernon-log" 
+            priority
+            />}
             {children}
           </Box>
         </Grow>

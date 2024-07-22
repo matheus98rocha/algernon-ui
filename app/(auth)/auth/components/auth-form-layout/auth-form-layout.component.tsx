@@ -25,7 +25,6 @@ function AuthFormLayout<T extends FieldValues>({
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center",
       }}
     >
       <Stack spacing={3} padding={onlySmallScreen ? 2 : 8}>

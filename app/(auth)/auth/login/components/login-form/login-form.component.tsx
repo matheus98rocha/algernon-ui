@@ -7,7 +7,6 @@ import {
   FormControlLabel,
   Link,
   TextField,
-  Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
@@ -61,7 +60,9 @@ function LoginForm() {
       </LoadingButton>
       <Box gap={1} className="flex items-center justify-between pt-2">
         <FormControlLabel control={<Checkbox />} label="Continuar conectado" />
-        <Link color={"#1877F2"}>{"Esqueceu sua senha?"}</Link>
+        <Link component={Link} href="/auth/forgot" color={"#1877F2"}>
+          {"Esqueceu sua senha?"}
+        </Link>
       </Box>
       <Box
         sx={{
