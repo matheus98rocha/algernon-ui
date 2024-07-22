@@ -7,29 +7,42 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 function AuthFormLayout<T extends FieldValues>({
   handleSubmit,
   onSubmit,
-  titleForm,
   children,
 }: AuthFormLayoutProps<T>) {
   return (
     <Box
       component={"form"}
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-md border rounded-lg"
+      className="h-"
       sx={{
         boxShadow: 3,
+        width: "650px",
+        borderWidth: 1,
+        borderRadius: "10px",
+        backgroundColor: "background.paper",
       }}
     >
       <Stack spacing={3} padding={8}>
-        <Box 
+        <Box
           sx={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            gap: 2
+            gap: 2,
           }}
         >
-          <MenuBookIcon color="secondary"/>
-          <Typography variant="h4" fontSize={"1.3rem"} color={"secondary"}>{titleForm}</Typography>
+          <Typography
+            variant="h4"
+            fontSize={32}
+            sx={{
+              background: 'linear-gradient(90deg, #28220B 0%, #BCA03B 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              display: 'inline-block',
+            }}
+          >
+            Algernon
+          </Typography>
         </Box>
         {children}
       </Stack>

@@ -1,5 +1,4 @@
 "use client";
-import { BorderColor } from "@mui/icons-material";
 import { createTheme } from "@mui/material";
 
 const darkTheme = createTheme({
@@ -13,7 +12,8 @@ const darkTheme = createTheme({
       main: "#b39230",
     },
     background: {
-      default: "#faf0f0",
+      paper: "#faf0f0",
+      default: "#F4E772",
     },
   },
   components: {

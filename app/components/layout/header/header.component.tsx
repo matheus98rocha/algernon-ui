@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import Settings from './components/settings/settings.components';
 import { useHeader } from './hooks/useHeader';
-import { AuthContext } from '@/app/auth/contexts/auth.context/auth.context';
+import { AuthContext } from '@/app/(auth)/auth/contexts/auth.context/auth.context';
 import { protectedRoutes, unauthenticatedRoutes } from '@/app/common/constants/routes';
 import { HeaderProps } from './header.type';
 import Link from 'next/link';
