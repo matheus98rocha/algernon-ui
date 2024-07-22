@@ -12,9 +12,12 @@ import { useSettings } from "./hooks/useSettings";
 import { SettingsProps } from "./settings.type";
 
 function Settings({ logout }: SettingsProps) {
-  const { anchorElUser, handleCloseUserMenu, handleOpenUserMenu } = useSettings(
-    { logout }
-  );
+  const {
+    anchorElUser,
+    handleCloseUserMenu,
+    handleOpenUserMenu,
+    handleLogout,
+  } = useSettings({ logout });
   return (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
@@ -38,7 +41,7 @@ function Settings({ logout }: SettingsProps) {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        <MenuItem key={"logout"} onClick={handleCloseUserMenu}>
+        <MenuItem key={"logout"} onClick={handleLogout}>
           <Typography textAlign="center">{"Sair"}</Typography>
         </MenuItem>
       </Menu>

@@ -5,4 +5,5 @@ export type useSettingsReturn = {
   handleOpenUserMenu: (event: React.MouseEvent<HTMLElement>) => void
   anchorElUser: null | HTMLElement
   handleCloseUserMenu: () => void,
+  handleLogout: () => void,
 }
