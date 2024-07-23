@@ -15,6 +15,7 @@ export default async function createUser(
   formData: FormData
 ) {
   const res = await post<UserResponse>('users', formData);
+
   const isOk = res.data.ok;
   if (!isOk) {
     return {
@@ -24,6 +25,6 @@ export default async function createUser(
       path: res.result.path
     }
   } else {
-    redirect("/")
+    redirect("/auth/login")
   }
 } 

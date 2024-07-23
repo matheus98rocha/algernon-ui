@@ -22,7 +22,7 @@ function FloatingButton() {
         onClick={() => setisOpenCreateBookModal(true)}
       >
         <Collapse in={isHoverFloatingButton} exit={!isHoverFloatingButton}>
-          {isHoverFloatingButton && "Create a Book"}
+          {isHoverFloatingButton && "Criar Livro"}
         </Collapse>
         <AddIcon />
       </Fab>

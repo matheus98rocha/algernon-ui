@@ -11,6 +11,7 @@ interface LoginUserResponse extends Error { }
 
 export default async function loginUser(formData: FormData) {
   const res = await post<LoginUserResponse>('auth/login', formData);
+
   if (!!res.result.message) {
     return {
       message: res.result.message,

@@ -3,7 +3,6 @@ import {
   Box,
   CircularProgress,
   Link,
-  Stack,
   TextField,
   Typography,
 } from "@mui/material";
@@ -27,6 +26,23 @@ function SignupForm() {
       handleSubmit={handleSubmit}
       onSubmit={onSubmit}
     >
+      <TextField
+        {...register("name")}
+        label="Nome"
+        variant="outlined"
+        type="text"
+        helperText={errors.name?.message}
+        error={!!errors.name}
+      />
+
+      <TextField
+        {...register("lastName")}
+        label="Sobrenome"
+        variant="outlined"
+        type="text"
+        helperText={errors.lastName?.message}
+        error={!!errors.lastName}
+      />
       <TextField
         {...register("email")}
         label="E-mail"
