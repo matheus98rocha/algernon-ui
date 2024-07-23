@@ -59,7 +59,11 @@ function LoginForm() {
         {"Entrar"}
       </LoadingButton>
       <Box gap={1} className="flex items-center justify-between pt-2">
-        <FormControlLabel control={<Checkbox />} label="Manter dados" />
+        <FormControlLabel
+          control={<Checkbox />}
+          label="Manter dados salvos"
+          {...register("keepData")}
+        />
         <Link component={Link} href="/auth/forgot" color={"#1877F2"}>
           {"Esqueceu sua senha?"}
         </Link>

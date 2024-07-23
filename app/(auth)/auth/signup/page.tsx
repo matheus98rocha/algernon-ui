@@ -1,9 +1,9 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import { CircularProgress } from '@mui/material'
+import LoadingContainer from '@/app/components/layout/loading/loading.component'
 const DynamicSignupForm = dynamic(() => import('./components/signup-form/signup-form.component'),
   {
-    loading: () => <CircularProgress />,
+    loading: () => <LoadingContainer/>,
   })
 
 function Signup() {

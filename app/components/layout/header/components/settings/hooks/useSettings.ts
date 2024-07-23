@@ -13,6 +13,11 @@ export function useSettings({ logout }: SettingsProps): useSettingsReturn {
   }, []);
 
   const handleLogout = useCallback(async () => {
+    const emailAuth = localStorage.getItem("emailAuthAlgernon");
+
+    if (emailAuth) {
+      localStorage.removeItem("emailAuthAlgernon");
+    }
     await logout();
   }, []);
 
