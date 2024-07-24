@@ -1,7 +1,10 @@
 import React, { MouseEvent, useCallback, useState } from "react";
 import { SettingsProps, useSettingsReturn } from "../settings.type";
 
-export function useSettings({ logout }: SettingsProps): useSettingsReturn {
+export function useSettings({
+  logout,
+  user,
+}: SettingsProps): useSettingsReturn {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = useCallback((event: MouseEvent<HTMLElement>) => {
@@ -26,5 +29,6 @@ export function useSettings({ logout }: SettingsProps): useSettingsReturn {
     anchorElUser,
     handleCloseUserMenu,
     handleLogout,
+    user,
   };
 }
