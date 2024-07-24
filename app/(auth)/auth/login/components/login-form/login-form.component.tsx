@@ -19,6 +19,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import googleIcon from "../../../../../assets/google.svg";
 
 import Image from "next/image";
+import TextFieldPassword from "@/app/components/inputs/text-field-password/text-field-password";
 
 function LoginForm() {
   const { errors, handleSubmit, onSubmit, register, isLoading } =
@@ -41,13 +42,11 @@ function LoginForm() {
         helperText={errors.email?.message}
         error={!!errors.email}
       />
-      <TextField
-        {...register("password")}
+      <TextFieldPassword
+        register={register}
+        registerOption="password"
+        errors={errors}
         label="Senha"
-        variant="outlined"
-        type="password"
-        helperText={errors.password?.message}
-        error={!!errors.password}
       />
       <LoadingButton
         type={"submit"}

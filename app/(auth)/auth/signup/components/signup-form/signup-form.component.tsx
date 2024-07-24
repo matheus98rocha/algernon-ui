@@ -12,6 +12,7 @@ import { ValidatePassword } from "./components/ValidatePassword.component";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useCreateUserForm } from "./hooks/useCreateUser";
 import AuthFormLayout from "@/app/(auth)/auth/components/auth-form-layout/auth-form-layout.component";
+import TextFieldPassword from "@/app/components/inputs/text-field-password/text-field-password";
 
 function SignupForm() {
   const { errors, handleSubmit, onSubmit, register, watch, isLoading } =
@@ -51,22 +52,18 @@ function SignupForm() {
         helperText={errors.email?.message}
         error={!!errors.email}
       />
-      <TextField
-        {...register("password")}
+      <TextFieldPassword
+        register={register}
+        registerOption="password"
         label="Senha"
-        variant="outlined"
-        type="password"
-        helperText={errors.password?.message}
-        error={!!errors.password}
+        errors={errors}
       />
       {canShowPasswordValidation && <ValidatePassword password={password} />}
-      <TextField
-        {...register("confirmPassword")}
+      <TextFieldPassword
+        register={register}
+        registerOption="confirmPassword"
         label="Confirmar Senha"
-        variant="outlined"
-        type="password"
-        helperText={errors.confirmPassword?.message}
-        error={!!errors.confirmPassword}
+        errors={errors}
       />
       <LoadingButton
         type={"submit"}
