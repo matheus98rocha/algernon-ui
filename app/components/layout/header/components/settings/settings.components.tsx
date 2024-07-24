@@ -11,18 +11,18 @@ import React from "react";
 import { useSettings } from "./hooks/useSettings";
 import { SettingsProps } from "./settings.type";
 
-function Settings({ logout }: SettingsProps) {
+function Settings({ logout, user }: SettingsProps) {
   const {
     anchorElUser,
     handleCloseUserMenu,
     handleOpenUserMenu,
     handleLogout,
-  } = useSettings({ logout });
+  } = useSettings({ logout, user });
   return (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          <Avatar alt={user.name} src="/static/images/avatar/2.jpg" />
         </IconButton>
       </Tooltip>
       <Menu

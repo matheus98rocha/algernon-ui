@@ -1,5 +1,8 @@
+import { User } from "@/app/common/types/user"
+
 export type HeaderProps = {
   logout: () => Promise<void>
+  user: User
 }
 
 export type useHeaderReturn = {
