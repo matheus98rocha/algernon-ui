@@ -12,7 +12,7 @@ export function useValidationPassword({ password }: ValidationProps): useValidat
   const hasMinimumLowercase = /[a-z]/.test(password);
   const hasMinimumUppercase = /[A-Z]/.test(password);
   const hasMinimumNumbers = /[0-9]/.test(password);
-  const hasMinimumSymbols = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  const hasMinimumSymbols = /[!@#$%^&*(),.?":{}|<>_]/.test(password);
 
   const validationItems = [
     {
