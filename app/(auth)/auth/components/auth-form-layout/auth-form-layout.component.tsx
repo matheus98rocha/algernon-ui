@@ -2,7 +2,7 @@ import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 import { FieldValues } from "react-hook-form";
 import { AuthFormLayoutProps } from "./auth-form-layout.types";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
+import * as S from "./auth-form-layout.styles";
 
 function AuthFormLayout<T extends FieldValues>({
   handleSubmit,
@@ -10,48 +10,23 @@ function AuthFormLayout<T extends FieldValues>({
   children,
 }: AuthFormLayoutProps<T>) {
   const theme = useTheme();
-  const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   return (
-    <Box
+    <S.WrapperAuthFormLayout
       component={"form"}
       onSubmit={handleSubmit(onSubmit)}
-      sx={{
-        boxShadow: 3,
-        width: "650px",
-        borderWidth: 1,
-        borderRadius: "10px",
-        backgroundColor: "background.paper",
-        height:onlySmallScreen ? "100vh" : "auto",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-      }}
     >
-      <Stack spacing={3} padding={onlySmallScreen ? 2 : 8}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 2,
-          }}
-        >
-          <Typography
+      <S.WrapperStack spacing={3}>
+        <S.WrapperBoxTitleAndChildrens>
+          <S.TitleAuthForm
             variant="h4"
             fontSize={32}
-            sx={{
-              background: "linear-gradient(90deg, #28220B 0%, #BCA03B 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              display: "inline-block",
-            }}
           >
             Algernon
-          </Typography>
-        </Box>
+          </S.TitleAuthForm>
+        </S.WrapperBoxTitleAndChildrens>
         {children}
-      </Stack>
-    </Box>
+      </S.WrapperStack>
+    </S.WrapperAuthFormLayout>
   );
 }
 

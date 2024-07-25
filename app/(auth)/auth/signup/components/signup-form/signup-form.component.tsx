@@ -13,6 +13,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { useCreateUserForm } from "./hooks/useCreateUser";
 import AuthFormLayout from "@/app/(auth)/auth/components/auth-form-layout/auth-form-layout.component";
 import TextFieldPassword from "@/app/components/inputs/text-field-password/text-field-password";
+import * as S from "./signup-form.styles";
 
 function SignupForm() {
   const { errors, handleSubmit, onSubmit, register, watch, isLoading } =
@@ -75,7 +76,7 @@ function SignupForm() {
         {"Cadastrar"}
       </LoadingButton>
       <span className={`text-xs text-red-500`}>{errors.root?.message}</span>
-      <Box gap={1} className="flex items-center justify-center pt-2">
+      <S.WrapperSignupForm>
         <Typography
           variant="h6"
           sx={{
@@ -94,7 +95,7 @@ function SignupForm() {
             {"Entre na plataforma"}
           </Typography>
         </Link>
-      </Box>
+      </S.WrapperSignupForm>
     </AuthFormLayout>
   );
 }
