@@ -1,10 +1,8 @@
 "use client";
 import {
-  Box,
   CircularProgress,
   Link,
   TextField,
-  Typography,
 } from "@mui/material";
 import NextLink from "next/link";
 import React from "react";
@@ -75,25 +73,21 @@ function SignupForm() {
       >
         {"Cadastrar"}
       </LoadingButton>
-      <span className={`text-xs text-red-500`}>{errors.root?.message}</span>
+      <S.WrapperRootMessage>
+      <S.TypographyErrorMessageRoot>{errors.root?.message}</S.TypographyErrorMessageRoot>
+      </S.WrapperRootMessage>
       <S.WrapperSignupForm>
-        <Typography
+        <S.TypographyCreateAccount
           variant="h6"
-          sx={{
-            fontSize: "0.9rem",
-          }}
         >
           {"Já possui uma conta?"}
-        </Typography>
+        </S.TypographyCreateAccount>
         <Link component={NextLink} underline="none" href={"/auth/login"}>
-          <Typography
+          <S.TypographyCreateAccount
             variant="h6"
-            sx={{
-              fontSize: "0.9rem",
-            }}
           >
             {"Entre na plataforma"}
-          </Typography>
+          </S.TypographyCreateAccount>
         </Link>
       </S.WrapperSignupForm>
     </AuthFormLayout>

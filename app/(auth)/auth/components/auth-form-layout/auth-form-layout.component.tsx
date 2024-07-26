@@ -9,7 +9,6 @@ function AuthFormLayout<T extends FieldValues>({
   onSubmit,
   children,
 }: AuthFormLayoutProps<T>) {
-  const theme = useTheme();
   return (
     <S.WrapperAuthFormLayout
       component={"form"}
