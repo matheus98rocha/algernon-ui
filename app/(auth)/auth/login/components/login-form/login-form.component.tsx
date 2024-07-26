@@ -16,7 +16,7 @@ import { useLoginUserForm } from "./hooks/useLoginUser";
 import AuthFormLayout from "@/app/(auth)/auth/components/auth-form-layout/auth-form-layout.component";
 
 import FacebookIcon from "@mui/icons-material/Facebook";
-import googleIcon from "../../../../../assets/google.svg";
+import GoogleIcon from "@mui/icons-material/Google";
 
 import Image from "next/image";
 import TextFieldPassword from "@/app/components/inputs/text-field-password/text-field-password";
@@ -71,6 +71,7 @@ function LoginForm() {
         sx={{
           display: "grid",
           gridTemplateColumns: onlySmallScreen ? "1fr" : "1fr 1fr",
+          justifyContent: "space-between",
           gap: onlySmallScreen ? 3 : 0,
           borderTop: "2px solid #E0E0E0",
           paddingTop: 4,
@@ -87,30 +88,31 @@ function LoginForm() {
         <Box
           sx={{
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "flex-end",
             alignItems: "center",
             gap: "8px",
           }}
         >
           <FacebookIcon
             sx={{
-              width: 42,
-              height: 42,
+              width: 40,
+              height: 40,
               color: "#1877F2",
               ":hover": {
                 cursor: "pointer",
               },
             }}
           />
-          <Box
+          <GoogleIcon
             sx={{
+              width: 40,
+              height: 40,
+              color: "#DB4437",
               ":hover": {
                 cursor: "pointer",
               },
             }}
-          >
-            <Image src={googleIcon} alt="Google Icon" height={32} width={32} />
-          </Box>
+          />
         </Box>
       </Box>
     </AuthFormLayout>
