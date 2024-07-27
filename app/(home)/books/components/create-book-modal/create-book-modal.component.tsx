@@ -23,15 +23,15 @@ import LoadingComponent from "@/app/components/layout/loading/loading-component/
 import { Controller } from "react-hook-form";
 
 function CreateBookModal({ open, handleClose }: createBookModalProps) {
-  const { errors, handleSubmit, isLoading, onSubmit, register,control } =
+  const { errors, handleSubmit, isLoading, onSubmit, register, control } =
     useCreateModal({ handleClose });
   const theme = useTheme();
   const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const statusOptions = [
     { value: "wantToRead", label: "Quero Ler" },
+    { value: "reading", label: "Estou Lendo" },
     { value: "alreadyRead", label: "Já Li" },
-    { value: "reading", label: "Estou Lendo" }
   ];
 
   const createBookModalstyle = {
@@ -104,7 +104,7 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
               <Controller
                 name="status"
                 control={control}
-                defaultValue="wantToRead"
+                defaultValue=""
                 rules={{ required: "Status é obrigatório" }}
                 render={({ field }) => (
                   <Select
