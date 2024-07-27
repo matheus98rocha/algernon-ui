@@ -1,4 +1,5 @@
 import {
+  Control,
   FieldErrors,
   UseFormHandleSubmit,
   UseFormRegister,
@@ -17,4 +18,5 @@ export type useCreateBookModalReturn = {
   register: UseFormRegister<createBookFormData>;
   errors: FieldErrors<createBookFormData>;
   isLoading: boolean;
+  control: Control<createBookFormData>;
 };

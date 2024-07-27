@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import LoadingComponent from '../../loading-component/loading-component'
+import LoadingComponent from './loading-component/loading-component'
 
 function LoadingContainer() {
   return (

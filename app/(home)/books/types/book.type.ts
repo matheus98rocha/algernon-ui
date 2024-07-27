@@ -3,4 +3,5 @@ export type Book = {
   book: string;
   description: string;
   author: string;
+  status: "wantToRead" | "alreadyRead" | "reading";
 };

@@ -19,7 +19,8 @@ export function useCreateModal({
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
+    control,
   } = useForm<createBookFormData>({
     resolver: zodResolver(createBookFormSchema),
   });
@@ -29,11 +30,12 @@ export function useCreateModal({
     formData.append("book", data.book);
     formData.append("description", data.description);
     formData.append("author", data.author);
+    formData.append("status", data.status);
     // TODO: Precisa tratar os erros
     setIsLoading(true);
     const res = await createBook(formData).finally(() => setIsLoading(false));
     if (res.statusCode === 200) {
-      reset()
+      reset();
       handleClose();
     }
   }
@@ -44,5 +46,6 @@ export function useCreateModal({
     errors,
     isLoading,
     onSubmit,
+    control,
   };
 }

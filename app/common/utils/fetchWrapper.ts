@@ -27,8 +27,19 @@ export async function post<T = unknown>(
   };
 }
 
-export const get = async <T>(path: string, tags?: string[]) => {
-  const res = await fetch(`${API_URL}/${path}`, {
+export const get = async <T>(
+  path: string,
+  params?: Record<string, any>,
+  tags?: string[]
+): Promise<T> => {
+  const url = new URL(`${API_URL}/${path}`);
+  if (params) {
+    Object.keys(params).forEach((key) =>
+      url.searchParams.append(key, params[key])
+    );
+  }
+
+  const res = await fetch(url.toString(), {
     headers: { ...getHeader() },
     next: {
       tags,

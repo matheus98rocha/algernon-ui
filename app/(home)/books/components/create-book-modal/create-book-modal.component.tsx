@@ -3,7 +3,12 @@
 import {
   Box,
   CircularProgress,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
   Modal,
+  Select,
   Stack,
   TextField,
   useMediaQuery,
@@ -14,12 +19,20 @@ import { createBookModalProps } from "./create-book-modal.types";
 import { LoadingButton } from "@mui/lab";
 import { useCreateModal } from "./hooks/useCreateBookModal";
 import CloseIcon from "@mui/icons-material/Close";
+import LoadingComponent from "@/app/components/layout/loading/loading-component/loading-component";
+import { Controller } from "react-hook-form";
 
 function CreateBookModal({ open, handleClose }: createBookModalProps) {
-  const { errors, handleSubmit, isLoading, onSubmit, register } =
+  const { errors, handleSubmit, isLoading, onSubmit, register,control } =
     useCreateModal({ handleClose });
   const theme = useTheme();
   const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const statusOptions = [
+    { value: "wantToRead", label: "Quero Ler" },
+    { value: "alreadyRead", label: "Já Li" },
+    { value: "reading", label: "Estou Lendo" }
+  ];
 
   const createBookModalstyle = {
     position: "absolute" as "absolute",
@@ -85,13 +98,39 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
               error={!!errors.description}
             />
 
+            {/* Componentizar o select */}
+            <FormControl fullWidth error={!!errors.status} variant="outlined">
+              <InputLabel id="status-label">Status</InputLabel>
+              <Controller
+                name="status"
+                control={control}
+                defaultValue="wantToRead"
+                rules={{ required: "Status é obrigatório" }}
+                render={({ field }) => (
+                  <Select
+                    labelId="status-label"
+                    id="status"
+                    label="Status"
+                    {...field}
+                  >
+                    {statusOptions.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                )}
+              />
+              <FormHelperText>{errors.status?.message}</FormHelperText>
+            </FormControl>
+
             {/* Criar componente para ser utilizado no layout de AUTH */}
             <LoadingButton
               type={"submit"}
               variant="contained"
               loading={isLoading}
               loadingPosition="center"
-              loadingIndicator={<CircularProgress color="info" size={16} />}
+              loadingIndicator={<LoadingComponent />}
             >
               {"Criar"}
             </LoadingButton>

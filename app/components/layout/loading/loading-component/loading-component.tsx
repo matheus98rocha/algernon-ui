@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import dancingMouse from "../../assets/dancing-mice-dancing.gif";
+import dancingMouse from "../../../../assets/dancing-mice-dancing.gif";
 
 function LoadingComponent() {
   return (

@@ -18,7 +18,7 @@ import AuthFormLayout from "@/app/(auth)/auth/components/auth-form-layout/auth-f
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import TextFieldPassword from "@/app/components/inputs/text-field-password/text-field-password";
-import LoadingComponent from "@/app/components/loading-component/loading-component";
+import LoadingComponent from "@/app/components/layout/loading/loading-component/loading-component";
 
 function LoginForm() {
   const { errors, handleSubmit, onSubmit, register, isLoading } =

@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Unstable_Grid2";
-import getBooks from "../../services/get-books.service";
 import BookCard from "./book-card.component";
+import { getBooks } from "../../services/get-books.service";
 
 export default async function Books() {
   const books = await getBooks();
@@ -14,6 +14,7 @@ export default async function Books() {
             book={book.book}
             author={book.author}
             id={book.id}
+            status={book.status}
           />
         </Grid>
       ))}
