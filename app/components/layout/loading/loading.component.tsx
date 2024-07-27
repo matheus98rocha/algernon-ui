@@ -1,5 +1,6 @@
-import { Box, CircularProgress } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
+import LoadingComponent from '../../loading-component/loading-component'
 
 function LoadingContainer() {
   return (
@@ -17,7 +18,7 @@ function LoadingContainer() {
         alignItems: "center",
       }}
     >
-      <CircularProgress />
+     <LoadingComponent/>
     </Box>
   )
 }

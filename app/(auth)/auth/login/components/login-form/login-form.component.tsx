@@ -17,9 +17,8 @@ import AuthFormLayout from "@/app/(auth)/auth/components/auth-form-layout/auth-f
 
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
-
-import Image from "next/image";
 import TextFieldPassword from "@/app/components/inputs/text-field-password/text-field-password";
+import LoadingComponent from "@/app/components/loading-component/loading-component";
 
 function LoginForm() {
   const { errors, handleSubmit, onSubmit, register, isLoading } =
@@ -53,7 +52,7 @@ function LoginForm() {
         variant="contained"
         loading={isLoading}
         loadingPosition="center"
-        loadingIndicator={<CircularProgress color="info" size={16} />}
+        loadingIndicator={<LoadingComponent />}
       >
         {"Entrar"}
       </LoadingButton>
