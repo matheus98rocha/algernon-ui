@@ -68,10 +68,12 @@ function LoginForm() {
       </Box>
       <Box
         sx={{
-          display: "grid",
-          gridTemplateColumns: onlySmallScreen ? "1fr" : "1fr 1fr",
-          justifyContent: "space-between",
-          gap: onlySmallScreen ? 3 : 0,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          gap: 2,
+          flexDirection: "column",
           borderTop: "2px solid #E0E0E0",
           paddingTop: 4,
         }}
@@ -81,38 +83,34 @@ function LoginForm() {
           href="/auth/signup"
           variant="contained"
           type={"button"}
+          sx={{
+            width: "100%",
+          }}
         >
           Criar conta
         </Button>
-        <Box
+        <Button
+          variant="contained"
+          type={"button"}
           sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            gap: "8px",
+            width: "100%",
+            backgroundColor: "#1877F2",
+            ":hover": {
+              backgroundColor: "#1557B2",
+            },
           }}
+          startIcon={
+            <GoogleIcon
+              sx={{
+                ":hover": {
+                  cursor: "pointer",
+                },
+              }}
+            />
+          }
         >
-          <FacebookIcon
-            sx={{
-              width: 40,
-              height: 40,
-              color: "#1877F2",
-              ":hover": {
-                cursor: "pointer",
-              },
-            }}
-          />
-          <GoogleIcon
-            sx={{
-              width: 40,
-              height: 40,
-              color: "#DB4437",
-              ":hover": {
-                cursor: "pointer",
-              },
-            }}
-          />
-        </Box>
+          Continuar com o Google
+        </Button>
       </Box>
     </AuthFormLayout>
   );

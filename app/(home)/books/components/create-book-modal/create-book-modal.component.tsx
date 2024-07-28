@@ -32,6 +32,8 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
     { value: "wantToRead", label: "Quero Ler" },
     { value: "reading", label: "Estou Lendo" },
     { value: "alreadyRead", label: "Já Li" },
+    { value: "rereading", label: "Relendo" },
+    { value: "abandoned", label: "Abandonado" },
   ];
 
   const createBookModalstyle = {
@@ -104,7 +106,7 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
               <Controller
                 name="status"
                 control={control}
-                defaultValue=""
+                defaultValue={undefined}
                 rules={{ required: "Status é obrigatório" }}
                 render={({ field }) => (
                   <Select

@@ -1,6 +1,7 @@
 import { z } from "zod";
+import { statusOptions } from "../constants/books-status";
 
-const statusOptions = ["wantToRead", "alreadyRead", "reading"] as const;
+
 
 export const createBookFormSchema = z.object({
   book: z.string().min(1, "Você deve fornecer o nome do livro"),
@@ -10,7 +11,7 @@ export const createBookFormSchema = z.object({
     .enum(statusOptions, {
       errorMap: () => ({
         message:
-          "O status deve ser um dos seguintes: Quero Ler, Já Li, Estou Lendo",
+          "O status deve ser um dos seguintes: Quero Ler, Já Li, Estou Lendo, Abandonado ou Relendo",
       }),
     })
     .optional(),
