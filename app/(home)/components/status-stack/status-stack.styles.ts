@@ -1,12 +1,21 @@
 import { Paper, Stack, styled } from "@mui/material";
 
-export const StackWrapper = styled(Stack)(({ theme }) => ({
+export const StackWrapper = styled(Stack, {
+  shouldForwardProp: (prop) => prop !== "scrollable",
+})<{ scrollable?: boolean }>(({ theme, scrollable }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   width: "100%",
   marginBottom: theme.spacing(2),
   gap: theme.spacing(2),
+  flexDirection: "row",
+  overflowX: scrollable ? "auto" : "hidden",
+  whiteSpace: scrollable ? "nowrap" : "normal",
+
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
 }));
 
 export const ItemStyled = styled(Paper)(({ theme }) => ({

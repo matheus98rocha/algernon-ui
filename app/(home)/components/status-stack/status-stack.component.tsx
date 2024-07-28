@@ -1,6 +1,5 @@
 "use client";
 import * as React from "react";
-import Stack from "@mui/material/Stack";
 import { statusOptions, statusTextMap } from "../../constants/books-status";
 import Link from "next/link";
 import * as S from "./status-stack.styles";
@@ -11,7 +10,7 @@ function StatusStack() {
   const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <S.StackWrapper
-      direction={onlySmallScreen ? "column" : "row"}
+      scrollable={onlySmallScreen}
     >
       {statusOptions.map((status) => (
         <Link key={status} href={`/${status}`} passHref>
