@@ -3,9 +3,17 @@ import authenticated from "./app/(auth)/auth/services/authenticated";
 import { unauthenticatedRoutes } from "./app/common/constants/routes";
 
 export function middleware(request: NextRequest) {
+  const isAuthenticated = authenticated();
+  const isUnauthenticatedRoute = unauthenticatedRoutes.some(route => request.nextUrl.pathname.startsWith(route.path));
 
-  if (!authenticated() && !unauthenticatedRoutes.some((route) => request.nextUrl.pathname.startsWith(route.path))) {
-    return Response.redirect(new URL("/auth/login", request.url))
+  if (isAuthenticated && isUnauthenticatedRoute) {
+    // Redireciona o usuário autenticado para a página inicial
+    return Response.redirect(new URL("/", request.url));
+  }
+
+  if (!isAuthenticated && !isUnauthenticatedRoute) {
+    // Redireciona o usuário não autenticado para a página de login
+    return Response.redirect(new URL("/auth/login", request.url));
   }
 }
 
