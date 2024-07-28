@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { useCreateBookModalReturn } from "../create-book-modal.types";
 import { useForm } from "react-hook-form";
-import {
-  createBookFormData,
-  createBookFormSchema,
-} from "@/app/(home)/books/schema/create-book.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import createBook from "@/app/(home)/books/services/create-book-modal.service";
+import createBook from "@/app/(home)/services/create-book-modal.service";
+import { createBookFormData, createBookFormSchema } from "@/app/(home)/schema/create-book.schema";
 
 export function useCreateModal({
   handleClose,

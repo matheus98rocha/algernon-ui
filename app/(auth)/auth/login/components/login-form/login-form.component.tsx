@@ -25,7 +25,6 @@ function LoginForm() {
     useLoginUserForm();
 
   const theme = useTheme();
-  const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <AuthFormLayout

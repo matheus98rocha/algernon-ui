@@ -7,6 +7,7 @@ export default async function Books() {
 
   return (
     <Grid container spacing={3}>
+      {/* Componentizar esse map */}
       {books.map((book) => (
         <Grid key={book.id} sm={6} lg={4} xs={12}>
           <BookCard

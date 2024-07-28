@@ -7,7 +7,7 @@ import authenticated from "../(auth)/auth/services/authenticated";
 import Providers from "../providers";
 import Header from "../components/layout/header/header.component";
 import logout from "../(auth)/auth/services/logout";
-import getUserDetails from "./books/services/get-user-details.service";
+import getUserDetails from "./services/get-user-details.service";
 
 const inter = Noto_Serif({ subsets: ["latin"] });
 

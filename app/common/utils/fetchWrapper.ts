@@ -38,7 +38,6 @@ export const get = async <T>(
       url.searchParams.append(key, params[key])
     );
   }
-
   const res = await fetch(url.toString(), {
     headers: { ...getHeader() },
     next: {
