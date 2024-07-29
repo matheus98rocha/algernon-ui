@@ -21,13 +21,24 @@ function StatusStack({ currentPage }: StatusStackProps) {
   return (
     <>
       <S.StackWrapper scrollable={onlySmallScreen}>
+        <Link href={`/`} passHref>
+          <S.ItemStyled isActive={undefined === currentPage}>
+            Todos
+          </S.ItemStyled>
+        </Link>
         {statusOptions.map((status) => (
-          <Link key={status} href={`/${status}`} passHref>
+          <Link
+            href={{
+              pathname: "/results",
+              query: { status: status },
+            }}
+          >
             <S.ItemStyled isActive={status === currentPage}>
               {statusTextMap[status]}
             </S.ItemStyled>
           </Link>
         ))}
+        
       </S.StackWrapper>
     </>
   );

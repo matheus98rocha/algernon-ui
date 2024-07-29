@@ -5,7 +5,7 @@ import GridBooks from "../components/grid-books/grid-books.component";
 export const dynamicParams = true;
 
 interface BookByStatusProps {
-  params: {
+  searchParams: {
     status:
       | "wantToRead"
       | "alreadyRead"
@@ -15,8 +15,10 @@ interface BookByStatusProps {
   };
 }
 
-export default async function BookByStatus({ params }: BookByStatusProps) {
-  const { status } = params;
+export default async function BookByStatus({
+  searchParams,
+}: BookByStatusProps) {
+  const { status } = searchParams;
   const books = await getBooks(status);
 
   return (
