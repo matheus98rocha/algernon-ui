@@ -28,6 +28,7 @@ function StatusStack({ currentPage }: StatusStackProps) {
         </Link>
         {statusOptions.map((status) => (
           <Link
+            key={status}
             href={{
               pathname: "/results",
               query: { status: status },
