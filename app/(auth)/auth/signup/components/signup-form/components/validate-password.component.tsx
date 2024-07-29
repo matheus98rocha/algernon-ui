@@ -1,7 +1,8 @@
 import CloseIcon from "@mui/icons-material/Close";
 import DoneIcon from "@mui/icons-material/Done";
-import { ValidationProps } from "./ValidatePassword.types";
+import { ValidationProps } from "./validate-password.types";
 import { useValidationPassword } from "./hooks/useValidationPassword";
+import { TextValidation, ValidatePasswordContainer, WrapperValidatePassword } from "./validate-password.styles";
 
 const ValidationItem = ({
   condition,
@@ -10,18 +11,16 @@ const ValidationItem = ({
   condition: boolean;
   text: string;
 }) => (
-  <div className="flex gap-2">
+  <WrapperValidatePassword>
     {condition ? (
       <DoneIcon fontSize={"small"} color={"success"} />
     ) : (
       <CloseIcon fontSize={"small"} color={"error"} />
     )}
-    <span
-      className={`text-xs ${condition ? "text-green-500" : "text-red-500"} font-bold`}
-    >
+    <TextValidation condition={condition}>
       {text}
-    </span>
-  </div>
+    </TextValidation>
+  </WrapperValidatePassword>
 );
 
 export const ValidatePassword = ({
@@ -30,7 +29,7 @@ export const ValidatePassword = ({
   const { validationItems } = useValidationPassword({ password });
 
   return (
-    <div className="flex flex-col gap-2">
+    <ValidatePasswordContainer>
       {validationItems.map((validation) => {
         return (
           <ValidationItem
@@ -40,6 +39,6 @@ export const ValidatePassword = ({
           />
         );
       })}
-    </div>
+    </ValidatePasswordContainer>
   );
 };

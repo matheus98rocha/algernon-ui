@@ -19,6 +19,7 @@ import { useCreateModal } from "./hooks/useCreateBookModal";
 import CloseIcon from "@mui/icons-material/Close";
 import { Controller } from "react-hook-form";
 import ButtonLoading from "@/app/components/buttons/button-loading/button-loading.component";
+import { WrapperForm } from "./create-book-modal.styles";
 
 function CreateBookModal({ open, handleClose }: createBookModalProps) {
   const { errors, handleSubmit, isLoading, onSubmit, register, control } =
@@ -65,7 +66,7 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
             onClick={handleClose}
           />
         </Box>
-        <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
+        <WrapperForm onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={3}>
             <TextField
               {...register("book")}
@@ -130,7 +131,7 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
               type={"submit"}
             />
           </Stack>
-        </form>
+        </WrapperForm>
       </Box>
     </Modal>
   );

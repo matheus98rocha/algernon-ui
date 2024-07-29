@@ -1,4 +1,4 @@
-import { ValidationProps } from "../ValidatePassword.types";
+import { ValidationProps } from "../validate-password.types";
 
 type useValidationPasswordReturn = {
   validationItems: {

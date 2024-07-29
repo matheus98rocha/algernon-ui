@@ -2,7 +2,7 @@
 import { Link, TextField } from "@mui/material";
 import NextLink from "next/link";
 import React from "react";
-import { ValidatePassword } from "./components/ValidatePassword.component";
+import { ValidatePassword } from "./components/validate-password.component";
 import { useCreateUserForm } from "./hooks/useCreateUser";
 import AuthFormLayout from "@/app/(auth)/auth/components/auth-form-layout/auth-form-layout.component";
 import TextFieldPassword from "@/app/components/inputs/text-field-password/text-field-password";
