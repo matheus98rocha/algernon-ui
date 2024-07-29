@@ -3,19 +3,14 @@ import { Box, Collapse, Fab } from "@mui/material";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import CreateBookModal from "../create-book-modal/create-book-modal.component";
+import { WrapperForgotPassAndKeepLogged } from "./floating-button.styles";
 
 function FloatingButton() {
   const [isOpenCreateBookModal, setisOpenCreateBookModal] = useState(false);
   const [isHoverFloatingButton, setIsHoverFloatingButton] = useState(false);
 
   return (
-    <Box
-      sx={{
-        position: "fixed",
-        right: "40px",
-        bottom: "40px",
-      }}
-    >
+    <WrapperForgotPassAndKeepLogged>
       <CreateBookModal
         open={isOpenCreateBookModal}
         handleClose={() => setisOpenCreateBookModal(false)}
@@ -32,7 +27,7 @@ function FloatingButton() {
         </Collapse>
         <AddIcon />
       </Fab>
-    </Box>
+    </WrapperForgotPassAndKeepLogged>
   );
 }
 
