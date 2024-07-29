@@ -17,7 +17,7 @@ type StatusStackProps = {
 function StatusStack({ currentPage }: StatusStackProps) {
   const theme = useTheme();
   const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-
+  console.log(currentPage)
   return (
     <>
       <S.StackWrapper scrollable={onlySmallScreen}>
