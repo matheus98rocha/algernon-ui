@@ -1,5 +1,5 @@
 "use client";
-import {  Link, TextField } from "@mui/material";
+import { Link, TextField } from "@mui/material";
 import NextLink from "next/link";
 import React from "react";
 import { ValidatePassword } from "./components/ValidatePassword.component";

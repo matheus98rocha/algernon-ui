@@ -7,7 +7,6 @@ export const StackWrapper = styled(Stack, {
   justifyContent: "center",
   alignItems: "center",
   width: "100%",
-  marginBottom: theme.spacing(2),
   gap: theme.spacing(2),
   flexDirection: "row",
   overflowX: scrollable ? "auto" : "hidden",
@@ -18,10 +17,14 @@ export const StackWrapper = styled(Stack, {
   },
 }));
 
-export const ItemStyled = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
+export const ItemStyled = styled(Paper, {
+  shouldForwardProp: (prop) => prop !== "isActive",
+})<{ isActive: boolean }>(({ theme, isActive }) => ({
+  backgroundColor: isActive ? theme.palette.primary.main : "#fff",
   padding: theme.spacing(1),
   textAlign: "center",
-  color: theme.palette.text.secondary,
+  color: isActive
+    ? theme.palette.primary.contrastText
+    : theme.palette.text.secondary,
+  boxShadow: "none",
 }));
