@@ -16,10 +16,7 @@ function AuthFormLayout<T extends FieldValues>({
     >
       <S.WrapperStack spacing={3}>
         <S.WrapperBoxTitleAndChildrens>
-          <S.TitleAuthForm
-            variant="h4"
-            fontSize={32}
-          >
+          <S.TitleAuthForm variant="h4" fontSize={32}>
             Algernon
           </S.TitleAuthForm>
         </S.WrapperBoxTitleAndChildrens>

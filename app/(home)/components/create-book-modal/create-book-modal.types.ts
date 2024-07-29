@@ -6,11 +6,10 @@ import {
 } from "react-hook-form";
 import { createBookFormData } from "../../schema/create-book.schema";
 
-
 export type createBookModalProps = {
   open: boolean;
   handleClose: () => void;
-}
+};
 
 export type useCreateBookModalReturn = {
   handleSubmit: UseFormHandleSubmit<createBookFormData, undefined>;

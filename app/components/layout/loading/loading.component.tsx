@@ -1,6 +1,6 @@
-import { Box } from '@mui/material'
-import React from 'react'
-import LoadingComponent from './loading-component/loading-component'
+import { Box } from "@mui/material";
+import React from "react";
+import LoadingComponent from "./loading-component/loading-component";
 
 function LoadingContainer() {
   return (
@@ -18,9 +18,9 @@ function LoadingContainer() {
         alignItems: "center",
       }}
     >
-     <LoadingComponent/>
+      <LoadingComponent />
     </Box>
-  )
+  );
 }
 
-export default LoadingContainer
+export default LoadingContainer;

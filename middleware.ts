@@ -4,7 +4,9 @@ import { unauthenticatedRoutes } from "./app/common/constants/routes";
 
 export function middleware(request: NextRequest) {
   const isAuthenticated = authenticated();
-  const isUnauthenticatedRoute = unauthenticatedRoutes.some(route => request.nextUrl.pathname.startsWith(route.path));
+  const isUnauthenticatedRoute = unauthenticatedRoutes.some((route) =>
+    request.nextUrl.pathname.startsWith(route.path),
+  );
 
   if (isAuthenticated && isUnauthenticatedRoute) {
     // Redireciona o usuário autenticado para a página inicial

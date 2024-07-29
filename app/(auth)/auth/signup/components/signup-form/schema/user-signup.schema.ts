@@ -17,7 +17,7 @@ export const createUserFormSchema = z
             /[!@#$%^&*(),.?":{}|<>]/.test(value)
           );
         },
-        { message: "A senha não é forte o suficiente" }
+        { message: "A senha não é forte o suficiente" },
       ),
     confirmPassword: z
       .string()

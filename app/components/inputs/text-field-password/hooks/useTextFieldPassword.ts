@@ -11,7 +11,7 @@ export function useTextFieldPassword() {
     (event: MouseEvent<HTMLButtonElement>): void => {
       event.preventDefault();
     },
-    []
+    [],
   );
 
   return {

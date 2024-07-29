@@ -1,15 +1,15 @@
-import React from 'react'
-import dynamic from 'next/dynamic'
-import LoadingContainer from '@/app/components/layout/loading/loading.component'
-const DynamicSignupForm = dynamic(() => import('./components/signup-form/signup-form.component'),
+import React from "react";
+import dynamic from "next/dynamic";
+import LoadingContainer from "@/app/components/layout/loading/loading.component";
+const DynamicSignupForm = dynamic(
+  () => import("./components/signup-form/signup-form.component"),
   {
-    loading: () => <LoadingContainer/>,
-  })
+    loading: () => <LoadingContainer />,
+  },
+);
 
 function Signup() {
-  return (
-    <DynamicSignupForm />
-  )
+  return <DynamicSignupForm />;
 }
 
-export default Signup
+export default Signup;

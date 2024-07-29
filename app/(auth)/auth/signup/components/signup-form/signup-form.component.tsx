@@ -1,9 +1,5 @@
 "use client";
-import {
-  CircularProgress,
-  Link,
-  TextField,
-} from "@mui/material";
+import { CircularProgress, Link, TextField } from "@mui/material";
 import NextLink from "next/link";
 import React from "react";
 import { ValidatePassword } from "./components/ValidatePassword.component";
@@ -12,6 +8,7 @@ import { useCreateUserForm } from "./hooks/useCreateUser";
 import AuthFormLayout from "@/app/(auth)/auth/components/auth-form-layout/auth-form-layout.component";
 import TextFieldPassword from "@/app/components/inputs/text-field-password/text-field-password";
 import * as S from "./signup-form.styles";
+import ButtonLoading from "@/app/components/buttons/button-loading/button-loading.component";
 
 function SignupForm() {
   const { errors, handleSubmit, onSubmit, register, watch, isLoading } =
@@ -64,28 +61,22 @@ function SignupForm() {
         label="Confirmar Senha"
         errors={errors}
       />
-      <LoadingButton
+      <ButtonLoading
+        buttonText="Cadastrar"
+        isLoading={isLoading}
         type={"submit"}
-        variant="contained"
-        loading={isLoading}
-        loadingPosition="center"
-        loadingIndicator={<CircularProgress color="info" size={16} />}
-      >
-        {"Cadastrar"}
-      </LoadingButton>
+      />
       <S.WrapperRootMessage>
-      <S.TypographyErrorMessageRoot>{errors.root?.message}</S.TypographyErrorMessageRoot>
+        <S.TypographyErrorMessageRoot>
+          {errors.root?.message}
+        </S.TypographyErrorMessageRoot>
       </S.WrapperRootMessage>
       <S.WrapperSignupForm>
-        <S.TypographyCreateAccount
-          variant="h6"
-        >
+        <S.TypographyCreateAccount variant="h6">
           {"Já possui uma conta?"}
         </S.TypographyCreateAccount>
         <Link component={NextLink} underline="none" href={"/auth/login"}>
-          <S.TypographyCreateAccount
-            variant="h6"
-          >
+          <S.TypographyCreateAccount variant="h6">
             {"Entre na plataforma"}
           </S.TypographyCreateAccount>
         </Link>

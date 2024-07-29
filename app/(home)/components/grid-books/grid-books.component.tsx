@@ -1,14 +1,13 @@
 import Grid from "@mui/material/Unstable_Grid2";
-import BookCard from "./book-card.component";
-import { getBooks } from "../../services/get-books.service";
+import React from "react";
+import { gridBooksProps } from "./grid-books.types";
+import BookCard from "../books-card/book-card.component";
+import { Book } from "../../types/book.type";
 
-export default async function Books() {
-  const books = await getBooks();
-
+function GridBooks({ books }: gridBooksProps) {
   return (
-    <Grid container spacing={3}>
-      {/* Componentizar esse map */}
-      {books.map((book) => (
+    <Grid container spacing={3} mt={2}>
+      {books.map((book: Book) => (
         <Grid key={book.id} sm={6} lg={4} xs={12}>
           <BookCard
             description={book.description}
@@ -22,3 +21,5 @@ export default async function Books() {
     </Grid>
   );
 }
+
+export default GridBooks;

@@ -4,10 +4,12 @@ type useValidationPasswordReturn = {
   validationItems: {
     condition: boolean;
     text: string;
-  }[]
-}
+  }[];
+};
 
-export function useValidationPassword({ password }: ValidationProps): useValidationPasswordReturn {
+export function useValidationPassword({
+  password,
+}: ValidationProps): useValidationPasswordReturn {
   const hasMinimumLength = password.length >= 8;
   const hasMinimumLowercase = /[a-z]/.test(password);
   const hasMinimumUppercase = /[A-Z]/.test(password);
@@ -17,27 +19,27 @@ export function useValidationPassword({ password }: ValidationProps): useValidat
   const validationItems = [
     {
       condition: hasMinimumLength,
-      text: "Mínimo de 8 caracteres"
+      text: "Mínimo de 8 caracteres",
     },
     {
       condition: hasMinimumLowercase,
-      text: "Pelo menos 1 letra minúscula"
+      text: "Pelo menos 1 letra minúscula",
     },
     {
       condition: hasMinimumUppercase,
-      text: "Pelo menos 1 letra maiúscula"
+      text: "Pelo menos 1 letra maiúscula",
     },
     {
       condition: hasMinimumNumbers,
-      text: "Pelo menos 1 número"
+      text: "Pelo menos 1 número",
     },
     {
       condition: hasMinimumSymbols,
-      text: "Pelo menos 1 símbolo especial"
-    }
+      text: "Pelo menos 1 símbolo especial",
+    },
   ];
 
   return {
-    validationItems
-  }
+    validationItems,
+  };
 }

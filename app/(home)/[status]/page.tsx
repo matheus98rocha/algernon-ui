@@ -1,7 +1,8 @@
 import Grid from "@mui/material/Unstable_Grid2";
 import { getBooks } from "../services/get-books.service";
-import BookCard from "../components/books/book-card.component";
+import BookCard from "../components/books-card/book-card.component";
 import StatusStack from "../components/status-stack/status-stack.component";
+import GridBooks from "../components/grid-books/grid-books.component";
 
 export const dynamicParams = true;
 
@@ -16,20 +17,7 @@ export default async function BookByStatus({ params }: BookByStatusProps) {
   return (
     <>
       <StatusStack />
-      <Grid container spacing={3}>
-        {/* Componentizar esse map */}
-        {books.map((book: any) => (
-          <Grid key={book.id} sm={6} lg={4} xs={12}>
-            <BookCard
-              description={book.description}
-              book={book.book}
-              author={book.author}
-              id={book.id}
-              status={book.status}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      <GridBooks books={books} />
     </>
   );
 }

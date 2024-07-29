@@ -3,28 +3,21 @@ import {
   Box,
   Button,
   Checkbox,
-  CircularProgress,
   FormControlLabel,
   Link,
   TextField,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import React from "react";
-import LoadingButton from "@mui/lab/LoadingButton";
 import { useLoginUserForm } from "./hooks/useLoginUser";
 import AuthFormLayout from "@/app/(auth)/auth/components/auth-form-layout/auth-form-layout.component";
 
-import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import TextFieldPassword from "@/app/components/inputs/text-field-password/text-field-password";
-import LoadingComponent from "@/app/components/layout/loading/loading-component/loading-component";
+import ButtonLoading from "@/app/components/buttons/button-loading/button-loading.component";
 
 function LoginForm() {
   const { errors, handleSubmit, onSubmit, register, isLoading } =
     useLoginUserForm();
-
-  const theme = useTheme();
 
   return (
     <AuthFormLayout
@@ -46,15 +39,11 @@ function LoginForm() {
         errors={errors}
         label="Senha"
       />
-      <LoadingButton
+      <ButtonLoading
+        buttonText="Entrar"
+        isLoading={isLoading}
         type={"submit"}
-        variant="contained"
-        loading={isLoading}
-        loadingPosition="center"
-        loadingIndicator={<LoadingComponent />}
-      >
-        {"Entrar"}
-      </LoadingButton>
+      />
       <Box gap={1} className="flex items-center justify-between pt-2">
         <FormControlLabel
           control={<Checkbox />}

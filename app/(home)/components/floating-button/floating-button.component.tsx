@@ -1,5 +1,5 @@
 "use client";
-import { Collapse, Fab } from "@mui/material";
+import { Box, Collapse, Fab } from "@mui/material";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import CreateBookModal from "../create-book-modal/create-book-modal.component";
@@ -9,7 +9,13 @@ function FloatingButton() {
   const [isHoverFloatingButton, setIsHoverFloatingButton] = useState(false);
 
   return (
-    <div className="absolute right-10 bottom-10">
+    <Box
+      sx={{
+        position: "fixed",
+        right: "40px",
+        bottom: "40px",
+      }}
+    >
       <CreateBookModal
         open={isOpenCreateBookModal}
         handleClose={() => setisOpenCreateBookModal(false)}
@@ -26,7 +32,7 @@ function FloatingButton() {
         </Collapse>
         <AddIcon />
       </Fab>
-    </div>
+    </Box>
   );
 }
 

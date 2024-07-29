@@ -30,7 +30,7 @@ export function useCreateUserForm(): useCreateUserFormReturn {
 
     setIsLoading(true);
     const response = await createUser(formData).finally(() =>
-      setIsLoading(false)
+      setIsLoading(false),
     );
 
     // Verificando se o objeto foi enviado incorretamente.

@@ -31,7 +31,7 @@ export function useLoginUserForm(): useLoginFormReturn {
     }
     setIsLoading(true);
     const response = await loginUser(formData).finally(() =>
-      setIsLoading(false)
+      setIsLoading(false),
     );
     if (response && response.message) {
       setError("password", {

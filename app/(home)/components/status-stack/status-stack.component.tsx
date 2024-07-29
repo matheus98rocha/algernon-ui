@@ -9,9 +9,7 @@ function StatusStack() {
   const theme = useTheme();
   const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   return (
-    <S.StackWrapper
-      scrollable={onlySmallScreen}
-    >
+    <S.StackWrapper scrollable={onlySmallScreen}>
       {statusOptions.map((status) => (
         <Link key={status} href={`/${status}`} passHref>
           <S.ItemStyled>{statusTextMap[status]}</S.ItemStyled>

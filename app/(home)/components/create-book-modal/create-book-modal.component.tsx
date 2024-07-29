@@ -21,6 +21,7 @@ import { useCreateModal } from "./hooks/useCreateBookModal";
 import CloseIcon from "@mui/icons-material/Close";
 import LoadingComponent from "@/app/components/layout/loading/loading-component/loading-component";
 import { Controller } from "react-hook-form";
+import ButtonLoading from "@/app/components/buttons/button-loading/button-loading.component";
 
 function CreateBookModal({ open, handleClose }: createBookModalProps) {
   const { errors, handleSubmit, isLoading, onSubmit, register, control } =
@@ -127,7 +128,7 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
             </FormControl>
 
             {/* Criar componente para ser utilizado no layout de AUTH */}
-            <LoadingButton
+            {/* <LoadingButton
               type={"submit"}
               variant="contained"
               loading={isLoading}
@@ -135,7 +136,12 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
               loadingIndicator={<LoadingComponent />}
             >
               {"Criar"}
-            </LoadingButton>
+            </LoadingButton> */}
+            <ButtonLoading
+              buttonText="Criar"
+              isLoading={isLoading}
+              type={"submit"}
+            />
           </Stack>
         </form>
       </Box>
