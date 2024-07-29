@@ -39,7 +39,7 @@ export const WrapperBoxTitleAndChildrens = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
-export const TitleAuthForm = styled(Typography)(({ theme }) => ({
+export const TitleAuthForm = styled(Typography)(() => ({
   background: "linear-gradient(90deg, #28220B 0%, #BCA03B 100%)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",

@@ -1,7 +1,7 @@
 "use client";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
-import React, { MouseEvent, useCallback, useState } from "react";
+import React from "react";
 import { FieldValues } from "react-hook-form";
 import { useTextFieldPassword } from "./hooks/useTextFieldPassword";
 import { TextFormFieldProps } from "../inputs.types";

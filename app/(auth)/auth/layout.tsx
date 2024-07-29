@@ -11,8 +11,6 @@ import Image from "next/image";
 import AlgernonLogo from "../../assets/logo-algernon.png";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import darkTheme from "@/app/theme/dark.theme";
-import authenticated from "./services/authenticated";
-import { redirect } from "next/navigation";
 
 export default function AuthLayout({
   children,

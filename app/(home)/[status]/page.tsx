@@ -1,6 +1,4 @@
-import Grid from "@mui/material/Unstable_Grid2";
 import { getBooks } from "../services/get-books.service";
-import BookCard from "../components/books-card/book-card.component";
 import StatusStack from "../components/status-stack/status-stack.component";
 import GridBooks from "../components/grid-books/grid-books.component";
 

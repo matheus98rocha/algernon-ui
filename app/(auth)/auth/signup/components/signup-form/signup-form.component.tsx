@@ -1,9 +1,8 @@
 "use client";
-import { CircularProgress, Link, TextField } from "@mui/material";
+import {  Link, TextField } from "@mui/material";
 import NextLink from "next/link";
 import React from "react";
 import { ValidatePassword } from "./components/ValidatePassword.component";
-import LoadingButton from "@mui/lab/LoadingButton";
 import { useCreateUserForm } from "./hooks/useCreateUser";
 import AuthFormLayout from "@/app/(auth)/auth/components/auth-form-layout/auth-form-layout.component";
 import TextFieldPassword from "@/app/components/inputs/text-field-password/text-field-password";

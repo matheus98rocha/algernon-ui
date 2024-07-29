@@ -1,4 +1,3 @@
-import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 import { FieldValues } from "react-hook-form";
 import { AuthFormLayoutProps } from "./auth-form-layout.types";

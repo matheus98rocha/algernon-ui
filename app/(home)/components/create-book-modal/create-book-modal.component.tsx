@@ -2,7 +2,6 @@
 
 import {
   Box,
-  CircularProgress,
   FormControl,
   FormHelperText,
   InputLabel,
@@ -16,10 +15,8 @@ import {
 } from "@mui/material";
 import React from "react";
 import { createBookModalProps } from "./create-book-modal.types";
-import { LoadingButton } from "@mui/lab";
 import { useCreateModal } from "./hooks/useCreateBookModal";
 import CloseIcon from "@mui/icons-material/Close";
-import LoadingComponent from "@/app/components/layout/loading/loading-component/loading-component";
 import { Controller } from "react-hook-form";
 import ButtonLoading from "@/app/components/buttons/button-loading/button-loading.component";
 
@@ -126,17 +123,7 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
               />
               <FormHelperText>{errors.status?.message}</FormHelperText>
             </FormControl>
-
-            {/* Criar componente para ser utilizado no layout de AUTH */}
-            {/* <LoadingButton
-              type={"submit"}
-              variant="contained"
-              loading={isLoading}
-              loadingPosition="center"
-              loadingIndicator={<LoadingComponent />}
-            >
-              {"Criar"}
-            </LoadingButton> */}
+            
             <ButtonLoading
               buttonText="Criar"
               isLoading={isLoading}

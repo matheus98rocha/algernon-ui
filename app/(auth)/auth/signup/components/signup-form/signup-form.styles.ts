@@ -10,7 +10,7 @@ export const WrapperSignupForm = styled(Box)(({ theme }) => ({
   paddingTop: theme.spacing(2),
 }));
 
-export const WrapperRootMessage = styled(Box)(({ theme }) => ({
+export const WrapperRootMessage = styled(Box)(() => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
