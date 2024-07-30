@@ -35,7 +35,14 @@ export default function AuthLayout({
             }}
           >
             {onlyMediaScreen && (
-              <Image src={AlgernonLogo} alt="algernon-log" priority />
+              <Image 
+              src={AlgernonLogo} 
+              alt="algernon-logo" 
+              priority 
+              placeholder="blur" 
+              sizes="( max-width: 768px ) 100vw, ( max-width: 1200px ) 50vw, 33vw"
+              loading="eager"
+              />
             )}
             {children}
           </Box>
