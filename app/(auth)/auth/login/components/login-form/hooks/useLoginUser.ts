@@ -45,7 +45,7 @@ export function useLoginUserForm(): useLoginFormReturn {
     if (emailAuth) {
       setValue("email", emailAuth);
     }
-  }, []);
+  }, [setValue]);
 
   return {
     handleSubmit,

@@ -1,5 +1,5 @@
 "use client";
-import { Box, Collapse, Fab } from "@mui/material";
+import { Collapse, Fab } from "@mui/material";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import CreateBookModal from "../create-book-modal/create-book-modal.component";

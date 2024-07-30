@@ -22,7 +22,7 @@ export function useSettings({
       localStorage.removeItem("emailAuthAlgernon");
     }
     await logout();
-  }, []);
+  }, [logout]);
 
   return {
     handleOpenUserMenu,

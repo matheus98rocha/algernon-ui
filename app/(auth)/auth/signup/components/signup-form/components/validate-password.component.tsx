@@ -2,7 +2,11 @@ import CloseIcon from "@mui/icons-material/Close";
 import DoneIcon from "@mui/icons-material/Done";
 import { ValidationProps } from "./validate-password.types";
 import { useValidationPassword } from "./hooks/useValidationPassword";
-import { TextValidation, ValidatePasswordContainer, WrapperValidatePassword } from "./validate-password.styles";
+import {
+  TextValidation,
+  ValidatePasswordContainer,
+  WrapperValidatePassword,
+} from "./validate-password.styles";
 
 const ValidationItem = ({
   condition,
@@ -17,9 +21,7 @@ const ValidationItem = ({
     ) : (
       <CloseIcon fontSize={"small"} color={"error"} />
     )}
-    <TextValidation condition={condition}>
-      {text}
-    </TextValidation>
+    <TextValidation condition={condition}>{text}</TextValidation>
   </WrapperValidatePassword>
 );
 

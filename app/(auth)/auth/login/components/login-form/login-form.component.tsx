@@ -1,10 +1,5 @@
 "use client";
-import {
-  Checkbox,
-  FormControlLabel,
-  Link,
-  TextField,
-} from "@mui/material";
+import { Checkbox, FormControlLabel, Link, TextField } from "@mui/material";
 import React from "react";
 import { useLoginUserForm } from "./hooks/useLoginUser";
 import AuthFormLayout from "@/app/(auth)/auth/components/auth-form-layout/auth-form-layout.component";

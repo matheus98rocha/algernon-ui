@@ -9,10 +9,7 @@ type ProvidersProps = {
   authenticated: boolean;
 };
 
-export default async function Providers({
-  children,
-  authenticated,
-}: ProvidersProps) {
+export default function Providers({ children, authenticated }: ProvidersProps) {
   return (
     <>
       <AppRouterCacheProvider>

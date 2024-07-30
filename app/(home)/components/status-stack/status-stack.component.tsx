@@ -17,7 +17,7 @@ type StatusStackProps = {
 function StatusStack({ currentPage }: StatusStackProps) {
   const theme = useTheme();
   const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  console.log(currentPage)
+  console.log(currentPage);
   return (
     <>
       <S.StackWrapper scrollable={onlySmallScreen}>
@@ -27,7 +27,8 @@ function StatusStack({ currentPage }: StatusStackProps) {
           </S.ItemStyled>
         </Link>
         {statusOptions.map((status) => (
-          <Link style={{ textDecoration: "none" }}
+          <Link
+            style={{ textDecoration: "none" }}
             key={status}
             href={{
               pathname: "/results",
@@ -39,7 +40,6 @@ function StatusStack({ currentPage }: StatusStackProps) {
             </S.ItemStyled>
           </Link>
         ))}
-        
       </S.StackWrapper>
     </>
   );
