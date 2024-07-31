@@ -1,12 +1,23 @@
 import GridBooks from "./components/grid-books/grid-books.component";
-import StatusStack from "./components/status-stack/status-stack.component";
 import { getBooks } from "./services/get-books.service";
-export default async function Home() {
-  const books = await getBooks();
+
+interface BookByStatusProps {
+  searchParams: {
+    status:
+      | "wantToRead"
+      | "alreadyRead"
+      | "reading"
+      | "abandoned"
+      | "rereading";
+  };
+}
+
+export default async function Home({ searchParams }: BookByStatusProps) {
+  const { status } = searchParams;
+  const books = await getBooks(status);
 
   return (
     <main>
-      <StatusStack />
       <GridBooks books={books} />
     </main>
   );

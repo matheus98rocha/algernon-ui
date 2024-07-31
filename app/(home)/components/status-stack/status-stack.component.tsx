@@ -4,38 +4,30 @@ import { statusOptions, statusTextMap } from "../../constants/books-status";
 import Link from "next/link";
 import * as S from "./status-stack.styles";
 import { useMediaQuery, useTheme } from "@mui/material";
+import { useSearchParams } from "next/navigation";
 
-type StatusStackProps = {
-  currentPage?:
-    | "wantToRead"
-    | "alreadyRead"
-    | "reading"
-    | "abandoned"
-    | "rereading";
-};
-
-function StatusStack({ currentPage }: StatusStackProps) {
+function StatusStack() {
   const theme = useTheme();
   const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  console.log(currentPage);
+  const searchParams = useSearchParams();
+
+  const statusParam = searchParams.get("status");
   return (
     <>
       <S.StackWrapper scrollable={onlySmallScreen}>
         <Link href={`/`} passHref style={{ textDecoration: "none" }}>
-          <S.ItemStyled isActive={undefined === currentPage}>
-            Todos
-          </S.ItemStyled>
+          <S.ItemStyled isActive={statusParam === null}>Todos</S.ItemStyled>
         </Link>
         {statusOptions.map((status) => (
           <Link
             style={{ textDecoration: "none" }}
             key={status}
             href={{
-              pathname: "/results",
+              pathname: "/",
               query: { status: status },
             }}
           >
-            <S.ItemStyled isActive={status === currentPage}>
+            <S.ItemStyled isActive={statusParam === status}>
               {statusTextMap[status]}
             </S.ItemStyled>
           </Link>
