@@ -1,5 +1,5 @@
 "use client";
-import { Link, TextField } from "@mui/material";
+import { Link, Stack, TextField } from "@mui/material";
 import NextLink from "next/link";
 import React from "react";
 import { ValidatePassword } from "./components/validate-password.component";
@@ -22,23 +22,28 @@ function SignupForm() {
       handleSubmit={handleSubmit}
       onSubmit={onSubmit}
     >
-      <TextField
-        {...register("name")}
-        label="Nome"
-        variant="outlined"
-        type="text"
-        helperText={errors.name?.message}
-        error={!!errors.name}
-      />
+      <Stack direction="row" spacing={2}>
+        <TextField
+          {...register("name")}
+          label="Nome"
+          variant="outlined"
+          type="text"
+          helperText={errors.name?.message}
+          error={!!errors.name}
+          sx={{ width: "100%" }}
 
-      <TextField
-        {...register("lastName")}
-        label="Sobrenome"
-        variant="outlined"
-        type="text"
-        helperText={errors.lastName?.message}
-        error={!!errors.lastName}
-      />
+        />
+
+        <TextField
+          {...register("lastName")}
+          label="Sobrenome"
+          variant="outlined"
+          type="text"
+          helperText={errors.lastName?.message}
+          error={!!errors.lastName}
+          sx={{ width: "100%" }}
+        />
+      </Stack>
       <TextField
         {...register("email")}
         label="E-mail"
