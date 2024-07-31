@@ -7,6 +7,8 @@ import {
   createBookFormData,
   createBookFormSchema,
 } from "@/app/(home)/schema/create-book.schema";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export function useCreateModal({
   handleClose,
@@ -14,6 +16,7 @@ export function useCreateModal({
   handleClose: () => void;
 }): useCreateBookModalReturn {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -37,6 +40,9 @@ export function useCreateModal({
     if (res.statusCode === 200) {
       reset();
       handleClose();
+      router.push(`?status=${data.status}`, {
+        scroll: false,
+      });
     }
   }
 

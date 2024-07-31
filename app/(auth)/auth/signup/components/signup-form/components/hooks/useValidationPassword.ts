@@ -1,3 +1,4 @@
+import { validatePassword } from "../../validations/strong-password.validation";
 import { ValidationProps } from "../validate-password.types";
 
 type useValidationPasswordReturn = {
@@ -10,11 +11,7 @@ type useValidationPasswordReturn = {
 export function useValidationPassword({
   password,
 }: ValidationProps): useValidationPasswordReturn {
-  const hasMinimumLength = password.length >= 8;
-  const hasMinimumLowercase = /[a-z]/.test(password);
-  const hasMinimumUppercase = /[A-Z]/.test(password);
-  const hasMinimumNumbers = /[0-9]/.test(password);
-  const hasMinimumSymbols = /[!@#$%^&*(),.?":{}|<>_]/.test(password);
+  const { hasMinimumLength, hasMinimumLowercase, hasMinimumUppercase, hasMinimumNumbers, hasMinimumSymbols } = validatePassword(password);
 
   const validationItems = [
     {
