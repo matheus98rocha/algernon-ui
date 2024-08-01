@@ -31,7 +31,6 @@ function SignupForm() {
           helperText={errors.name?.message}
           error={!!errors.name}
           sx={{ width: "100%" }}
-
         />
 
         <TextField

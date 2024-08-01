@@ -19,7 +19,7 @@ export default function CustomPagination({ count }: CustomPaginationProps) {
     // Cria uma cópia dos parâmetros da URL existentes
     const newParams = new URLSearchParams(searchParams.toString());
     // Adiciona ou atualiza o parâmetro da página
-    newParams.set('page', page.toString());
+    newParams.set("page", page.toString());
     // Atualiza a URL sem remover os parâmetros existentes
     router.push(`?${newParams.toString()}`);
   };

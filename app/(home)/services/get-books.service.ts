@@ -6,7 +6,7 @@ import { Book, BooksResponse } from "../types/book.type";
 export async function getBooks(
   status?: string,
   page: number = 1,
-  size: number = 10
+  size: number = 10,
 ): Promise<BooksResponse> {
   const params: any = { page, size };
 

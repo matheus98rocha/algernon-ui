@@ -16,11 +16,11 @@ interface BookByStatusProps {
 
 export default async function Home({ searchParams }: BookByStatusProps) {
   const { status, page } = searchParams;
-  const books = await getBooks(status,page);
+  const books = await getBooks(status, page);
 
   return (
     <main>
-      <GridBooks books={books.data}  totalPages={books.pagination.totalPages}/>
+      <GridBooks books={books.data} totalPages={books.pagination.totalPages} />
     </main>
   );
 }

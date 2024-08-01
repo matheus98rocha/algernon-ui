@@ -11,7 +11,13 @@ type useValidationPasswordReturn = {
 export function useValidationPassword({
   password,
 }: ValidationProps): useValidationPasswordReturn {
-  const { hasMinimumLength, hasMinimumLowercase, hasMinimumUppercase, hasMinimumNumbers, hasMinimumSymbols } = validatePassword(password);
+  const {
+    hasMinimumLength,
+    hasMinimumLowercase,
+    hasMinimumUppercase,
+    hasMinimumNumbers,
+    hasMinimumSymbols,
+  } = validatePassword(password);
 
   const validationItems = [
     {

@@ -13,10 +13,22 @@ export const createUserFormSchema = z
       .min(8, "A senha deve ter pelo menos 8 caracteres")
       .refine(
         (value) => {
-          const { hasMinimumLength, hasMinimumLowercase, hasMinimumUppercase, hasMinimumNumbers, hasMinimumSymbols } = validatePassword(value);
-          return hasMinimumLength && hasMinimumLowercase && hasMinimumUppercase && hasMinimumNumbers && hasMinimumSymbols;
+          const {
+            hasMinimumLength,
+            hasMinimumLowercase,
+            hasMinimumUppercase,
+            hasMinimumNumbers,
+            hasMinimumSymbols,
+          } = validatePassword(value);
+          return (
+            hasMinimumLength &&
+            hasMinimumLowercase &&
+            hasMinimumUppercase &&
+            hasMinimumNumbers &&
+            hasMinimumSymbols
+          );
         },
-        { message: "A senha não é forte o suficiente" }
+        { message: "A senha não é forte o suficiente" },
       ),
     confirmPassword: z
       .string()
