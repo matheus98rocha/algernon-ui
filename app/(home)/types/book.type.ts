@@ -5,3 +5,15 @@ export type Book = {
   author: string;
   status: "wantToRead" | "alreadyRead" | "reading";
 };
+
+export type Pagination = {
+  page: number;
+  limit: number;
+  totalItems: number;
+  totalPages: number;
+};
+
+export type BooksResponse = {
+  data: Book[];
+  pagination: Pagination;
+};

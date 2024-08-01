@@ -12,7 +12,7 @@ function BookCard({ author, book, description, status }: BookProps) {
     >
       <Typography variant="h4">{book}</Typography>
       <Typography variant="h4">{author}</Typography>
-      <Typography variant="h4">{description}</Typography>
+      {/* <Typography variant="h4">{description}</Typography> */}
       <Typography variant="h4">{statusTextMap[status]}</Typography>
     </Card>
   );
