@@ -1,3 +1,4 @@
+'use client'
 import Grid from "@mui/material/Unstable_Grid2";
 import React from "react";
 import { gridBooksProps } from "./grid-books.types";
