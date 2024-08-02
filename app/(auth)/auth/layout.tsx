@@ -11,6 +11,7 @@ import Image from "next/image";
 import AlgernonLogo from "../../assets/logo-algernon.png";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import darkTheme from "@/app/theme/dark.theme";
+import AuthProviders from "./auth-provider";
 
 export default function AuthLayout({
   children,
@@ -44,7 +45,7 @@ export default function AuthLayout({
                 loading="eager"
               />
             )}
-            {children}
+            <AuthProviders>{children}</AuthProviders>
           </Box>
         </Grow>
       </ThemeProvider>
