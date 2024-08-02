@@ -3,7 +3,7 @@ export type Book = {
   book: string;
   description: string;
   author: string;
-  status: "wantToRead" | "alreadyRead" | "reading";
+  status: "wantToRead" | "alreadyRead" | "reading" | "abandoned" | "rereading";
 };
 
 export type Pagination = {

@@ -12,7 +12,7 @@ const getHeader = () => ({
 export async function post<T = unknown>(
   input: RequestInfo | URL,
   formData: FormData,
-  init?: RequestInit | undefined,
+  init?: RequestInit | undefined
 ): Promise<fetchWrapperResponse> {
   const data = await fetch(`${API_URL}/${input}`, {
     ...init,
@@ -30,12 +30,12 @@ export async function post<T = unknown>(
 export const get = async <T>(
   path: string,
   params?: Record<string, any>,
-  tags?: string[],
+  tags?: string[]
 ): Promise<T> => {
   const url = new URL(`${API_URL}/${path}`);
   if (params) {
     Object.keys(params).forEach((key) =>
-      url.searchParams.append(key, params[key]),
+      url.searchParams.append(key, params[key])
     );
   }
   const res = await fetch(url.toString(), {
@@ -43,6 +43,7 @@ export const get = async <T>(
     next: {
       tags,
     },
+    cache: "no-store",
   });
 
   return res.json() as T;
@@ -51,7 +52,7 @@ export const get = async <T>(
 export async function authPost<T = unknown>(
   input: RequestInfo | URL,
   formData: FormData,
-  init?: RequestInit | undefined,
+  init?: RequestInit | undefined
 ): Promise<fetchWrapperResponse> {
   const data = await fetch(`${API_URL}/${input}`, {
     ...init,

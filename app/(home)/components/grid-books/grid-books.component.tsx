@@ -1,12 +1,13 @@
-'use client'
-import Grid from "@mui/material/Unstable_Grid2";
+"use client";
 import React from "react";
 import { gridBooksProps } from "./grid-books.types";
 import BookCard from "../books-card/book-card.component";
-import { Book } from "../../types/book.type";
+
 import EmptyBooks from "./empty-books/empty-books.component";
-import { Box, Fade } from "@mui/material";
+import { Fade } from "@mui/material";
 import CustomPagination from "@/app/components/custom-pagination/custom-pagination.component";
+import { Book } from "../../types/book.type";
+import * as S from "./grid-books.styles";
 
 function GridBooks({ books, totalPages }: gridBooksProps) {
   if (books.length === 0) {
@@ -15,30 +16,23 @@ function GridBooks({ books, totalPages }: gridBooksProps) {
 
   return (
     <Fade in>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100%",
-          flexDirection: "column",
-        }}
-      >
-        <Grid container spacing={3} mt={2}>
+      <S.WrapperGridBooks>
+        <S.WrapperBooksList container>
           {books.map((book: Book) => (
-            <Grid key={book.id} sm={6} lg={4} xs={12}>
+            <>
               <BookCard
+                key={book.id}
                 description={book.description}
                 book={book.book}
                 author={book.author}
                 id={book.id}
                 status={book.status}
               />
-            </Grid>
+            </>
           ))}
-        </Grid>
+        </S.WrapperBooksList>
         {totalPages > 1 && <CustomPagination count={totalPages} />}
-      </Box>
+      </S.WrapperGridBooks>
     </Fade>
   );
 }

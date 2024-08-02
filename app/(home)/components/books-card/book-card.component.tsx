@@ -1,21 +1,14 @@
-import { Card, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import React from "react";
 import { Book as BookProps } from "../../types/book.type";
-import { statusTextMap } from "../../constants/books-status";
+import * as S from "./book-card.styles";
 
-function BookCard({ author, book, description, status }: BookProps) {
+function BookCard({ author, book }: BookProps) {
   return (
-    <Card
-      sx={{
-        padding: "4px",
-      }}
-    >
-      <Typography variant="h4">{book}</Typography>
-      <Typography variant="h4">{author}</Typography>
-      {/* In development */}
-      <Typography variant="h4">{description.slice(0, 10)}...</Typography>
-      <Typography variant="h4">{statusTextMap[status]}</Typography>
-    </Card>
+    <S.WrapperBookCard>
+      <Typography noWrap>{book}</Typography>
+      <Typography noWrap>{author}</Typography>
+    </S.WrapperBookCard>
   );
 }
 

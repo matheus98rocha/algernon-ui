@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import GridBooks from "./components/grid-books/grid-books.component";
 import { getBooks } from "./services/get-books.service";
+import LoadingContainer from "../components/layout/loading/loading.component";
 
 interface BookByStatusProps {
   searchParams: {
@@ -15,11 +17,19 @@ interface BookByStatusProps {
 
 export default async function Home({ searchParams }: BookByStatusProps) {
   const { status, page } = searchParams;
+
+  console.log({ status, page });
+
   const books = await getBooks(status, page);
 
   return (
     <main>
-      <GridBooks books={books.data} totalPages={books.pagination.totalPages} />
+      <Suspense fallback={<LoadingContainer />}>
+        <GridBooks
+          books={books.data}
+          totalPages={books.pagination.totalPages}
+        />
+      </Suspense>
     </main>
   );
 }

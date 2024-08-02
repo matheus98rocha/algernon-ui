@@ -20,7 +20,7 @@ function Settings({ logout, user }: SettingsProps) {
   } = useSettings({ logout, user });
   return (
     <Box sx={{ flexGrow: 0 }}>
-      <Tooltip title="Open settings">
+      <Tooltip title="Abrir Configurações">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
           <Avatar alt={user.name} src="/static/images/avatar/2.jpg" />
         </IconButton>
