@@ -18,8 +18,6 @@ interface BookByStatusProps {
 export default async function Home({ searchParams }: BookByStatusProps) {
   const { status, page } = searchParams;
 
-  console.log({ status, page });
-
   const books = await getBooks(status, page);
 
   return (
