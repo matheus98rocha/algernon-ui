@@ -2,8 +2,8 @@ export const statusOptions = [
   "wantToRead",
   "alreadyRead",
   "reading",
-  "abandoned",
   "rereading",
+  "abandoned",
 ] as const;
 
 export const statusTextMap = {

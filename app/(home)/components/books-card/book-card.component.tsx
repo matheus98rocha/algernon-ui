@@ -2,10 +2,21 @@ import React from "react";
 import { Book as BookProps } from "../../types/book.type";
 import * as S from "./book-card.styles";
 import Image from "next/image";
+import BookMark from "../bookmark/book-mark.component";
 
-function BookCard({ author, book }: BookProps) {
+function BookCard({ author, book, status }: BookProps) {
   return (
     <S.WrapperBookCard>
+      <S.BookmarkContainer>
+        <BookMark
+          status={status}
+          sx={{
+            position: "absolute",
+            top: "8px",
+            right: "8px",
+          }}
+        />
+      </S.BookmarkContainer>
       <S.BookTitle variant="h6">{book}</S.BookTitle>
       <Image
         src={

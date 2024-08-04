@@ -7,6 +7,8 @@ import * as S from "./status-stack.styles";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import revalidateTag from "@/app/common/utils/revalidate-tag";
+import BookMark from "../bookmark/book-mark.component";
+import { BookStatus } from "../../types/book.type";
 
 const StatusStack: React.FC = () => {
   const theme = useTheme();
@@ -25,7 +27,9 @@ const StatusStack: React.FC = () => {
       onClick={() => revalidateTag("books")}
       style={{ textDecoration: "none" }}
     >
-      <S.ItemStyled isActive={statusParam === status}>{label}</S.ItemStyled>
+      <S.ItemStyled isActive={statusParam === status}>
+        {label} {status !== null && <BookMark status={status as BookStatus} />}
+      </S.ItemStyled>
     </Link>
   );
 

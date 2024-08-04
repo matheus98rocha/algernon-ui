@@ -1,7 +1,8 @@
-import { Card, styled, Typography } from "@mui/material";
+import { Box, Card, styled, Typography } from "@mui/material";
 
 export const WrapperBookCard = styled(Card)(({ theme }) => ({
-  padding: theme.spacing(3),
+  position: "relative",
+  padding: theme.spacing(4),
   width: "300px",
   height: "300px",
   display: "flex",
@@ -25,4 +26,10 @@ export const BookAuthor = styled(Typography)(({ theme }) => ({
   fontSize: "1rem",
   fontStyle: "italic",
   color: theme.palette.text.secondary,
+}));
+
+export const BookmarkContainer = styled(Box)(() => ({
+  position: "absolute",
+  top: "8px",
+  right: "8px",
 }));

@@ -1,9 +1,16 @@
+export type BookStatus =
+  | "wantToRead"
+  | "alreadyRead"
+  | "reading"
+  | "abandoned"
+  | "rereading";
+
 export type Book = {
   id: number;
   book: string;
   description: string;
   author: string;
-  status: "wantToRead" | "alreadyRead" | "reading" | "abandoned" | "rereading";
+  status: BookStatus;
 };
 
 export type Pagination = {

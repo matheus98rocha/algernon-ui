@@ -12,6 +12,8 @@ export const StackWrapper = styled(Stack, {
   overflowX: scrollable ? "auto" : "hidden",
   whiteSpace: scrollable ? "nowrap" : "normal",
 
+  borderRadius: "5px",
+
   "&::-webkit-scrollbar": {
     display: "none",
   },
@@ -27,4 +29,8 @@ export const ItemStyled = styled(Paper, {
     ? theme.palette.primary.contrastText
     : theme.palette.text.secondary,
   boxShadow: "none",
+
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
 }));

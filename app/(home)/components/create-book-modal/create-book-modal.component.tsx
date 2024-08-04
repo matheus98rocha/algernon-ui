@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Box,
   FormControl,
   FormHelperText,
   InputLabel,
@@ -9,23 +8,19 @@ import {
   Modal,
   Select,
   Stack,
-  TextField,
-  useMediaQuery,
-  useTheme,
+  TextField
 } from "@mui/material";
 import React from "react";
 import { createBookModalProps } from "./create-book-modal.types";
 import { useCreateModal } from "./hooks/useCreateBookModal";
-import CloseIcon from "@mui/icons-material/Close";
+
 import { Controller } from "react-hook-form";
 import ButtonLoading from "@/app/components/buttons/button-loading/button-loading.component";
-import { WrapperForm } from "./create-book-modal.styles";
+import * as S from "./create-book-modal.styles";
 
 function CreateBookModal({ open, handleClose }: createBookModalProps) {
   const { errors, handleSubmit, isLoading, onSubmit, register, control } =
     useCreateModal({ handleClose });
-  const theme = useTheme();
-  const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const statusOptions = [
     { value: "wantToRead", label: "Quero Ler" },
@@ -35,38 +30,13 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
     { value: "abandoned", label: "Abandonado" },
   ];
 
-  const createBookModalstyle = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: onlySmallScreen ? "100%" : 600,
-    bgcolor: "background.paper",
-    boxShadow: 24,
-    p: 4,
-    borderRadius: onlySmallScreen ? 0 : "10px",
-  };
-
   return (
     <Modal open={open} onClose={handleClose}>
-      <Box sx={createBookModalstyle}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            width: "100%",
-            padding: "16px",
-          }}
-        >
-          <CloseIcon
-            sx={{
-              cursor: "pointer",
-            }}
-            onClick={handleClose}
-          />
-        </Box>
-        <WrapperForm onSubmit={handleSubmit(onSubmit)}>
+      <S.WrapperModalContent>
+        <S.ModalHeader>
+          <S.CloseIconStyled onClick={handleClose} />
+        </S.ModalHeader>
+        <S.StyledFormControl onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={3}>
             <TextField
               {...register("book")}
@@ -131,8 +101,8 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
               type={"submit"}
             />
           </Stack>
-        </WrapperForm>
-      </Box>
+        </S.StyledFormControl>
+      </S.WrapperModalContent>
     </Modal>
   );
 }

@@ -6,7 +6,7 @@ export const WrapperAuthFormLayout = styled(Box)(({ theme }) => ({
   boxShadow: "3px",
   width: "650px",
   borderWidth: 1,
-  borderRadius: "10px",
+  borderRadius: "5px",
   backgroundColor: theme.palette.background.paper,
   display: "flex",
   flexDirection: "column",
