@@ -16,13 +16,19 @@ import { protectedRoutes } from "@/app/common/constants/routes";
 import { HeaderProps } from "./header.type";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useTheme } from "@mui/material";
 
 function Header({ logout, user }: HeaderProps) {
   const { anchorElNav, handleCloseNavMenu, handleOpenNavMenu } = useHeader();
   const router = useRouter();
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      sx={{
+        boxShadow: useTheme().shadows[1],
+      }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography

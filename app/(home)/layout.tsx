@@ -36,7 +36,6 @@ export default async function RootLayout({
               marginTop: "42px",
             }}
           >
-            <StatusStack />
             {children}
             <FloatingButton />
           </Container>

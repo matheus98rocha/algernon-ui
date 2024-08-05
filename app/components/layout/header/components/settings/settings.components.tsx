@@ -10,6 +10,7 @@ import {
 import React from "react";
 import { useSettings } from "./hooks/useSettings";
 import { SettingsProps } from "./settings.type";
+import Link from "next/link";
 
 function Settings({ logout, user }: SettingsProps) {
   const {
@@ -41,8 +42,22 @@ function Settings({ logout, user }: SettingsProps) {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
+        <MenuItem key={"my-profile"} onClick={() => {}}>
+          <Link
+            href={"/profile"}
+            style={{
+              textDecoration: "none",
+            }}
+          >
+            <Typography textAlign="center" sx={{ color: "black" }}>
+              {"Meu Perfil"}
+            </Typography>
+          </Link>
+        </MenuItem>
         <MenuItem key={"logout"} onClick={handleLogout}>
-          <Typography textAlign="center">{"Sair"}</Typography>
+          <Typography textAlign="center" sx={{ color: "black" }}>
+            {"Sair"}
+          </Typography>
         </MenuItem>
       </Menu>
     </Box>

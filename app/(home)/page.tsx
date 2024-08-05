@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import GridBooks from "./components/grid-books/grid-books.component";
 import { getBooks } from "./services/get-books.service";
 import LoadingContainer from "../components/layout/loading/loading.component";
+import StatusStack from "./components/status-stack/status-stack.component";
 
 interface BookByStatusProps {
   searchParams: {
@@ -23,6 +24,7 @@ export default async function Home({ searchParams }: BookByStatusProps) {
   return (
     <main>
       <Suspense fallback={<LoadingContainer />}>
+        <StatusStack />
         <GridBooks
           books={books.data}
           totalPages={books.pagination.totalPages}

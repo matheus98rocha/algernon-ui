@@ -8,6 +8,7 @@ export const StackWrapper = styled(Stack, {
   alignItems: "center",
   width: "100%",
   gap: theme.spacing(2),
+  padding: theme.spacing(1),
   flexDirection: "row",
   overflowX: scrollable ? "auto" : "hidden",
   whiteSpace: scrollable ? "nowrap" : "normal",
@@ -28,9 +29,14 @@ export const ItemStyled = styled(Paper, {
   color: isActive
     ? theme.palette.primary.contrastText
     : theme.palette.text.secondary,
-  boxShadow: "none",
 
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
+
+  boxShadow: theme.shadows[1],
+  ":hover": {
+    cursor: "pointer",
+    boxShadow: theme.shadows[2],
+  },
 }));
