@@ -9,7 +9,6 @@ import Header from "../components/layout/header/header.component";
 import logout from "../(auth)/auth/services/logout";
 import getUserDetails from "./services/get-user-details.service";
 import FloatingButton from "./components/floating-button/floating-button.component";
-import StatusStack from "./components/status-stack/status-stack.component";
 
 const inter = Noto_Serif({ subsets: ["latin"] });
 
