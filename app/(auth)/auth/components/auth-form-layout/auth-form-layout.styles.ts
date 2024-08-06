@@ -3,7 +3,7 @@
 import { Box, Stack, styled, Typography } from "@mui/material";
 
 export const WrapperAuthFormLayout = styled(Box)(({ theme }) => ({
-  boxShadow: "3px",
+  boxShadow: theme.shadows[1],
   width: "650px",
   borderWidth: 1,
   borderRadius: "5px",

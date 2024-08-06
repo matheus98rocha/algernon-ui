@@ -13,6 +13,8 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import darkTheme from "@/app/theme/dark.theme";
 import AuthProviders from "./auth-provider";
 
+// Tirar layout do tipo client
+
 export default function AuthLayout({
   children,
 }: Readonly<{

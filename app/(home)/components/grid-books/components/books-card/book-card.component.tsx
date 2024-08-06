@@ -1,8 +1,8 @@
 import React from "react";
-import { Book as BookProps } from "../../types/book.type";
+import { Book as BookProps } from "../../../../types/book.type";
 import * as S from "./book-card.styles";
 import Image from "next/image";
-import BookMark from "../bookmark/book-mark.component";
+import BookMark from "../../../bookmark/book-mark.component";
 
 function BookCard({ author, book, status }: BookProps) {
   return (

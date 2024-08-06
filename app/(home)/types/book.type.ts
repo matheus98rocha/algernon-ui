@@ -24,3 +24,10 @@ export type BooksResponse = {
   data: Book[];
   pagination: Pagination;
 };
+
+export type GetBooksParams = {
+  page: number;
+  size?: number;
+  status?: "wantToRead" | "alreadyRead" | "reading" | "abandoned" | "rereading";
+  bookName?: string;
+};

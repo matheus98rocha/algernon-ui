@@ -13,6 +13,9 @@ export const WrapperBooksList = styled(Grid)(({ theme }) => ({
   marginTop: theme.spacing(2),
   marginBottom: theme.spacing(2),
   display: "flex",
-  justifyContent: "center",
+  justifyContent: "space-around",
+  [theme.breakpoints.down("sm")]: {
+    justifyContent: "center",
+  },
   alignItems: "center",
 }));

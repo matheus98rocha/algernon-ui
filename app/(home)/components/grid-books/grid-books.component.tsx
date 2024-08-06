@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import { gridBooksProps } from "./grid-books.types";
-import BookCard from "../books-card/book-card.component";
+import BookCard from "./components/books-card/book-card.component";
 
-import EmptyBooks from "./empty-books/empty-books.component";
+import EmptyBooks from "./components/empty-books/empty-books.component";
 import { Fade } from "@mui/material";
 import CustomPagination from "@/app/components/custom-pagination/custom-pagination.component";
 import { Book } from "../../types/book.type";

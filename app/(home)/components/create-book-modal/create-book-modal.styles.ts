@@ -1,4 +1,4 @@
-import { Box, FormControl, Select, styled, TextField } from "@mui/material";
+import { Box, Select, styled, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 export const WrapperForm = styled("form")(() => ({
@@ -12,7 +12,7 @@ export const WrapperModalContent = styled(Box)(({ theme }) => ({
   transform: "translate(-50%, -50%)",
   width: "600px",
   backgroundColor: theme.palette.background.paper,
-  boxShadow: "24px",
+  boxShadow: theme.shadows[2],
   padding: theme.spacing(4),
   borderRadius: "5px",
   [theme.breakpoints.down("sm")]: {
@@ -38,7 +38,7 @@ export const StyledTextField = styled(TextField)(() => ({
   width: "100%",
 }));
 
-export const StyledFormControl = styled(FormControl)(() => ({
+export const StyledFormControl = styled("form")(() => ({
   width: "100%",
 }));
 

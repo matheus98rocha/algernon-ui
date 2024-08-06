@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import GridBooks from "./components/grid-books/grid-books.component";
 import { getBooks } from "./services/get-books.service";
 import LoadingContainer from "../components/layout/loading/loading.component";
-import StatusStack from "./components/status-stack/status-stack.component";
+import FilterBooksContainer from "./components/filter-books-container/filter-books-container.component";
 
 interface BookByStatusProps {
   searchParams: {
@@ -13,18 +13,23 @@ interface BookByStatusProps {
       | "abandoned"
       | "rereading";
     page: number;
+    bookName: string;
   };
 }
 
 export default async function Home({ searchParams }: BookByStatusProps) {
-  const { status, page } = searchParams;
+  const { status, page, bookName } = searchParams;
 
-  const books = await getBooks(status, page);
+  const books = await getBooks({
+    status,
+    page,
+    bookName,
+  });
 
   return (
     <main>
       <Suspense fallback={<LoadingContainer />}>
-        <StatusStack />
+        <FilterBooksContainer />
         <GridBooks
           books={books.data}
           totalPages={books.pagination.totalPages}

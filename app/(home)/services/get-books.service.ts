@@ -1,22 +1,37 @@
 "use server";
 
 import { get } from "@/app/common/utils/fetchWrapper";
-import { Book, BooksResponse } from "../types/book.type";
+import { Book, BooksResponse, GetBooksParams } from "../types/book.type";
 
-export async function getBooks(
-  status?: string,
-  page: number = 1,
-  size: number = 10,
-): Promise<BooksResponse> {
-  const params: any = { page, size };
+export async function getBooks({
+  status,
+  bookName,
+  page = 1,
+  size = 10,
+}: GetBooksParams): Promise<BooksResponse> {
+  const params: Record<string, any> = { page, size };
 
   if (status) {
     params.status = status;
   }
 
-  return await get<BooksResponse>("books", params, ["books"]);
+  if (bookName) {
+    params.bookName = bookName;
+  }
+
+  try {
+    return await get<BooksResponse>("books", params, ["books"]);
+  } catch (error) {
+    console.error("Failed to fetch books:", error);
+    throw error;
+  }
 }
-export async function getBooksOnGoogleApi(name: string) {
-  const data = await get<Book[]>("books/googleBookApi", { name }, ["books"]);
-  return [data];
+
+export async function getBooksOnGoogleApi(name: string): Promise<Book[]> {
+  try {
+    return await get<Book[]>("books/googleBookApi", { name }, ["books"]);
+  } catch (error) {
+    console.error("Failed to fetch books from Google API:", error);
+    throw error;
+  }
 }

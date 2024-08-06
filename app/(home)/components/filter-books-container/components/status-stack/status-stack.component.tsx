@@ -1,21 +1,33 @@
 "use client";
 
-import React from "react";
-import { statusOptions, statusTextMap } from "../../constants/books-status";
+import React, { useCallback } from "react";
+import {
+  statusOptions,
+  statusTextMap,
+} from "../../../../constants/books-status";
 import Link from "next/link";
 import * as S from "./status-stack.styles";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import revalidateTag from "@/app/common/utils/revalidate-tag";
-import BookMark from "../bookmark/book-mark.component";
-import { BookStatus } from "../../types/book.type";
+import BookMark from "../../../bookmark/book-mark.component";
+import { BookStatus } from "../../../../types/book.type";
 
-const StatusStack: React.FC = () => {
+const StatusStack = ({ setBookName }: any) => {
   const theme = useTheme();
   const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
 
+  const handleResetBookName = useCallback(
+    (status: string | null) => {
+      if (statusParam !== status) {
+        setBookName("");
+      }
+      revalidateTag("books");
+    },
+    [statusParam, setBookName],
+  );
   const renderLink = (status: string | null, label: string) => (
     <Link
       key={status || "all"}
@@ -24,7 +36,9 @@ const StatusStack: React.FC = () => {
         query: status ? { status } : undefined,
       }}
       passHref
-      onClick={() => revalidateTag("books")}
+      onClick={() => {
+        handleResetBookName(status);
+      }}
       style={{ textDecoration: "none" }}
     >
       <S.ItemStyled isActive={statusParam === status}>
