@@ -10,10 +10,10 @@ export const WrapperBookCard = styled(Card)(({ theme }) => ({
   alignItems: "center",
   justifyContent: "space-around",
   gap: theme.spacing(1),
-  boxShadow: theme.shadows[5],
+  boxShadow: theme.shadows[1],
   ":hover": {
     cursor: "pointer",
-    boxShadow: theme.shadows[6],
+    boxShadow: theme.shadows[2],
   },
 }));
 

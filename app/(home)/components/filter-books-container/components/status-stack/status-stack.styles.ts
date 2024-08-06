@@ -33,9 +33,9 @@ export const ItemStyled = styled(Paper, {
   alignItems: "center",
   justifyContent: "space-between",
 
-  boxShadow: theme.shadows[4],
+  boxShadow: theme.shadows[1],
   ":hover": {
     cursor: "pointer",
-    boxShadow: theme.shadows[5],
+    boxShadow: theme.shadows[2],
   },
 }));

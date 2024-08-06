@@ -1,6 +1,7 @@
 "use client";
 
 import { createTheme } from "@mui/material";
+import shadows from "@mui/material/styles/shadows";
 
 const darkTheme = createTheme({
   palette: {
@@ -21,6 +22,7 @@ const darkTheme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
+          boxShadow: shadows[1],
           borderRadius: "5px",
           "& .MuiOutlinedInput-root": {
             "&:hover fieldset": {
@@ -33,6 +35,7 @@ const darkTheme = createTheme({
     MuiSelect: {
       styleOverrides: {
         root: {
+          boxShadow: shadows[1],
           borderRadius: "5px",
           "&:hover .MuiOutlinedInput-notchedOutline": {
             borderColor: "#d6b13b",
@@ -43,6 +46,7 @@ const darkTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
+          boxShadow: shadows[1],
           borderRadius: "5px",
         },
       },
@@ -50,6 +54,7 @@ const darkTheme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
+          boxShadow: shadows[1],
           borderRadius: "5px",
         },
       },
