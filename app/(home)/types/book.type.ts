@@ -11,6 +11,7 @@ export type Book = {
   description: string;
   author: string;
   status: BookStatus;
+  isFavorite: boolean;
 };
 
 export type Pagination = {

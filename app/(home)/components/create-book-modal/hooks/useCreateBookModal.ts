@@ -28,7 +28,6 @@ export function useCreateModal({
   });
 
   async function onSubmit(data: createBookFormData) {
-    console.log("Teste");
     const formData = new FormData();
     formData.append("book", data.book);
     formData.append("description", data.description);
@@ -37,7 +36,6 @@ export function useCreateModal({
     // TODO: Precisa tratar os erros
     setIsLoading(true);
     const res = await createBook(formData).finally(() => setIsLoading(false));
-    console.log(res);
 
     if (res.statusCode === 200) {
       reset();

@@ -117,7 +117,12 @@ function Header({ logout, user }: HeaderProps) {
                   handleCloseNavMenu();
                   router.push(page.path);
                 }}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  boxShadow: "none",
+                }}
               >
                 {page.title}
               </Button>

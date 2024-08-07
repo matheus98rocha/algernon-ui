@@ -65,3 +65,21 @@ export async function authPost<T = unknown>(
     result: result as T,
   };
 }
+
+export async function authPatch<T = unknown>(
+  input: RequestInfo | URL,
+  newValues: any,
+  init?: RequestInit | undefined,
+): Promise<fetchWrapperResponse> {
+  const data = await fetch(`${API_URL}/${input}`, {
+    ...init,
+    method: "PATCH",
+    body: JSON.stringify(newValues),
+    headers: { ...getHeader(), "Content-Type": "application/json" },
+  });
+  const result = await data.json();
+  return {
+    data: data,
+    result: result as T,
+  };
+}

@@ -70,6 +70,7 @@ function SearchInput({ setBookName, bookName }: any) {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  gap: "0.5rem",
                 }}
               >
                 {bookName.length > 0 && (

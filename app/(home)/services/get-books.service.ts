@@ -20,7 +20,8 @@ export async function getBooks({
   }
 
   try {
-    return await get<BooksResponse>("books", params, ["books"]);
+    const resp = await get<BooksResponse>("books", params, ["books"]);
+    return resp;
   } catch (error) {
     console.error("Failed to fetch books:", error);
     throw error;
