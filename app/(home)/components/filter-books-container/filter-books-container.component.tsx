@@ -1,26 +1,27 @@
 "use client";
-import { Grid } from "@mui/material";
 import React, { useState } from "react";
 import StatusStack from "./components/status-stack/status-stack.component";
 import SearchInput from "./components/search-input/search-input.component";
+import { FilterBooksContainerProps } from "./filter-books-container.types";
+import { WrapperFilterBooksContainer } from "./filter-books-container.styles";
 
-function FilterBooksContainer() {
+function FilterBooksContainer({
+  statusQt,
+  bookStatus,
+  isFavorite,
+}: FilterBooksContainerProps) {
   const [bookName, setBookName] = useState<string>("");
   return (
-    <Grid
-      container
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        gap: "1rem",
-        marginBottom: "1rem",
-      }}
-    >
+    <WrapperFilterBooksContainer container>
       <StatusStack setBookName={setBookName} />
-      <SearchInput bookName={bookName} setBookName={setBookName} />
-    </Grid>
+      <SearchInput
+        bookName={bookName}
+        setBookName={setBookName}
+        statusQt={statusQt}
+        bookStatus={bookStatus}
+        isFavorite={isFavorite}
+      />
+    </WrapperFilterBooksContainer>
   );
 }
 

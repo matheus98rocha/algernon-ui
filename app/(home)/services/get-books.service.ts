@@ -33,7 +33,7 @@ export async function getBooks({
   }
 }
 
-export async function getBooksOnGoogleApi(name: string): Promise<Book[]> {
+export async function getBooksOnGoogleApi(name: string): Promise<any[]> {
   try {
     return await get<Book[]>("books/googleBookApi", { name }, ["books"]);
   } catch (error) {

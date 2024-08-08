@@ -1,10 +1,18 @@
 "use client";
-import { Box, Button, InputAdornment, TextField } from "@mui/material";
+import { Button, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useCallback, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { SearchInputProps } from "./search-input.types";
+import * as S from "./search-input.styles";
 
-function SearchInput({ setBookName, bookName }: any) {
+function SearchInput({
+  setBookName,
+  bookName,
+  statusQt,
+  bookStatus,
+  isFavorite,
+}: SearchInputProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -41,22 +49,24 @@ function SearchInput({ setBookName, bookName }: any) {
     handleCallGetBooksEmptyField();
   }, [bookName, handleCallGetBooksEmptyField]);
 
+  const currentPlaceholder = {
+    wantToRead: `Você tem ${statusQt} no "Quero Ler"`,
+    reading: `Você está lendo ${statusQt} livros`,
+    alreadyRead: `Você já leu ${statusQt} livros`,
+    rereading: `Você está relendo ${statusQt}`,
+    abandoned: `Você abandonou ${statusQt}, volte quando quiser!`,
+    isFavorite: `Você tem ${statusQt} favoritos`,
+    default: `Você tem ${statusQt} livros na sua coleção`,
+  };
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100%",
-        maxWidth: "95%",
-      }}
-    >
-      <TextField
-        sx={{
-          width: "100%",
-          backgroundColor: "#fff",
-        }}
-        placeholder="Pesquise um livro"
+    <S.WrapperSearchInput>
+      <S.StyledTextField
+        placeholder={
+          isFavorite
+            ? currentPlaceholder.isFavorite
+            : currentPlaceholder[bookStatus] || currentPlaceholder.default
+        }
         type="text"
         variant="outlined"
         onChange={(event) => setBookName(event.target.value)}
@@ -65,14 +75,7 @@ function SearchInput({ setBookName, bookName }: any) {
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "0.5rem",
-                }}
-              >
+              <S.StyledButtonsInput>
                 {bookName.length > 0 && (
                   <Button onClick={() => setBookName("")}>Limpar</Button>
                 )}
@@ -82,12 +85,12 @@ function SearchInput({ setBookName, bookName }: any) {
                   }}
                   onClick={() => handleSearchBookName()}
                 />
-              </Box>
+              </S.StyledButtonsInput>
             </InputAdornment>
           ),
         }}
       />
-    </Box>
+    </S.WrapperSearchInput>
   );
 }
 

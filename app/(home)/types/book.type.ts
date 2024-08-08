@@ -29,7 +29,7 @@ export type BooksResponse = {
 export type GetBooksParams = {
   page: number;
   size?: number;
-  status?: "wantToRead" | "alreadyRead" | "reading" | "abandoned" | "rereading";
+  status?: BookStatus;
   bookName?: string;
   isFavorite?: boolean | string;
 };

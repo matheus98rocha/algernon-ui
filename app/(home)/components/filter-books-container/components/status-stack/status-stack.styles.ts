@@ -4,7 +4,7 @@ export const StackWrapper = styled(Stack, {
   shouldForwardProp: (prop) => prop !== "scrollable",
 })<{ scrollable?: boolean }>(({ theme, scrollable }) => ({
   display: "flex",
-  justifyContent: "space-around",
+  justifyContent: "space-between",
   alignItems: "center",
   width: "100%",
   gap: theme.spacing(2),
