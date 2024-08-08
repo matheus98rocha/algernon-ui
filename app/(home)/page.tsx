@@ -4,27 +4,33 @@ import { getBooks } from "./services/get-books.service";
 import LoadingContainer from "../components/layout/loading/loading.component";
 import FilterBooksContainer from "./components/filter-books-container/filter-books-container.component";
 
+type Status =
+  | "wantToRead"
+  | "alreadyRead"
+  | "reading"
+  | "abandoned"
+  | "rereading";
+
 interface BookByStatusProps {
   searchParams: {
-    status:
-      | "wantToRead"
-      | "alreadyRead"
-      | "reading"
-      | "abandoned"
-      | "rereading";
+    status: Status;
     page: number;
     bookName: string;
+    isFavorite?: boolean;
   };
 }
 
 export default async function Home({ searchParams }: BookByStatusProps) {
-  const { status, page, bookName } = searchParams;
+  const { status, page, bookName, isFavorite } = searchParams;
 
-  const books = await getBooks({
+  const booksQuery = getBooks({
     status,
     page,
     bookName,
+    isFavorite,
   });
+
+  const [books] = await Promise.all([booksQuery]);
 
   return (
     <main>

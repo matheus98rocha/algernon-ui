@@ -8,11 +8,16 @@ export async function getBooks({
   bookName,
   page = 1,
   size = 10,
+  isFavorite,
 }: GetBooksParams): Promise<BooksResponse> {
   const params: Record<string, any> = { page, size };
 
   if (status) {
     params.status = status;
+  }
+
+  if (isFavorite) {
+    params.isFavorite = isFavorite;
   }
 
   if (bookName) {

@@ -31,4 +31,5 @@ export type GetBooksParams = {
   size?: number;
   status?: "wantToRead" | "alreadyRead" | "reading" | "abandoned" | "rereading";
   bookName?: string;
+  isFavorite?: boolean | string;
 };

@@ -43,7 +43,10 @@ function BookCard({
       <S.WrapperBookCard onClick={() => alert("Dalee 1 ")} sx={{ zIndex: 1 }}>
         <S.HeaderBookCard>
           {isFavorite ? (
-            <FavoriteIcon sx={{ zIndex: 2, color: "red" }} onClick={handleFavoriteClick} />
+            <FavoriteIcon
+              sx={{ zIndex: 2, color: "red" }}
+              onClick={handleFavoriteClick}
+            />
           ) : (
             <FavoriteBorderIcon
               sx={{ zIndex: 2 }}

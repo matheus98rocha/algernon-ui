@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import {
   statusOptions,
   statusTextMap,
@@ -12,45 +12,60 @@ import { useSearchParams } from "next/navigation";
 import revalidateTag from "@/app/common/utils/revalidate-tag";
 import BookMark from "../../../bookmark/book-mark.component";
 import { BookStatus } from "../../../../types/book.type";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-const StatusStack = ({ setBookName }: any) => {
+interface StatusStackProps {
+  setBookName: (name: string) => void;
+}
+
+const StatusStack: React.FC<StatusStackProps> = ({ setBookName }) => {
   const theme = useTheme();
   const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
+  const isFavoriteParam = searchParams.get("isFavorite");
 
-  const handleResetBookName = useCallback(
-    (status: string | null) => {
-      if (statusParam !== status) {
-        setBookName("");
-      }
-      revalidateTag("books");
-    },
-    [statusParam, setBookName],
-  );
-  const renderLink = (status: string | null, label: string) => (
-    <Link
-      key={status || "all"}
-      href={{
-        pathname: "/",
-        query: status ? { status } : undefined,
-      }}
-      passHref
-      onClick={() => {
-        handleResetBookName(status);
-      }}
-      style={{ textDecoration: "none" }}
-    >
-      <S.ItemStyled isActive={statusParam === status}>
-        {label} {status !== null && <BookMark status={status as BookStatus} />}
-      </S.ItemStyled>
-    </Link>
+  useEffect(() => {
+    setBookName("");
+    revalidateTag("books");
+  }, [statusParam, isFavoriteParam, setBookName]);
+
+  const renderLink = useCallback(
+    (status: string | null, label: string) => (
+      <Link
+        key={status || "all"}
+        href={{
+          pathname: "/",
+          query: status ? { status } : undefined,
+        }}
+        passHref
+        style={{ textDecoration: "none" }}
+      >
+        <S.ItemStyled isActive={statusParam === status && !isFavoriteParam}>
+          {label}{" "}
+          {status !== null && <BookMark status={status as BookStatus} />}
+        </S.ItemStyled>
+      </Link>
+    ),
+    [statusParam, isFavoriteParam],
   );
 
   return (
     <S.StackWrapper scrollable={onlySmallScreen}>
       {renderLink(null, "Todos")}
       {statusOptions.map((status) => renderLink(status, statusTextMap[status]))}
+      <Link
+        href={{
+          pathname: "/",
+          query: { isFavorite: true },
+        }}
+        passHref
+        style={{ textDecoration: "none" }}
+      >
+        <S.ItemStyled isActive={Boolean(isFavoriteParam)}>
+          Favoritos <FavoriteBorderIcon />
+        </S.ItemStyled>
+      </Link>
     </S.StackWrapper>
   );
 };
