@@ -2,15 +2,11 @@ import type { Metadata } from "next";
 import { Noto_Serif } from "next/font/google";
 import "../globals.css";
 
-import { Container, CssBaseline } from "@mui/material";
-import authenticated from "../(auth)/auth/services/authenticated";
-import Providers from "../providers";
+import { Container } from "@mui/material";
 import Header from "../components/layout/header/header.component";
 import logout from "../(auth)/auth/services/logout";
 import getUserDetails from "./services/get-user-details.service";
 import FloatingButton from "./components/floating-button/floating-button.component";
-
-const inter = Noto_Serif({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Algernon",
@@ -22,24 +18,18 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isAuthenticated = authenticated();
   const user = await getUserDetails();
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Providers authenticated={isAuthenticated}>
-          <CssBaseline />
-          <Header logout={logout} user={user} />
-          <Container
-            sx={{
-              marginTop: "42px",
-            }}
-          >
-            {children}
-            <FloatingButton />
-          </Container>
-        </Providers>
-      </body>
-    </html>
+    <div>
+      <Header logout={logout} user={user} />
+      <Container
+        sx={{
+          marginTop: "42px",
+        }}
+      >
+        {children}
+        <FloatingButton />
+      </Container>
+    </div>
   );
 }

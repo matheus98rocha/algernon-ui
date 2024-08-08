@@ -22,7 +22,6 @@ const darkTheme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
-          boxShadow: shadows[1],
           borderRadius: "5px",
           "& .MuiOutlinedInput-root": {
             "&:hover fieldset": {
