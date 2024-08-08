@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Noto_Serif } from "next/font/google";
 import "../globals.css";
 
 import { Container } from "@mui/material";
