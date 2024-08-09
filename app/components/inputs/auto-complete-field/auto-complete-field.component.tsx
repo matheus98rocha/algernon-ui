@@ -2,7 +2,7 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import SearchIcon from "@mui/icons-material/Search";
-import { InputAdornment } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 
 type AutoCompleteFieldProps = {
   isLoading: boolean;
@@ -15,6 +15,16 @@ type AutoCompleteFieldProps = {
   value: string;
   onChange: (value: string) => void;
   handleSearchBookName: (value: string) => void;
+  setSelectedBook: (
+    book: {
+      title: string;
+      authors: string;
+      description: string;
+      bookImage: string;
+    } | null,
+  ) => void;
+  helperText: string | undefined;
+  error: boolean;
 };
 
 export default function AutoCompleteField({
@@ -23,13 +33,15 @@ export default function AutoCompleteField({
   value,
   handleSearchBookName,
   onChange,
+  setSelectedBook,
+  helperText,
+  error,
 }: AutoCompleteFieldProps) {
-
   return (
     <Autocomplete
       id="combo-box-demo"
       options={options}
-      getOptionLabel={(option: any) => option.title}
+      getOptionLabel={(option) => option.title || ""}
       clearIcon={false}
       popupIcon={false}
       forcePopupIcon={false}
@@ -38,16 +50,35 @@ export default function AutoCompleteField({
       onInputChange={(_, newInputValue) => {
         onChange(newInputValue);
       }}
+      onChange={(_, newValue) => {
+        setSelectedBook(newValue || null); // Atualiza o estado com o objeto selecionado
+      }}
+      renderOption={(props, option) => (
+        <li {...props}>
+          <div>
+            <strong>{option.title}</strong>
+            <br />
+            <span>{option.authors}</span>
+          </div>
+        </li>
+      )}
       renderInput={(params) => (
         <TextField
           {...params}
-          label=""
-          placeholder="Search City"
+          helperText={helperText}
+          error={error}
+          placeholder="Search Book"
           InputProps={{
+            ...params.InputProps,
             endAdornment: (
-              <InputAdornment position="end">
-                <SearchIcon onClick={() => handleSearchBookName(value)} />
-              </InputAdornment>
+              <>
+                {isLoading ? (
+                  <CircularProgress color="inherit" size={20} />
+                ) : (
+                  <SearchIcon onClick={() => handleSearchBookName(value)} />
+                )}
+                {params.InputProps.endAdornment}
+              </>
             ),
             disableUnderline: true,
           }}

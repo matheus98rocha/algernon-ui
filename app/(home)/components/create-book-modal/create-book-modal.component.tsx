@@ -17,10 +17,28 @@ import { useCreateModal } from "./hooks/useCreateBookModal";
 import { Controller } from "react-hook-form";
 import ButtonLoading from "@/app/components/buttons/button-loading/button-loading.component";
 import * as S from "./create-book-modal.styles";
+import AutoCompleteField from "@/app/components/inputs/auto-complete-field/auto-complete-field.component";
+import Image from "next/image";
 
 function CreateBookModal({ open, handleClose }: createBookModalProps) {
-  const { errors, handleSubmit, isLoading, onSubmit, register, control } =
-    useCreateModal({ handleClose });
+  const {
+    errors,
+    handleSubmit,
+    isLoading,
+    onSubmit,
+    register,
+    control,
+    handleSearchBookName,
+    watch,
+    booksSearch,
+    isLoadingBooksSearch,
+    handleSetValues,
+  } = useCreateModal({ handleClose });
+
+  const authorValue = watch("author");
+  const descriptionValue = watch("description");
+
+  const showFields = authorValue && descriptionValue;
 
   const statusOptions = [
     { value: "wantToRead", label: "Quero Ler" },
@@ -38,68 +56,112 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
         </S.ModalHeader>
         <S.StyledFormControl onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={3}>
-            <TextField
-              {...register("book")}
-              label="Nome do Livro"
-              variant="outlined"
-              type="text"
-              helperText={errors.book?.message}
-              error={!!errors.book}
+            <Controller
+              control={control}
+              name="book"
+              render={({ field: { onChange, value } }) => (
+                <AutoCompleteField
+                  {...register("book")}
+                  isLoading={isLoadingBooksSearch}
+                  options={booksSearch}
+                  handleSearchBookName={() => handleSearchBookName(value)}
+                  value={value}
+                  onChange={onChange}
+                  setSelectedBook={handleSetValues}
+                  helperText={errors.book?.message}
+                  error={!!errors.book}
+                />
+              )}
             />
+            {showFields && (
+              <>
+                <Controller
+                  control={control}
+                  name="imageUrl"
+                  render={({ field: { value } }) => (
+                    <Image
+                      {...register("imageUrl")}
+                      src={value}
+                      alt="book-image"
+                      width={200}
+                      height={200}
+                    />
+                  )}
+                />
+                <Controller
+                  control={control}
+                  name="author"
+                  render={({ field: { onChange, onBlur, value, ref } }) => (
+                    <TextField
+                      {...register("author")}
+                      label="Nome do Autor"
+                      variant="outlined"
+                      value={value}
+                      inputRef={ref}
+                      onChange={onChange}
+                      onBlur={onBlur}
+                      type="text"
+                      helperText={errors.author?.message}
+                      error={!!errors.author}
+                    />
+                  )}
+                />
 
-            <TextField
-              {...register("author")}
-              label="Nome do Autor"
-              variant="outlined"
-              type="text"
-              helperText={errors.author?.message}
-              error={!!errors.author}
-            />
-
-            {/* Transformar em campo de text área */}
-            <TextField
-              multiline={true}
-              rows={3}
-              label="Descrição do livro"
-              placeholder="Description"
-              autoComplete="off"
-              variant="outlined"
-              {...register("description")}
-              helperText={errors.description?.message}
-              error={!!errors.description}
-            />
-
-            {/* Componentizar o select */}
-            <FormControl fullWidth error={!!errors.status} variant="outlined">
-              <InputLabel id="status-label">Status</InputLabel>
-              <Controller
-                name="status"
-                control={control}
-                defaultValue={undefined}
-                rules={{ required: "Status é obrigatório" }}
-                render={({ field }) => (
-                  <Select
-                    labelId="status-label"
-                    id="status"
-                    label="Status"
-                    {...field}
-                  >
-                    {statusOptions.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                )}
-              />
-              <FormHelperText>{errors.status?.message}</FormHelperText>
-            </FormControl>
-
-            <ButtonLoading
-              buttonText="Criar"
-              isLoading={isLoading}
-              type={"submit"}
-            />
+                <Controller
+                  control={control}
+                  name="description"
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <TextField
+                      {...register("description")}
+                      multiline
+                      rows={3}
+                      onChange={onChange}
+                      onBlur={onBlur}
+                      value={value}
+                      label="Descrição do livro"
+                      placeholder="Descrição"
+                      autoComplete="off"
+                      variant="outlined"
+                      helperText={errors.description?.message}
+                      error={!!errors.description}
+                    />
+                  )}
+                />
+                <FormControl
+                  fullWidth
+                  error={!!errors.status}
+                  variant="outlined"
+                >
+                  <InputLabel id="status-label">Status</InputLabel>
+                  <Controller
+                    name="status"
+                    control={control}
+                    defaultValue={undefined}
+                    rules={{ required: "Status é obrigatório" }}
+                    render={({ field }) => (
+                      <Select
+                        labelId="status-label"
+                        id="status"
+                        label="Status"
+                        {...field}
+                      >
+                        {statusOptions.map((option) => (
+                          <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    )}
+                  />
+                  <FormHelperText>{errors.status?.message}</FormHelperText>
+                </FormControl>
+                <ButtonLoading
+                  buttonText="Criar"
+                  isLoading={isLoading}
+                  type={"submit"}
+                />
+              </>
+            )}
           </Stack>
         </S.StyledFormControl>
       </S.WrapperModalContent>

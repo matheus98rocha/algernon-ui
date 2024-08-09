@@ -11,6 +11,7 @@ export const createBookFormSchema = z.object({
         "O status deve ser um dos seguintes: Quero Ler, Já Li, Estou Lendo, Abandonado ou Relendo",
     }),
   }),
+  imageUrl: z.string(),
 });
 
 export type createBookFormData = z.infer<typeof createBookFormSchema>;

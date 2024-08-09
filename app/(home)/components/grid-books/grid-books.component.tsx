@@ -27,6 +27,7 @@ function GridBooks({ books, totalPages }: gridBooksProps) {
               id={book.id}
               status={book.status}
               isFavorite={book.isFavorite}
+              imageUrl={book.imageUrl}
             />
           ))}
         </S.WrapperBooksList>

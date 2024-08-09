@@ -18,4 +18,16 @@ export type useCreateBookModalReturn = {
   errors: FieldErrors<createBookFormData>;
   isLoading: boolean;
   control: Control<createBookFormData>;
+  handleSearchBookName: (value: string) => void;
+  watch: (name: keyof createBookFormData) => string;
+  booksSearch: any[];
+  isLoadingBooksSearch: boolean;
+  handleSetValues: (
+    book: {
+      title: string;
+      authors: string;
+      description: string;
+      bookImage: string;
+    } | null,
+  ) => void;
 };

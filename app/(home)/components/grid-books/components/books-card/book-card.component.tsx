@@ -15,6 +15,7 @@ function BookCard({
   isFavorite: initialFavorite,
   description,
   id,
+  imageUrl,
 }: BookProps) {
   const [isFavorite, setIsFavorite] = useState<boolean>(initialFavorite);
 
@@ -31,6 +32,7 @@ function BookCard({
           description,
           id,
           isFavorite: updatedFavorite,
+          imageUrl,
         },
         id,
       );
@@ -57,7 +59,7 @@ function BookCard({
         </S.HeaderBookCard>
         <S.BookTitle variant="h6">{book}</S.BookTitle>
         <Image
-          src="https://books.google.com/books/content?id=_oG_iTxP1pIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+          src={imageUrl}
           alt="book image"
           width={100}
           height={150}
