@@ -36,7 +36,6 @@ export function useCreateModal({
 
   const handleSearchBookName = (bookName: string) => {
     setIsLoadingBooksSearch(true);
-    console.log("Passei aqui", bookName);
     getBooksOnGoogleApi(bookName)
       .then((data) => {
         setBooksSearch(data);

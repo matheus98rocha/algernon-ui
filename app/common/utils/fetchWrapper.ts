@@ -71,15 +71,33 @@ export async function authPatch<T = unknown>(
   newValues: any,
   init?: RequestInit | undefined,
 ): Promise<fetchWrapperResponse> {
-  const data = await fetch(`${API_URL}/${input}`, {
-    ...init,
-    method: "PATCH",
-    body: JSON.stringify(newValues),
-    headers: { ...getHeader(), "Content-Type": "application/json" },
-  });
-  const result = await data.json();
-  return {
-    data: data,
-    result: result as T,
-  };
+  try {
+    const response = await fetch(`${API_URL}/${input}`, {
+      ...init,
+      method: "PATCH",
+      body: JSON.stringify(newValues),
+      headers: { ...getHeader(), "Content-Type": "application/json" },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro na requisição: ${response.statusText}`);
+    }
+
+    const contentType = response.headers.get("Content-Type") || "";
+
+    let result: T;
+    if (contentType.includes("application/json")) {
+      result = (await response.json()) as T;
+    } else {
+      throw new Error("A resposta não está no formato JSON esperado.");
+    }
+
+    return {
+      data: response,
+      result: result,
+    };
+  } catch (error) {
+    console.error("Erro ao fazer patch:", error);
+    throw error;
+  }
 }

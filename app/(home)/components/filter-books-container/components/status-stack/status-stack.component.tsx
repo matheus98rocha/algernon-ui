@@ -12,7 +12,7 @@ import { useSearchParams } from "next/navigation";
 import revalidateTag from "@/app/common/utils/revalidate-tag";
 import BookMark from "../../../bookmark/book-mark.component";
 import { BookStatus } from "../../../../types/book.type";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 interface StatusStackProps {
   setBookName: (name: string) => void;
@@ -63,7 +63,7 @@ const StatusStack: React.FC<StatusStackProps> = ({ setBookName }) => {
         style={{ textDecoration: "none" }}
       >
         <S.ItemStyled isActive={Boolean(isFavoriteParam)}>
-          Favoritos <FavoriteBorderIcon />
+          Favoritos <FavoriteIcon sx={{ color: "red" }} />
         </S.ItemStyled>
       </Link>
     </S.StackWrapper>
