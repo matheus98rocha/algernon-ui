@@ -52,9 +52,9 @@ export const get = async <T>(
       throw new Error(`HTTP error! Status: ${res.status} - ${res.statusText}`);
     }
 
-    return await res.json() as T;
+    return (await res.json()) as T;
   } catch (error) {
-    redirect('/error');
+    redirect("/error");
   }
 };
 
