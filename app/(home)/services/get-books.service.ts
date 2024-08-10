@@ -1,12 +1,7 @@
 "use server";
 
 import { get } from "@/app/common/utils/fetchWrapper";
-import {
-  Book,
-  BooksResponse,
-  GetBooksParams,
-  ResponseError,
-} from "../types/book.type";
+import { Book, BooksResponse, GetBooksParams } from "../types/book.type";
 
 export async function getBooks({
   status,
@@ -14,7 +9,7 @@ export async function getBooks({
   page = 1,
   size = 10,
   isFavorite,
-}: GetBooksParams): Promise<BooksResponse | ResponseError> {
+}: GetBooksParams): Promise<BooksResponse> {
   const params: Record<string, any> = { page, size };
 
   if (status) {
@@ -29,9 +24,7 @@ export async function getBooks({
     params.bookName = bookName;
   }
 
-  const resp = await get<ResponseError | BooksResponse>("books", params, [
-    "books",
-  ]);
+  const resp = await get<BooksResponse>("books", params, ["books"]);
   return resp;
 }
 

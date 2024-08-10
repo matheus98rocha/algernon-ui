@@ -37,7 +37,7 @@ function BookCard({
         id,
       );
     },
-    [author, book, status, description, id, isFavorite],
+    [author, book, status, description, id, isFavorite, imageUrl],
   );
 
   return (

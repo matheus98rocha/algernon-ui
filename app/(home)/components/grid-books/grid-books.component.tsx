@@ -17,7 +17,7 @@ function GridBooks({ books, totalPages }: gridBooksProps) {
   return (
     <Fade in>
       <S.WrapperGridBooks>
-        <S.WrapperBooksList container centered={books.length <= 2}>
+        <S.WrapperBooksList container>
           {books.map((book: Book) => (
             <BookCard
               key={book.id}
