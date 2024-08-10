@@ -7,6 +7,7 @@ import BookMark from "../../../bookmark/book-mark.component";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import favoriteBook from "@/app/(home)/services/favorite-book.service";
+import NotAvaibleImage from "@/app/components/not-avaible-image/not-avaible-image.component";
 
 function BookCard({
   author,
@@ -34,10 +35,10 @@ function BookCard({
           isFavorite: updatedFavorite,
           imageUrl,
         },
-        id,
+        id
       );
     },
-    [author, book, status, description, id, isFavorite, imageUrl],
+    [author, book, status, description, id, isFavorite, imageUrl]
   );
 
   return (
@@ -58,13 +59,17 @@ function BookCard({
           <BookMark status={status} />
         </S.HeaderBookCard>
         <S.BookTitle variant="h6">{book}</S.BookTitle>
-        <Image
-          src={imageUrl}
-          alt="book image"
-          width={100}
-          height={150}
-          loading="eager"
-        />
+        {imageUrl === "" ? (
+          <NotAvaibleImage />
+        ) : (
+          <Image
+            src={imageUrl}
+            alt="book image"
+            width={148}
+            height={223}
+            loading="eager"
+          />
+        )}
         <S.BookAuthor variant="body2">{author}</S.BookAuthor>
       </S.WrapperBookCard>
     </>

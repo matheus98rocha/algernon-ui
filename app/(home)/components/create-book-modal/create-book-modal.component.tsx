@@ -19,6 +19,7 @@ import ButtonLoading from "@/app/components/buttons/button-loading/button-loadin
 import * as S from "./create-book-modal.styles";
 import AutoCompleteField from "@/app/components/inputs/auto-complete-field/auto-complete-field.component";
 import Image from "next/image";
+import NotAvaibleImage from "@/app/components/not-avaible-image/not-avaible-image.component";
 
 function CreateBookModal({ open, handleClose }: createBookModalProps) {
   const {
@@ -78,15 +79,21 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
                 <Controller
                   control={control}
                   name="imageUrl"
-                  render={({ field: { value } }) => (
-                    <Image
-                      {...register("imageUrl")}
-                      src={value}
-                      alt="book-image"
-                      width={200}
-                      height={200}
-                    />
-                  )}
+                  render={({ field: { value } }) => {
+                    if (value.length === 0 || value === "No image available") {
+                      return <NotAvaibleImage />;
+                    } else {
+                      return (
+                        <Image
+                          {...register("imageUrl")}
+                          src={value}
+                          alt="book-image"
+                          width={148}
+                          height={223}
+                        />
+                      );
+                    }
+                  }}
                 />
                 <Controller
                   control={control}
@@ -103,6 +110,7 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
                       type="text"
                       helperText={errors.author?.message}
                       error={!!errors.author}
+                      disabled={true}
                     />
                   )}
                 />
@@ -124,6 +132,7 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
                       variant="outlined"
                       helperText={errors.description?.message}
                       error={!!errors.description}
+                      disabled={true}
                     />
                   )}
                 />

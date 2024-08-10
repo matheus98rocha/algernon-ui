@@ -21,7 +21,7 @@ type AutoCompleteFieldProps = {
       authors: string;
       description: string;
       bookImage: string;
-    } | null,
+    } | null
   ) => void;
   helperText: string | undefined;
   error: boolean;
@@ -39,12 +39,13 @@ export default function AutoCompleteField({
 }: AutoCompleteFieldProps) {
   return (
     <Autocomplete
-      id="combo-box-demo"
       options={options}
-      getOptionLabel={(option) => option.title || ""}
+      getOptionLabel={(option) => option.title}
+      filterOptions={(options) => options}
       clearIcon={false}
       popupIcon={false}
       forcePopupIcon={false}
+      openOnFocus={false}
       loading={isLoading}
       inputValue={value}
       onInputChange={(_, newInputValue) => {
@@ -67,7 +68,7 @@ export default function AutoCompleteField({
           {...params}
           helperText={helperText}
           error={error}
-          placeholder="Search Book"
+          placeholder="Pesquise seu livro"
           InputProps={{
             ...params.InputProps,
             endAdornment: (
