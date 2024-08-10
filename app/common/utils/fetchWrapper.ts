@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { API_URL } from "../constants/api";
+import { redirect } from "next/navigation";
 type fetchWrapperResponse = {
   data: Response;
   result: any;
@@ -33,19 +34,28 @@ export const get = async <T>(
   tags?: string[],
 ): Promise<T> => {
   const url = new URL(`${API_URL}/${path}`);
+
   if (params) {
     Object.keys(params).forEach((key) =>
       url.searchParams.append(key, params[key]),
     );
   }
-  const res = await fetch(url.toString(), {
-    headers: { ...getHeader() },
-    next: {
-      tags,
-    },
-  });
 
-  return res.json() as T;
+  try {
+    const res = await fetch(url.toString(), {
+      headers: { ...getHeader() },
+      next: {
+        tags,
+      },
+    });
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status} - ${res.statusText}`);
+    }
+
+    return await res.json() as T;
+  } catch (error) {
+    redirect('/error');
+  }
 };
 
 export async function authPost<T = unknown>(

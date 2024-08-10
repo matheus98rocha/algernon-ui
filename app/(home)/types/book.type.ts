@@ -27,6 +27,14 @@ export type BooksResponse = {
   pagination: Pagination;
 };
 
+export type ResponseError = {
+  message: string;
+  statusCode: number;
+  timestamp: string;
+  path: string;
+  messages: string;
+};
+
 export type GetBooksParams = {
   page: number;
   size?: number;
