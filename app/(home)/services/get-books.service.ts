@@ -1,8 +1,8 @@
 "use server";
 
 import { get } from "@/app/common/utils/fetchWrapper";
-import { BooksResponse, GetBooksParams } from "../types/book.type";
-import { BooksGoogleApi } from "../types/books-google-api";
+import { BooksResponse, GetBooksParams } from "../../common/types/book.type";
+import { BooksGoogleApi } from "../../common/types/books-google-api";
 
 export async function getBooks({
   status,
@@ -29,6 +29,10 @@ export async function getBooks({
   return resp;
 }
 
-export async function getBooksOnGoogleApi(name: string): Promise<BooksGoogleApi[]> {
-  return await get<BooksGoogleApi[]>("books/googleBookApi", { name }, ["books"]);
+export async function getBooksOnGoogleApi(
+  name: string,
+): Promise<BooksGoogleApi[]> {
+  return await get<BooksGoogleApi[]>("books/googleBookApi", { name }, [
+    "books",
+  ]);
 }

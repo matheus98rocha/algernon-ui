@@ -1,4 +1,4 @@
-import { BookStatus } from "@/app/(home)/types/book.type";
+import { BookStatus } from "@/app/common/types/book.type";
 
 export type SearchInputProps = {
   setBookName: (value: string) => void;

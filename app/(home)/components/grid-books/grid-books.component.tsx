@@ -6,7 +6,7 @@ import BookCard from "./components/books-card/book-card.component";
 import EmptyBooks from "./components/empty-books/empty-books.component";
 import { Fade } from "@mui/material";
 import CustomPagination from "@/app/components/custom-pagination/custom-pagination.component";
-import { Book } from "../../types/book.type";
+import { Book } from "../../../common/types/book.type";
 import * as S from "./grid-books.styles";
 
 function GridBooks({ books, totalPages }: gridBooksProps) {

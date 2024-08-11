@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Box,
   FormControl,
   FormHelperText,
   InputLabel,
@@ -34,12 +35,10 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
     booksSearch,
     isLoadingBooksSearch,
     handleSetValues,
+    handleCloseModal,
   } = useCreateModal({ handleClose });
 
-  const authorValue = watch("author");
-  const descriptionValue = watch("description");
-
-  const showFields = authorValue && descriptionValue;
+  const showFields = !!watch("author") && !!watch("description");
 
   const statusOptions = [
     { value: "wantToRead", label: "Quero Ler" },
@@ -49,72 +48,99 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
     { value: "abandoned", label: "Abandonado" },
   ];
 
+  const renderImage = (value: string) =>
+    value.length === 0 || value === "No image available" ? (
+      <NotAvaibleImage />
+    ) : (
+      <Image
+        {...register("imageUrl")}
+        src={value}
+        alt="book-image"
+        width={148}
+        height={223}
+      />
+    );
+
   return (
-    <Modal open={open} onClose={handleClose}>
+    <Modal open={open} onClose={handleCloseModal}>
       <S.WrapperModalContent>
         <S.ModalHeader>
-          <S.CloseIconStyled onClick={handleClose} />
+          <S.StyledModalTitle>
+            {showFields ? "Adicionar Livro" : "Pesquisar Livro"}
+          </S.StyledModalTitle>
+          <S.CloseIconStyled onClick={handleCloseModal} />
         </S.ModalHeader>
         <S.StyledFormControl onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={3}>
-            <Controller
-              control={control}
-              name="book"
-              render={({ field: { onChange, value } }) => (
-                <AutoCompleteField
-                  {...register("book")}
-                  isLoading={isLoadingBooksSearch}
-                  options={booksSearch}
-                  handleSearchBookName={() => handleSearchBookName(value)}
-                  value={value}
-                  onChange={onChange}
-                  setSelectedBook={handleSetValues}
-                  helperText={errors.book?.message}
-                  error={!!errors.book}
-                />
-              )}
-            />
-            {showFields && (
-              <>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                gap: 4,
+                width: "100%",
+              }}
+            >
+              {showFields && (
                 <Controller
                   control={control}
                   name="imageUrl"
-                  render={({ field: { value } }) => {
-                    if (value.length === 0 || value === "No image available") {
-                      return <NotAvaibleImage />;
-                    } else {
-                      return (
-                        <Image
-                          {...register("imageUrl")}
-                          src={value}
-                          alt="book-image"
-                          width={148}
-                          height={223}
-                        />
-                      );
-                    }
-                  }}
+                  render={({ field: { value } }) => renderImage(value)}
                 />
+              )}
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 3,
+                }}
+              >
                 <Controller
                   control={control}
-                  name="author"
-                  render={({ field: { onChange, onBlur, value, ref } }) => (
-                    <TextField
-                      {...register("author")}
-                      label="Nome do Autor"
-                      variant="outlined"
+                  name="book"
+                  render={({ field: { onChange, value } }) => (
+                    <AutoCompleteField
+                      {...register("book")}
+                      isLoading={isLoadingBooksSearch}
+                      options={booksSearch}
+                      handleSearchBookName={() => handleSearchBookName(value)}
                       value={value}
-                      inputRef={ref}
                       onChange={onChange}
-                      onBlur={onBlur}
-                      type="text"
-                      helperText={errors.author?.message}
-                      error={!!errors.author}
-                      disabled={true}
+                      setSelectedBook={handleSetValues}
+                      helperText={errors.book?.message}
+                      error={!!errors.book}
                     />
                   )}
                 />
-
+                {showFields && (
+                  <Controller
+                    control={control}
+                    name="author"
+                    render={({ field: { onChange, onBlur, value, ref } }) => (
+                      <TextField
+                        {...register("author")}
+                        sx={{
+                          width: "100%",
+                        }}
+                        label="Nome do Autor"
+                        variant="outlined"
+                        value={value}
+                        inputRef={ref}
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        type="text"
+                        helperText={errors.author?.message}
+                        error={!!errors.author}
+                        disabled
+                      />
+                    )}
+                  />
+                )}
+              </Box>
+            </Box>
+            {showFields && (
+              <>
                 <Controller
                   control={control}
                   name="description"
@@ -132,7 +158,7 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
                       variant="outlined"
                       helperText={errors.description?.message}
                       error={!!errors.description}
-                      disabled={true}
+                      disabled
                     />
                   )}
                 />
@@ -164,11 +190,26 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
                   />
                   <FormHelperText>{errors.status?.message}</FormHelperText>
                 </FormControl>
-                <ButtonLoading
-                  buttonText="Criar"
-                  isLoading={isLoading}
-                  type={"submit"}
-                />
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: "100%",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: "200px",
+                    }}
+                  >
+                    <ButtonLoading
+                      buttonText="Adicionar"
+                      isLoading={isLoading}
+                      type={"submit"}
+                    />
+                  </Box>
+                </Box>
               </>
             )}
           </Stack>

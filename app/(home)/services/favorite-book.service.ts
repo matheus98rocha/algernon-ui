@@ -1,7 +1,7 @@
 "use server";
 import { authPatch } from "@/app/common/utils/fetchWrapper";
 import { revalidateTag } from "next/cache";
-import { Book } from "../types/book.type";
+import { Book } from "../../common/types/book.type";
 
 interface FavoriteBookResponse extends Error {}
 

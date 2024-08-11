@@ -21,7 +21,7 @@ type AutoCompleteFieldProps = {
       authors: string;
       description: string;
       bookImage: string;
-    } | null
+    } | null,
   ) => void;
   helperText: string | undefined;
   error: boolean;

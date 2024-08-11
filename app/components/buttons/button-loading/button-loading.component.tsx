@@ -11,6 +11,9 @@ function ButtonLoading({ isLoading, type, buttonText }: ButtonLoadingProps) {
       loading={isLoading}
       loadingPosition="center"
       loadingIndicator={<LoadingComponent />}
+      sx={{
+        width: "100%",
+      }}
     >
       {buttonText}
     </LoadingButton>

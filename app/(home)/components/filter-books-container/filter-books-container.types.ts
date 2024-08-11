@@ -1,4 +1,4 @@
-import { BookStatus } from "../../types/book.type";
+import { BookStatus } from "../../../common/types/book.type";
 
 export type FilterBooksContainerProps = {
   statusQt: number;

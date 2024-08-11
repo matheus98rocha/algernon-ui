@@ -1,5 +1,5 @@
 import React from "react";
-import { BookStatus } from "../../types/book.type";
+import { BookStatus } from "../../../common/types/book.type";
 import * as S from "./book-mark.styles";
 import { SxProps, Theme } from "@mui/material";
 export type BookMarkProps = {

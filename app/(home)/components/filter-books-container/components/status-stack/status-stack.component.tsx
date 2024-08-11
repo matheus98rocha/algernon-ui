@@ -11,7 +11,7 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import revalidateTag from "@/app/common/utils/revalidate-tag";
 import BookMark from "../../../bookmark/book-mark.component";
-import { BookStatus } from "../../../../types/book.type";
+import { BookStatus } from "../../../../../common/types/book.type";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 interface StatusStackProps {

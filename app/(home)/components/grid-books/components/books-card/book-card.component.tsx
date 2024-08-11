@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useCallback } from "react";
-import { Book as BookProps } from "../../../../types/book.type";
+import { Book as BookProps } from "../../../../../common/types/book.type";
 import * as S from "./book-card.styles";
 import Image from "next/image";
 import BookMark from "../../../bookmark/book-mark.component";
@@ -35,10 +35,10 @@ function BookCard({
           isFavorite: updatedFavorite,
           imageUrl,
         },
-        id
+        id,
       );
     },
-    [author, book, status, description, id, isFavorite, imageUrl]
+    [author, book, status, description, id, isFavorite, imageUrl],
   );
 
   return (

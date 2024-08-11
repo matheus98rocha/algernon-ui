@@ -30,4 +30,5 @@ export type useCreateBookModalReturn = {
       bookImage: string;
     } | null,
   ) => void;
+  handleCloseModal: () => void;
 };

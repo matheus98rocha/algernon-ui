@@ -1,4 +1,4 @@
-import { Book } from "../../types/book.type";
+import { Book } from "../../../common/types/book.type";
 
 export type gridBooksProps = {
   books: Book[];

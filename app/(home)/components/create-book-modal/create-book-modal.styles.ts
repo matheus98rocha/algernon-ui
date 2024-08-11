@@ -1,4 +1,4 @@
-import { Box, Select, styled, TextField } from "@mui/material";
+import { Box, Select, styled, TextField, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 export const WrapperForm = styled("form")(() => ({
@@ -28,7 +28,7 @@ export const CloseIconStyled = styled(CloseIcon)(() => ({
 
 export const ModalHeader = styled(Box)(({ theme }) => ({
   display: "flex",
-  justifyContent: "flex-end",
+  justifyContent: "space-between",
   alignItems: "center",
   width: "100%",
   padding: theme.spacing(2), // 16px
@@ -44,4 +44,14 @@ export const StyledFormControl = styled("form")(() => ({
 
 export const StyledSelect = styled(Select)(() => ({
   width: "100%",
+}));
+
+export const StyledModalTitle = styled(Typography)(({ theme }) => ({
+  fontSize: theme.typography.pxToRem(24),
+  color: theme.palette.getContrastText(theme.palette.background.paper),
+  textShadow: "1px 1px 2px rgba(0, 0, 0, 0.1)",
+  fontWeight: "bold",
+  padding: "10px 0",
+  marginBottom: "10px",
+  textAlign: "center",
 }));

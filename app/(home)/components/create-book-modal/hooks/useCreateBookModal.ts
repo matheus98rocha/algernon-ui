@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useCreateBookModalReturn } from "../create-book-modal.types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,6 +9,7 @@ import {
 } from "@/app/(home)/schema/create-book.schema";
 import { useRouter } from "next/navigation";
 import { getBooksOnGoogleApi } from "@/app/(home)/services/get-books.service";
+import { BooksGoogleApi } from "@/app/common/types/books-google-api";
 
 export function useCreateModal({
   handleClose,
@@ -17,7 +18,7 @@ export function useCreateModal({
 }): useCreateBookModalReturn {
   const [isLoading, setIsLoading] = useState(false);
 
-  const [booksSearch, setBooksSearch] = useState<any[]>([]);
+  const [booksSearch, setBooksSearch] = useState<BooksGoogleApi[]>([]);
   const [isLoadingBooksSearch, setIsLoadingBooksSearch] = useState(false);
 
   const router = useRouter();
@@ -30,6 +31,7 @@ export function useCreateModal({
     control,
     watch,
     setValue,
+    setError,
   } = useForm<createBookFormData>({
     resolver: zodResolver(createBookFormSchema),
   });
@@ -51,7 +53,7 @@ export function useCreateModal({
       authors: string;
       description: string;
       bookImage: string;
-    } | null,
+    } | null
   ) => {
     setValue("author", values?.authors ?? "");
     setValue("description", values?.description ?? "");
@@ -66,9 +68,11 @@ export function useCreateModal({
     formData.append("status", data.status ?? "");
     formData.append("imageUrl", data.imageUrl ?? "");
 
-    // TODO: Precisa tratar os erros
     setIsLoading(true);
     const res = await createBook(formData).finally(() => setIsLoading(false));
+    if (res.statusCode === 409) {
+      setError("book", { type: "manual", message: res.message });
+    }
 
     if (res.statusCode === 200) {
       reset();
@@ -78,6 +82,12 @@ export function useCreateModal({
       });
     }
   }
+
+  const handleCloseModal = useCallback(() => {
+    handleClose();
+    setBooksSearch([]);
+    reset();
+  }, [handleClose, reset]);
 
   return {
     register,
@@ -91,5 +101,6 @@ export function useCreateModal({
     booksSearch,
     isLoadingBooksSearch,
     handleSetValues,
+    handleCloseModal,
   };
 }
