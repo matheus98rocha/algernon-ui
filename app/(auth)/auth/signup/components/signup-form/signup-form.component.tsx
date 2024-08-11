@@ -5,9 +5,9 @@ import React from "react";
 import { ValidatePassword } from "./components/validate-password.component";
 import { useCreateUserForm } from "./hooks/useCreateUser";
 import AuthFormLayout from "@/app/(auth)/auth/components/auth-form-layout/auth-form-layout.component";
-import TextFieldPassword from "@/app/components/inputs/text-field-password/text-field-password";
+import TextFieldPassword from "@/app/common/components/inputs/text-field-password/text-field-password";
 import * as S from "./signup-form.styles";
-import ButtonLoading from "@/app/components/buttons/button-loading/button-loading.component";
+import ButtonLoading from "@/app/common/components/buttons/button-loading/button-loading.component";
 
 function SignupForm() {
   const { errors, handleSubmit, onSubmit, register, watch, isLoading } =

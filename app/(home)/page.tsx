@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import GridBooks from "./components/grid-books/grid-books.component";
 import { getBooks } from "./services/get-books.service";
-import LoadingContainer from "../components/layout/loading/loading.component";
+import LoadingContainer from "../common/components/layout/loading/loading.component";
 import FilterBooksContainer from "./components/filter-books-container/filter-books-container.component";
 
 type Status =

@@ -2,7 +2,7 @@
 import { Collapse, Fab } from "@mui/material";
 import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
-import CreateBookModal from "../create-book-modal/create-book-modal.component";
+import CreateBookModal from "../book-modals/create-book-modal/create-book-modal.component";
 import { WrapperForgotPassAndKeepLogged } from "./floating-button.styles";
 
 function FloatingButton() {

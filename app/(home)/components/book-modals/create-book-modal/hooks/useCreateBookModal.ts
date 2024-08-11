@@ -53,7 +53,7 @@ export function useCreateModal({
       authors: string;
       description: string;
       bookImage: string;
-    } | null
+    } | null,
   ) => {
     setValue("author", values?.authors ?? "");
     setValue("description", values?.description ?? "");

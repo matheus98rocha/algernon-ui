@@ -1,6 +1,6 @@
 "use client";
 
-import DefaultProgressBar from "@/app/components/default-progress-bar/default-progress-bar.component";
+import DefaultProgressBar from "@/app/common/components/default-progress-bar/default-progress-bar.component";
 
 type ProvidersProps = {
   children: React.ReactNode;

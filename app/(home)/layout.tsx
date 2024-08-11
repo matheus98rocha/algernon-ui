@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "../globals.css";
 
 import { Container } from "@mui/material";
-import Header from "../components/layout/header/header.component";
+import Header from "../common/components/layout/header/header.component";
 import logout from "../(auth)/auth/services/logout";
 import getUserDetails from "./services/get-user-details.service";
 import FloatingButton from "./components/floating-button/floating-button.component";

@@ -4,11 +4,11 @@ import React from "react";
 import { useLoginUserForm } from "./hooks/useLoginUser";
 import AuthFormLayout from "@/app/(auth)/auth/components/auth-form-layout/auth-form-layout.component";
 
-import TextFieldPassword from "@/app/components/inputs/text-field-password/text-field-password";
-import ButtonLoading from "@/app/components/buttons/button-loading/button-loading.component";
+import TextFieldPassword from "@/app/common/components/inputs/text-field-password/text-field-password";
+import ButtonLoading from "@/app/common/components/buttons/button-loading/button-loading.component";
 
 import * as S from "./login-form.styles";
-import PrimaryButton from "@/app/components/buttons/primary-button/primary-button.component";
+import PrimaryButton from "@/app/common/components/buttons/primary-button/primary-button.component";
 
 function LoginForm() {
   const { errors, handleSubmit, onSubmit, register, isLoading } =

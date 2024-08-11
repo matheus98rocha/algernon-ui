@@ -111,3 +111,36 @@ export async function authPatch<T = unknown>(
     throw error;
   }
 }
+
+export async function authDelete<T = unknown>(
+  input: RequestInfo | URL,
+  init?: RequestInit | undefined,
+): Promise<fetchWrapperResponse> {
+  try {
+    const response = await fetch(`${API_URL}/${input}`, {
+      ...init,
+      method: "DELETE",
+      headers: { ...getHeader() },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro na requisição: ${response.statusText}`);
+    }
+
+    // Caso a resposta não tenha um corpo JSON, omita a propriedade result
+    const contentType = response.headers.get("Content-Type") || "";
+
+    let result: T | undefined;
+    if (contentType.includes("application/json")) {
+      result = (await response.json()) as T;
+    }
+
+    return {
+      data: response,
+      result,
+    };
+  } catch (error) {
+    console.error("Erro ao fazer delete:", error);
+    throw error;
+  }
+}
