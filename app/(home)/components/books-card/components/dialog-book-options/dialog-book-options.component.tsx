@@ -52,7 +52,6 @@ export default function DialogBookOptions({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        zIndex: 100,
         top: 60,
         borderRadius: "5px",
         width: "250px",

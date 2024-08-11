@@ -3,7 +3,7 @@ import { Box, Card, styled, Typography } from "@mui/material";
 export const WrapperBookCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(4),
   width: "300px",
-  height: "380px",
+  height: "400px",
 
   [theme.breakpoints.down("sm")]: {
     width: "100%",
@@ -16,15 +16,21 @@ export const WrapperBookCard = styled(Card)(({ theme }) => ({
   gap: theme.spacing(1),
   boxShadow: theme.shadows[1],
   ":hover": {
-    cursor: "pointer",
     boxShadow: theme.shadows[2],
   },
 }));
 
 export const BookTitle = styled(Typography)(({ theme }) => ({
-  fontSize: "1.2rem",
+  fontSize: "1rem",
   fontWeight: "bold",
   marginBottom: theme.spacing(1),
+  width: "300px",
+  paddingLeft: theme.spacing(4),
+  paddingRight: theme.spacing(4),
+  textAlign: "center",
+  overflow: "hidden",
+  whiteSpace: "nowrap",
+  textOverflow: "ellipsis",
 }));
 
 export const BookAuthor = styled(Typography)(({ theme }) => ({

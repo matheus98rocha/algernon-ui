@@ -10,6 +10,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import deleteBook from "../../services/delete-book.service";
 import DialogBookOptions from "./components/dialog-book-options/dialog-book-options.component";
 import DeleteBookModal from "../book-modals/delete-book-modal/delete-book-modal.component";
+import { Box, Tooltip } from "@mui/material";
 
 function BookCard({
   author,
@@ -39,34 +40,34 @@ function BookCard({
           isFavorite: updatedFavorite,
           imageUrl,
         },
-        id,
+        id
       );
     },
-    [author, book, status, description, id, isFavorite, imageUrl],
+    [author, book, status, description, id, isFavorite, imageUrl]
   );
 
-  const handleDeleteBook = useCallback(async (e: React.MouseEvent) => {
-    e.stopPropagation();
-    await deleteBook(id);
-    setOpenDeleteBook(false);
-  }, [id]);
+  const handleDeleteBook = useCallback(
+    async (e: React.MouseEvent) => {
+      e.stopPropagation();
+      await deleteBook(id);
+      setOpenDeleteBook(false);
+    },
+    [id]
+  );
 
   const handleOpenMoreOptionsBookCard = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-    setOpenMoreOptions(true);
+    setOpenMoreOptions(!openMoreOptions);
   }, []);
 
   return (
     <>
-      <DeleteBookModal
-        handleClose={() => setOpenDeleteBook(false)}
-        handleDeleteBook={(e: React.MouseEvent) => handleDeleteBook(e)}
-        open={openDeleteBook}
-      />
-      <S.WrapperBookCard
-        onClick={() => {}}
-        sx={{ zIndex: 1, position: "relative" }}
-      >
+      <S.WrapperBookCard sx={{ position: "relative" }}>
+        <DeleteBookModal
+          handleClose={() => setOpenDeleteBook(false)}
+          handleDeleteBook={(e: React.MouseEvent) => handleDeleteBook(e)}
+          open={openDeleteBook}
+        />
         <DialogBookOptions
           handleClose={() => setOpenMoreOptions(false)}
           open={openMoreOptions}
@@ -77,22 +78,34 @@ function BookCard({
         <S.HeaderBookCard>
           <BookMark status={status} />
           <MoreHorizIcon
-            sx={{ zIndex: 2 }}
+            sx={{ zIndex: 2, cursor: "pointer" }}
             onClick={(event) => handleOpenMoreOptionsBookCard(event)}
           />
         </S.HeaderBookCard>
-        <S.BookTitle variant="h6">{book}</S.BookTitle>
-        {imageUrl === "" ? (
-          <NotAvaibleImage />
-        ) : (
-          <Image
-            src={imageUrl}
-            alt="book image"
-            width={148}
-            height={223}
-            loading="eager"
-          />
-        )}
+        <Tooltip title={book}>
+          <S.BookTitle variant="h6">{book}</S.BookTitle>
+        </Tooltip>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "148px",
+            height: "223px",
+          }}
+        >
+          {imageUrl === "" ? (
+            <NotAvaibleImage />
+          ) : (
+            <Image
+              src={imageUrl}
+              alt="book image"
+              width={148}
+              height={223}
+              loading="eager"
+            />
+          )}
+        </Box>
         <S.BookAuthor variant="body2">{author}</S.BookAuthor>
       </S.WrapperBookCard>
     </>
