@@ -94,7 +94,7 @@ function BookCard({
             height: "223px",
           }}
         >
-          {imageUrl === "" ? (
+          {imageUrl === "" || imageUrl === "No image available" ? (
             <NotAvaibleImage />
           ) : (
             <Image

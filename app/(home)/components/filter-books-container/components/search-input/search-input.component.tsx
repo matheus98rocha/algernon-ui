@@ -18,7 +18,7 @@ function SearchInput({
 
   const newParams = useMemo(
     () => new URLSearchParams(searchParams.toString()),
-    [searchParams],
+    [searchParams]
   );
 
   const handleSearchBookName = () => {
@@ -50,22 +50,33 @@ function SearchInput({
   }, [bookName, handleCallGetBooksEmptyField]);
 
   const currentPlaceholder = {
-    wantToRead: `Você tem ${statusQt} no "Quero Ler"`,
-    reading: `Você está lendo ${statusQt} livros`,
-    alreadyRead: `Você já leu ${statusQt} livros`,
-    rereading: `Você está relendo ${statusQt}`,
-    abandoned: `Você abandonou ${statusQt}, volte quando quiser!`,
-    isFavorite: `Você tem ${statusQt} favoritos`,
-    default: `Você tem ${statusQt} livros na sua coleção`,
+    wantToRead: (statusQt: number) =>
+      `Você tem ${statusQt} ${statusQt === 1 ? "livro" : "livros"} no "Quero Ler"`,
+    reading: (statusQt: number) =>
+      `Você está lendo ${statusQt} ${statusQt === 1 ? "livro" : "livros"}`,
+    alreadyRead: (statusQt: number) =>
+      `Você já leu ${statusQt} ${statusQt === 1 ? "livro" : "livros"}`,
+    rereading: (statusQt: number) =>
+      `Você está relendo ${statusQt} ${statusQt === 1 ? "vez" : "vezes"}`,
+    abandoned: (statusQt: number) =>
+      `Você abandonou ${statusQt} ${statusQt === 1 ? "vez" : "vezes"}, volte quando quiser!`,
+    isFavorite: (statusQt: number) =>
+      `Você tem ${statusQt} ${statusQt === 1 ? "favorito" : "favoritos"}`,
+    default: (statusQt: number) =>
+      `Você tem ${statusQt} ${statusQt === 1 ? "livro" : "livros"} na sua coleção`,
   };
 
   return (
     <S.WrapperSearchInput>
       <S.StyledTextField
         placeholder={
-          isFavorite
-            ? currentPlaceholder.isFavorite
-            : currentPlaceholder[bookStatus] || currentPlaceholder.default
+          statusQt === 0
+            ? "Você ainda não tem livros cadastrados nesse status"
+            : isFavorite
+              ? currentPlaceholder.isFavorite(statusQt)
+              : currentPlaceholder[bookStatus]
+                ? currentPlaceholder[bookStatus](statusQt)
+                : currentPlaceholder.default(statusQt)
         }
         type="text"
         variant="outlined"

@@ -48,18 +48,22 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
     { value: "abandoned", label: "Abandonado" },
   ];
 
-  const renderImage = (value: string) =>
-    value.length === 0 || value === "No image available" ? (
-      <NotAvaibleImage />
-    ) : (
-      <Image
-        {...register("imageUrl")}
-        src={value}
-        alt="book-image"
-        width={148}
-        height={223}
-      />
-    );
+  const renderImage = (value: string) => {
+    console.log(value);
+    if (value.length === 0 || value === "No image available") {
+      return <NotAvaibleImage />;
+    } else {
+      return (
+        <Image
+          {...register("imageUrl")}
+          src={value}
+          alt="book-image"
+          width={148}
+          height={223}
+        />
+      );
+    }
+  };
 
   return (
     <ModalWrapper handleCloseModal={handleCloseModal} open={open}>
