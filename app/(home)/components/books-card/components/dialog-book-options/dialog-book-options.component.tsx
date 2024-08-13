@@ -41,7 +41,7 @@ export default function DialogBookOptions({
     return () => {
       window.removeEventListener("mousedown", handleOutSideClick);
     };
-  }, [ref,handleClose]);
+  }, [ref, handleClose]);
 
   if (!open) return;
   return (

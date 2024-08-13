@@ -1,9 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import StatusStack from "./components/status-stack/status-stack.component";
 import SearchInput from "./components/search-input/search-input.component";
 import { FilterBooksContainerProps } from "./filter-books-container.types";
-import { WrapperFilterBooksContainer } from "./filter-books-container.styles";
+import * as S from "./filter-books-container.styles";
+import { SelectChangeEvent } from "@mui/material";
+import SelectDefault from "@/app/common/components/select/select-default.component";
+import { useRouter, useSearchParams } from "next/navigation";
 
 function FilterBooksContainer({
   statusQt,
@@ -11,17 +14,55 @@ function FilterBooksContainer({
   isFavorite,
 }: FilterBooksContainerProps) {
   const [bookName, setBookName] = useState<string>("");
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const shortingValue = searchParams.get("shorting");
+
+  const newParams = useMemo(
+    () => new URLSearchParams(searchParams.toString()),
+    [searchParams],
+  );
+
+  const handleChange = (event: SelectChangeEvent) => {
+    if (event.target.value === "") {
+      // ESSA PARTE AINDA N FUNCIONA
+      newParams.delete("shorting");
+    } else {
+      newParams.set("shorting", event.target.value as string);
+    }
+
+    router.push(`?${newParams.toString()}`);
+  };
+
   return (
-    <WrapperFilterBooksContainer container>
+    <S.WrapperFilterBooksContainer container>
       <StatusStack setBookName={setBookName} />
-      <SearchInput
-        bookName={bookName}
-        setBookName={setBookName}
-        statusQt={statusQt}
-        bookStatus={bookStatus}
-        isFavorite={isFavorite}
-      />
-    </WrapperFilterBooksContainer>
+      <S.WrapperFilterFields>
+        <SearchInput
+          bookName={bookName}
+          setBookName={setBookName}
+          statusQt={statusQt}
+          bookStatus={bookStatus}
+          isFavorite={isFavorite}
+        />
+        <S.WrapperSelectShort>
+          <SelectDefault
+            label="Classificar por"
+            value={shortingValue || ""}
+            onChange={handleChange}
+            options={[
+              { value: "", label: "Padrão" },
+              { value: "alphabetical", label: "Ordem Alfabética" },
+              { value: "newest", label: "Mais Recentes" },
+              { value: "oldest", label: "Mais Antigos" },
+              { value: "release_year", label: "Ano de Lançamento" },
+            ]}
+          />
+        </S.WrapperSelectShort>
+      </S.WrapperFilterFields>
+    </S.WrapperFilterBooksContainer>
   );
 }
 

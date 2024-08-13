@@ -167,6 +167,7 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
               />
               <FormControl fullWidth error={!!errors.status} variant="outlined">
                 <InputLabel id="status-label">Status</InputLabel>
+                {/* User o componente SelectDefault */}
                 <Controller
                   name="status"
                   control={control}

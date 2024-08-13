@@ -18,7 +18,7 @@ function SearchInput({
 
   const newParams = useMemo(
     () => new URLSearchParams(searchParams.toString()),
-    [searchParams]
+    [searchParams],
   );
 
   const handleSearchBookName = () => {

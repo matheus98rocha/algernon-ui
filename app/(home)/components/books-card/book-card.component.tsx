@@ -40,10 +40,10 @@ function BookCard({
           isFavorite: updatedFavorite,
           imageUrl,
         },
-        id
+        id,
       );
     },
-    [author, book, status, description, id, isFavorite, imageUrl]
+    [author, book, status, description, id, isFavorite, imageUrl],
   );
 
   const handleDeleteBook = useCallback(
@@ -52,13 +52,13 @@ function BookCard({
       await deleteBook(id);
       setOpenDeleteBook(false);
     },
-    [id]
+    [id],
   );
 
   const handleOpenMoreOptionsBookCard = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     setOpenMoreOptions(!openMoreOptions);
-  }, []);
+  }, [openMoreOptions]);
 
   return (
     <>
