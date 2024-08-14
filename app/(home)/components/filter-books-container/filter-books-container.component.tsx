@@ -53,11 +53,18 @@ function FilterBooksContainer({
             value={shortingValue || ""}
             onChange={handleChange}
             options={[
-              { value: "", label: "Padrão" },
+              { value: "", label: "Ordem Padrão" },
               { value: "alphabetical", label: "Ordem Alfabética" },
-              { value: "newest", label: "Mais Recentes" },
-              { value: "oldest", label: "Mais Antigos" },
-              { value: "release_year", label: "Ano de Lançamento" },
+              { value: "newest", label: "Mais Recentes Primeiro" },
+              { value: "oldest", label: "Mais Antigos Primeiro" },
+              {
+                value: "release_year",
+                label: "Ano de Lançamento - Mais Recentes",
+              },
+              {
+                value: "release_year",
+                label: "Ano de Lançamento - Mais Antigos",
+              },
             ]}
           />
         </S.WrapperSelectShort>

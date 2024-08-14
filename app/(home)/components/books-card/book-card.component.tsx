@@ -11,6 +11,7 @@ import deleteBook from "../../services/delete-book.service";
 import DialogBookOptions from "./components/dialog-book-options/dialog-book-options.component";
 import DeleteBookModal from "../book-modals/delete-book-modal/delete-book-modal.component";
 import { Box, Tooltip } from "@mui/material";
+import Link from "next/link";
 
 function BookCard({
   author,
@@ -55,10 +56,13 @@ function BookCard({
     [id],
   );
 
-  const handleOpenMoreOptionsBookCard = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    setOpenMoreOptions(!openMoreOptions);
-  }, [openMoreOptions]);
+  const handleOpenMoreOptionsBookCard = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      setOpenMoreOptions(!openMoreOptions);
+    },
+    [openMoreOptions],
+  );
 
   return (
     <>
@@ -92,19 +96,31 @@ function BookCard({
             alignItems: "center",
             width: "148px",
             height: "223px",
+            ":hover": {
+              cursor: "pointer",
+            },
           }}
         >
-          {imageUrl === "" || imageUrl === "No image available" ? (
-            <NotAvaibleImage />
-          ) : (
-            <Image
-              src={imageUrl}
-              alt="book image"
-              width={148}
-              height={223}
-              loading="eager"
-            />
-          )}
+          <Link
+            href={{
+              pathname: "/book-by-id",
+              query: { id },
+            }}
+            passHref
+            style={{ textDecoration: "none" }}
+          >
+            {imageUrl === "" || imageUrl === "No image available" ? (
+              <NotAvaibleImage />
+            ) : (
+              <Image
+                src={imageUrl}
+                alt="book image"
+                width={148}
+                height={223}
+                loading="eager"
+              />
+            )}
+          </Link>
         </Box>
         <S.BookAuthor variant="body2">{author}</S.BookAuthor>
       </S.WrapperBookCard>
