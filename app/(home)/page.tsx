@@ -11,23 +11,31 @@ type Status =
   | "abandoned"
   | "rereading";
 
+export type orderByOptions =
+  | "alphabetical_a_z"
+  | "alphabetical_z_a"
+  | "newest"
+  | "oldest";
+
 interface BookByStatusProps {
   searchParams: {
     status: Status;
     page: number;
     bookName: string;
     isFavorite?: boolean;
+    orderBy?: orderByOptions;
   };
 }
 
 export default async function Home({ searchParams }: BookByStatusProps) {
-  const { status, page, bookName, isFavorite } = searchParams;
+  const { status, page, bookName, isFavorite, orderBy } = searchParams;
 
   const booksQuery = getBooks({
     status,
     page,
     bookName,
     isFavorite,
+    orderBy,
   });
 
   const [books] = await Promise.all([booksQuery]);

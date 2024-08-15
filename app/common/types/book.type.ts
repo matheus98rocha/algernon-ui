@@ -1,3 +1,5 @@
+import { orderByOptions } from "@/app/(home)/page";
+
 export type BookStatus =
   | "wantToRead"
   | "alreadyRead"
@@ -41,4 +43,5 @@ export type GetBooksParams = {
   status?: BookStatus;
   bookName?: string;
   isFavorite?: boolean | string;
+  orderBy?: orderByOptions;
 };

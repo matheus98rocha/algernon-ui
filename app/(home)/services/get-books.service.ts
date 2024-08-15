@@ -10,6 +10,7 @@ export async function getBooks({
   page = 1,
   size = 12,
   isFavorite,
+  orderBy,
 }: GetBooksParams): Promise<BooksResponse> {
   const params: Record<string, any> = { page, size };
 
@@ -23,6 +24,10 @@ export async function getBooks({
 
   if (bookName) {
     params.bookName = bookName;
+  }
+
+  if (orderBy) {
+    params.orderBy = orderBy;
   }
 
   const resp = await get<BooksResponse>("books", params, ["books"]);

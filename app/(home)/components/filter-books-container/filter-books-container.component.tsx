@@ -18,7 +18,7 @@ function FilterBooksContainer({
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const shortingValue = searchParams.get("shorting");
+  const shortingValue = searchParams.get("orderBy");
 
   const newParams = useMemo(
     () => new URLSearchParams(searchParams.toString()),
@@ -28,9 +28,9 @@ function FilterBooksContainer({
   const handleChange = (event: SelectChangeEvent) => {
     if (event.target.value === "") {
       // ESSA PARTE AINDA N FUNCIONA
-      newParams.delete("shorting");
+      newParams.delete("orderBy");
     } else {
-      newParams.set("shorting", event.target.value as string);
+      newParams.set("orderBy", event.target.value as string);
     }
 
     router.push(`?${newParams.toString()}`);
@@ -54,17 +54,10 @@ function FilterBooksContainer({
             onChange={handleChange}
             options={[
               { value: "", label: "Ordem Padrão" },
-              { value: "alphabetical", label: "Ordem Alfabética" },
-              { value: "newest", label: "Mais Recentes Primeiro" },
-              { value: "oldest", label: "Mais Antigos Primeiro" },
-              {
-                value: "release_year",
-                label: "Ano de Lançamento - Mais Recentes",
-              },
-              {
-                value: "release_year",
-                label: "Ano de Lançamento - Mais Antigos",
-              },
+              { value: "alphabetical_a_z", label: "Ordem Alfabética - A-Z" },
+              { value: "alphabetical_z_a", label: "Ordem Alfabética - Z-A" },
+              { value: "newest", label: "Criação - Mais Recentes Primeiro" },
+              { value: "oldest", label: "Criação - Mais Antigos Primeiro" },
             ]}
           />
         </S.WrapperSelectShort>
