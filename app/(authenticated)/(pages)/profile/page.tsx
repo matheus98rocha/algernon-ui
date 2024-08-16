@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Image1 from "../../assets/avatars/avataaars1.svg";
+import Image1 from "../../../assets/avatars/avataaars1.svg";
 
 function Profile() {
   return (

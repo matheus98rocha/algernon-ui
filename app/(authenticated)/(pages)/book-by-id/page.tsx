@@ -1,6 +1,6 @@
 import React from "react";
-import { getBookById } from "../services/get-book-by-id.service";
 import { notFound } from "next/navigation";
+import { getBookById } from "../../services/get-book-by-id.service";
 
 type BookByIdParams = {
   searchParams: {

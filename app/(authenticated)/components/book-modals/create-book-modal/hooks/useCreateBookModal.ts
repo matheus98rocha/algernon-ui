@@ -2,13 +2,13 @@ import { useCallback, useState } from "react";
 import { useCreateBookModalReturn } from "../create-book-modal.types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import createBook from "@/app/(home)/services/create-book-modal.service";
+import createBook from "@/app/(authenticated)/services/create-book-modal.service";
 import {
   createBookFormData,
   createBookFormSchema,
-} from "@/app/(home)/schema/create-book.schema";
+} from "@/app/(authenticated)/schema/create-book.schema";
 import { useRouter } from "next/navigation";
-import { getBooksOnGoogleApi } from "@/app/(home)/services/get-books.service";
+import { getBooksOnGoogleApi } from "@/app/(authenticated)/services/get-books.service";
 import { BooksGoogleApi } from "@/app/common/types/books-google-api";
 
 export function useCreateModal({

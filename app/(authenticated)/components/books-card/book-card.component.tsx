@@ -2,7 +2,7 @@
 import React, { useState, useCallback } from "react";
 import * as S from "./book-card.styles";
 import Image from "next/image";
-import favoriteBook from "@/app/(home)/services/favorite-book.service";
+import favoriteBook from "@/app/(authenticated)/services/favorite-book.service";
 import NotAvaibleImage from "@/app/common/components/not-avaible-image/not-avaible-image.component";
 import { Book } from "@/app/common/types/book.type";
 import BookMark from "../bookmark/book-mark.component";

@@ -1,4 +1,4 @@
-import { orderByOptions } from "@/app/(home)/page";
+import { orderByOptions } from "@/app/(authenticated)/page";
 
 export type BookStatus =
   | "wantToRead"
