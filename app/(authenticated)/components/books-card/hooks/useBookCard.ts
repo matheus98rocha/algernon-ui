@@ -16,7 +16,7 @@ export function useBookCard({
   const [isFavorite, setIsFavorite] = useState<boolean>(initialFavorite);
   const [openMoreOptions, setOpenMoreOptions] = useState<boolean>(false);
   const [openDeleteBook, setOpenDeleteBook] = useState<boolean>(false);
-  const [rating, setRating] = useState<number | null>(rate || 0);
+  const [rating, setRating] = useState<number>(rate);
 
   const handleFavoriteClick = useCallback(
     async (e: React.MouseEvent) => {
@@ -32,6 +32,7 @@ export function useBookCard({
           id,
           isFavorite: updatedFavorite,
           imageUrl,
+          rate
         },
         id,
       );

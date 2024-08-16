@@ -31,6 +31,7 @@ function BookCard({
     setOpenMoreOptions,
     handleRateBookClick,
     setRating,
+    rating
   } = useBookCard({
     author,
     book,
@@ -39,7 +40,7 @@ function BookCard({
     description,
     id,
     imageUrl,
-    rate,
+    rate
   });
 
   return (
@@ -72,9 +73,9 @@ function BookCard({
 
         <Rating
           name="hover-feedback"
-          value={rate}
+          value={rating}
           onChange={(event, newValue) => {
-            setRating(newValue);
+            setRating(newValue ?? 0);
             handleRateBookClick(event, newValue ?? 0);
           }}
         />
