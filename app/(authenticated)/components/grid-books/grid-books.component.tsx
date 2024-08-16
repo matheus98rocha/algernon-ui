@@ -19,16 +19,7 @@ function GridBooks({ books, totalPages }: gridBooksProps) {
       <S.WrapperGridBooks>
         <S.WrapperBooksList container>
           {books.map((book: Book) => (
-            <BookCard
-              key={book.id}
-              description={book.description}
-              book={book.book}
-              author={book.author}
-              id={book.id}
-              status={book.status}
-              isFavorite={book.isFavorite}
-              imageUrl={book.imageUrl}
-            />
+            <BookCard key={book.id} {...book} />
           ))}
         </S.WrapperBooksList>
         {totalPages > 1 && <CustomPagination count={totalPages} />}

@@ -1,17 +1,14 @@
 "use client";
-import React, { useState, useCallback } from "react";
+import React from "react";
 import * as S from "./book-card.styles";
-import Image from "next/image";
-import favoriteBook from "@/app/(authenticated)/services/favorite-book.service";
-import NotAvaibleImage from "@/app/common/components/not-avaible-image/not-avaible-image.component";
 import { Book } from "@/app/common/types/book.type";
 import BookMark from "../bookmark/book-mark.component";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import deleteBook from "../../services/delete-book.service";
 import DialogBookOptions from "./components/dialog-book-options/dialog-book-options.component";
 import DeleteBookModal from "../book-modals/delete-book-modal/delete-book-modal.component";
-import { Box, Tooltip } from "@mui/material";
-import Link from "next/link";
+import { Rating, Tooltip } from "@mui/material";
+import { useBookCard } from "./hooks/useBookCard";
+import BookImage from "./components/book-image/book-image.component";
 
 function BookCard({
   author,
@@ -21,48 +18,29 @@ function BookCard({
   description,
   id,
   imageUrl,
+  rate,
 }: Book) {
-  const [isFavorite, setIsFavorite] = useState<boolean>(initialFavorite);
-  const [openMoreOptions, setOpenMoreOptions] = useState<boolean>(false);
-  const [openDeleteBook, setOpenDeleteBook] = useState<boolean>(false);
-
-  const handleFavoriteClick = useCallback(
-    async (e: React.MouseEvent) => {
-      e.stopPropagation();
-      const updatedFavorite = !isFavorite;
-      setIsFavorite(updatedFavorite);
-      await favoriteBook(
-        {
-          author,
-          book,
-          status,
-          description,
-          id,
-          isFavorite: updatedFavorite,
-          imageUrl,
-        },
-        id,
-      );
-    },
-    [author, book, status, description, id, isFavorite, imageUrl],
-  );
-
-  const handleDeleteBook = useCallback(
-    async (e: React.MouseEvent) => {
-      e.stopPropagation();
-      await deleteBook(id);
-      setOpenDeleteBook(false);
-    },
-    [id],
-  );
-
-  const handleOpenMoreOptionsBookCard = useCallback(
-    (e: React.MouseEvent) => {
-      e.stopPropagation();
-      setOpenMoreOptions(!openMoreOptions);
-    },
-    [openMoreOptions],
-  );
+  const {
+    handleDeleteBook,
+    handleFavoriteClick,
+    handleOpenMoreOptionsBookCard,
+    isFavorite,
+    openDeleteBook,
+    openMoreOptions,
+    setOpenDeleteBook,
+    setOpenMoreOptions,
+    handleRateBookClick,
+    setRating,
+  } = useBookCard({
+    author,
+    book,
+    status,
+    isFavorite: initialFavorite,
+    description,
+    id,
+    imageUrl,
+    rate,
+  });
 
   return (
     <>
@@ -89,40 +67,17 @@ function BookCard({
         <Tooltip title={book}>
           <S.BookTitle variant="h6">{book}</S.BookTitle>
         </Tooltip>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "148px",
-            height: "223px",
-            ":hover": {
-              cursor: "pointer",
-            },
-          }}
-        >
-          <Link
-            href={{
-              pathname: "/book-by-id",
-              query: { id },
-            }}
-            passHref
-            style={{ textDecoration: "none" }}
-          >
-            {imageUrl === "" || imageUrl === "No image available" ? (
-              <NotAvaibleImage />
-            ) : (
-              <Image
-                src={imageUrl}
-                alt="book image"
-                width={148}
-                height={223}
-                loading="eager"
-              />
-            )}
-          </Link>
-        </Box>
+        <BookImage id={id} imageUrl={imageUrl} />
         <S.BookAuthor variant="body2">{author}</S.BookAuthor>
+
+        <Rating
+          name="hover-feedback"
+          value={rate}
+          onChange={(event, newValue) => {
+            setRating(newValue);
+            handleRateBookClick(event, newValue ?? 0);
+          }}
+        />
       </S.WrapperBookCard>
     </>
   );

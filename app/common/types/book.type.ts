@@ -15,6 +15,7 @@ export type Book = {
   status: BookStatus;
   isFavorite: boolean;
   imageUrl: string;
+  rate?: number;
 };
 
 export type Pagination = {

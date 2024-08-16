@@ -49,7 +49,6 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
   ];
 
   const renderImage = (value: string) => {
-    console.log(value);
     if (value.length === 0 || value === "No image available") {
       return <NotAvaibleImage />;
     } else {

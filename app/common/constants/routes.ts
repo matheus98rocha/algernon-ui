@@ -3,9 +3,4 @@ export const unauthenticatedRoutes = [
   { title: "Cadastro", path: "/auth/signup" },
 ];
 
-export const protectedRoutes = [
-  {
-    title: "Inicio",
-    path: "/",
-  },
-];
+export const protectedRoutes = [];

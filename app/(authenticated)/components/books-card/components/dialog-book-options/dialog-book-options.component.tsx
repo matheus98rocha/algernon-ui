@@ -55,6 +55,7 @@ export default function DialogBookOptions({
         top: 60,
         borderRadius: "5px",
         width: "250px",
+        zIndex: 100,
       }}
       boxShadow={4}
       ref={ref}

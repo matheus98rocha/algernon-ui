@@ -3,10 +3,10 @@ import { authPatch } from "@/app/common/utils/fetchWrapper";
 import { revalidateTag } from "next/cache";
 import { Book } from "../../common/types/book.type";
 
-interface FavoriteBookResponse extends Error {}
+interface PatchBookResponse extends Error {}
 
-export default async function favoriteBook(bookData: Book, bookId: number) {
-  const res = await authPatch<FavoriteBookResponse>(
+export default async function patchBook(bookData: Book, bookId: number) {
+  const res = await authPatch<PatchBookResponse>(
     `books/updateBook/${bookId}`,
     bookData,
   );

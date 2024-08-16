@@ -7,20 +7,14 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
-
 import Settings from "./components/settings/settings.components";
 import { useHeader } from "./hooks/useHeader";
-import { protectedRoutes } from "@/app/common/constants/routes";
 import { HeaderProps } from "./header.type";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useTheme } from "@mui/material";
 
 function Header({ logout, user }: HeaderProps) {
   const { anchorElNav, handleCloseNavMenu, handleOpenNavMenu } = useHeader();
-  const router = useRouter();
 
   return (
     <AppBar
@@ -78,7 +72,9 @@ function Header({ logout, user }: HeaderProps) {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {protectedRoutes.map((page) => (
+              {/*
+               Sera usado depois
+               {protectedRoutes.map((page) => (
                 <MenuItem
                   key={page.title}
                   onClick={() => {
@@ -88,7 +84,7 @@ function Header({ logout, user }: HeaderProps) {
                 >
                   <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
-              ))}
+              ))} */}
             </Menu>
           </Box>
           <Typography
@@ -110,6 +106,8 @@ function Header({ logout, user }: HeaderProps) {
             Algernon
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {/*
+            Sera usado depois
             {protectedRoutes.map((page) => (
               <Button
                 key={page.title}
@@ -126,7 +124,7 @@ function Header({ logout, user }: HeaderProps) {
               >
                 {page.title}
               </Button>
-            ))}
+            ))} */}
           </Box>
           <Settings logout={logout} user={user} />
         </Toolbar>

@@ -1,6 +1,8 @@
 import React from "react";
 import { notFound } from "next/navigation";
+
 import { getBookById } from "../../services/get-book-by-id.service";
+import BackButton from "./components/back-button/back-button.component";
 
 type BookByIdParams = {
   searchParams: {
@@ -19,6 +21,7 @@ async function BookById({ searchParams }: BookByIdParams) {
 
   return (
     <div>
+      <BackButton />
       <ul>
         <li>{bookByIdData["book"]}</li>
         <li>{bookByIdData["author"]}</li>
