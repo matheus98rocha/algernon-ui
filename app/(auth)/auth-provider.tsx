@@ -2,7 +2,7 @@
 
 import DefaultProgressBar from "@/app/common/components/default-progress-bar/default-progress-bar.component";
 import Image from "next/image";
-import AlgernonLogo from "../../assets/logo-algernon.png";
+import AlgernonLogo from "../assets/logo-algernon.png";
 import { Box, Grow, useMediaQuery, useTheme } from "@mui/material";
 
 type ProvidersProps = {

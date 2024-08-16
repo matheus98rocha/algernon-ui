@@ -4,7 +4,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import React from "react";
 import darkTheme from "./theme/dark.theme";
 import DefaultProgressBar from "./common/components/default-progress-bar/default-progress-bar.component";
-import { AuthContext } from "./(auth)/auth/contexts/auth.context/auth.context";
+import { AuthContext } from "./(auth)/contexts/auth.context/auth.context";
 
 type GlobalProvidersProps = {
   children: React.ReactNode;

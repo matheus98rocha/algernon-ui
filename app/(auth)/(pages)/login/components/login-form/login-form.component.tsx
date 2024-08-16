@@ -2,7 +2,7 @@
 import { Checkbox, FormControlLabel, Link, TextField } from "@mui/material";
 import React from "react";
 import { useLoginUserForm } from "./hooks/useLoginUser";
-import AuthFormLayout from "@/app/(auth)/auth/components/auth-form-layout/auth-form-layout.component";
+import AuthFormLayout from "@/app/(auth)/components/auth-form-layout/auth-form-layout.component";
 
 import TextFieldPassword from "@/app/common/components/inputs/text-field-password/text-field-password";
 import ButtonLoading from "@/app/common/components/buttons/button-loading/button-loading.component";

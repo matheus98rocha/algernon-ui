@@ -3,9 +3,9 @@ import "../globals.css";
 
 import { Container } from "@mui/material";
 import Header from "../common/components/layout/header/header.component";
-import logout from "../(auth)/auth/services/logout";
 import getUserDetails from "./services/get-user-details.service";
 import FloatingButton from "./components/floating-button/floating-button.component";
+import logout from "../(auth)/services/logout";
 
 export const metadata: Metadata = {
   title: "Algernon",
