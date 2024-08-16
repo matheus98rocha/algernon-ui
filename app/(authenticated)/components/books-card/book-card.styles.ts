@@ -3,7 +3,7 @@ import { Box, Card, styled, Typography } from "@mui/material";
 export const WrapperBookCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(4),
   width: "300px",
-  height: "400px",
+  height: "450px",
 
   [theme.breakpoints.down("sm")]: {
     width: "100%",
