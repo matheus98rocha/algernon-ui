@@ -3,4 +3,6 @@ export const unauthenticatedRoutes = [
   { title: "Cadastro", path: "/auth/signup" },
 ];
 
+export const freeRoutes = ["/book-by-id"];
+
 export const protectedRoutes = [];

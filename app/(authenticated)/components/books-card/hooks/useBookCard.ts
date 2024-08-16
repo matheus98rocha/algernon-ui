@@ -37,7 +37,7 @@ export function useBookCard({
         id,
       );
     },
-    [author, book, status, description, id, isFavorite, imageUrl],
+    [author, book, status, description, id, isFavorite, imageUrl,rate],
   );
 
   const handleRateBookClick = useCallback(
