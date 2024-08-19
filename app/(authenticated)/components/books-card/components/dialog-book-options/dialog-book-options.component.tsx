@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 import {
   Box,
@@ -8,9 +8,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { useDialogBookOptions } from "./hooks/useDialogBookOptions";
 
 export type DialogBookOptionsProps = {
   open: boolean;
@@ -27,21 +25,13 @@ export default function DialogBookOptions({
   handleDeleteBook,
   isFavorite,
 }: DialogBookOptionsProps) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleOutSideClick = (event: MouseEvent) => {
-      if (!ref.current?.contains(event.target as Node)) {
-        handleClose();
-      }
-    };
-
-    window.addEventListener("mousedown", handleOutSideClick);
-
-    return () => {
-      window.removeEventListener("mousedown", handleOutSideClick);
-    };
-  }, [ref, handleClose]);
+  const { dialogItems, ref } = useDialogBookOptions({
+    open,
+    handleClose,
+    handleFavoriteBook,
+    handleDeleteBook,
+    isFavorite,
+  });
 
   if (!open) return;
   return (
@@ -61,25 +51,12 @@ export default function DialogBookOptions({
       ref={ref}
     >
       <List>
-        <ListItemButton onClick={handleFavoriteBook}>
-          <ListItemIcon>
-            {isFavorite ? (
-              <FavoriteIcon sx={{ color: "red" }} />
-            ) : (
-              <FavoriteBorderIcon />
-            )}
-          </ListItemIcon>
-          <ListItemText
-            primary={isFavorite ? "Desfavoritar Livro" : "Favoritar Livro"}
-          />
-        </ListItemButton>
-
-        <ListItemButton onClick={handleDeleteBook}>
-          <ListItemIcon>
-            <DeleteIcon />
-          </ListItemIcon>
-          <ListItemText primary={"Deletar Livro"} />
-        </ListItemButton>
+        {dialogItems.map((item) => (
+          <ListItemButton key={item.itemText} onClick={item.onClick}>
+            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemText primary={item.itemText} />
+          </ListItemButton>
+        ))}
       </List>
     </Box>
   );

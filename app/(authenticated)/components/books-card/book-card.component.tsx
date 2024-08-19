@@ -31,7 +31,7 @@ function BookCard({
     setOpenMoreOptions,
     handleRateBookClick,
     setRating,
-    rating
+    rating,
   } = useBookCard({
     author,
     book,
@@ -40,7 +40,7 @@ function BookCard({
     description,
     id,
     imageUrl,
-    rate
+    rate,
   });
 
   return (

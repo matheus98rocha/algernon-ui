@@ -42,12 +42,12 @@ export default async function Home({ searchParams }: BookByStatusProps) {
 
   return (
     <main>
+      <FilterBooksContainer
+        statusQt={books.pagination.totalItems}
+        bookStatus={status}
+        isFavorite={isFavorite ?? false}
+      />
       <Suspense fallback={<LoadingContainer />}>
-        <FilterBooksContainer
-          statusQt={books.pagination.totalItems}
-          bookStatus={status}
-          isFavorite={isFavorite ?? false}
-        />
         <GridBooks
           books={books.data}
           totalPages={books.pagination.totalPages}

@@ -3,9 +3,9 @@ import "../globals.css";
 
 import { Container } from "@mui/material";
 import Header from "../common/components/layout/header/header.component";
-import getUserDetails from "./services/get-user-details.service";
 import FloatingButton from "./components/floating-button/floating-button.component";
 import logout from "../(auth)/services/logout";
+import AuthenticatedProviders from "./provider";
 
 export const metadata: Metadata = {
   title: "Algernon",
@@ -17,10 +17,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await getUserDetails();
+
   return (
-    <div>
-      <Header logout={logout} user={user} />
+    <AuthenticatedProviders>
+      <Header logout={logout} />
       <Container
         sx={{
           marginTop: "42px",
@@ -29,6 +29,6 @@ export default async function RootLayout({
         {children}
         <FloatingButton />
       </Container>
-    </div>
+    </AuthenticatedProviders>
   );
 }

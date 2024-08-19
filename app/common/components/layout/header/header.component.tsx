@@ -11,11 +11,12 @@ import Settings from "./components/settings/settings.components";
 import { useHeader } from "./hooks/useHeader";
 import { HeaderProps } from "./header.type";
 import Link from "next/link";
-import { useTheme } from "@mui/material";
+import { Skeleton, useTheme } from "@mui/material";
+import { useUserContext } from "@/app/(authenticated)/contexts/user-context";
 
-function Header({ logout, user }: HeaderProps) {
+function Header({ logout }: HeaderProps) {
   const { anchorElNav, handleCloseNavMenu, handleOpenNavMenu } = useHeader();
-
+  const { user, isLoading } = useUserContext();
   return (
     <AppBar
       position="static"
@@ -126,7 +127,11 @@ function Header({ logout, user }: HeaderProps) {
               </Button>
             ))} */}
           </Box>
-          <Settings logout={logout} user={user} />
+          {isLoading ? (
+            <Skeleton variant="circular" width={40} height={40} />
+          ) : (
+            <Settings logout={logout} user={user} />
+          )}
         </Toolbar>
       </Container>
     </AppBar>

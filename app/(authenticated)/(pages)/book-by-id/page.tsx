@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { getBookById } from "../../services/get-book-by-id.service";
 import BackButton from "./components/back-button/back-button.component";
+import Image from "next/image";
 
 type BookByIdParams = {
   searchParams: {
@@ -23,6 +24,12 @@ async function BookById({ searchParams }: BookByIdParams) {
     <div>
       <BackButton />
       <ul>
+        <Image
+          alt="book image by id"
+          src={bookByIdData["imageUrl"]}
+          width={148}
+          height={223}
+        />
         <li>{bookByIdData["book"]}</li>
         <li>{bookByIdData["author"]}</li>
         <li>{bookByIdData["description"]}</li>
