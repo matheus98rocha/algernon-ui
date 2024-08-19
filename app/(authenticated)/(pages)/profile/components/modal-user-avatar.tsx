@@ -92,17 +92,19 @@ function ModalUserAvatar({
                       }}
                       onClick={() => handleChangeAvatar(index + 1)}
                     />
-                    {user.avatar && user.avatar - 1 === index && (
-                      <CheckCircleIcon
-                        sx={{
-                          position: "absolute",
-                          bottom: 10,
-                          right: 0,
-                          color: "green",
-                          zIndex: 10,
-                        }}
-                      />
-                    )}
+                    {user.avatar &&
+                      user.avatar !== 0 &&
+                      user.avatar - 1 === index && (
+                        <CheckCircleIcon
+                          sx={{
+                            position: "absolute",
+                            bottom: 10,
+                            right: 0,
+                            color: "green",
+                            zIndex: 10,
+                          }}
+                        />
+                      )}
                   </Box>
                 );
               })}
