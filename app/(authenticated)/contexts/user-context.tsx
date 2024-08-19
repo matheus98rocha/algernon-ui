@@ -1,15 +1,27 @@
 import { User } from "@/app/common/types/user";
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import getUserDetails from "../services/get-user-details.service";
 
 // Crie o contexto com o tipo User e isLoading
-export const UserContext = createContext<{ user: User; isLoading: boolean }>({
+export const UserContext = createContext<{
+  user: User;
+  updateAvatarValue: (avatarIndex: number) => void;
+  isLoading: boolean;
+}>({
   user: {
     email: "",
     id: 0,
     name: "",
     lastName: "",
+    avatar: 0,
   },
+  updateAvatarValue: () => {},
   isLoading: true, // Alterado para true
 });
 
@@ -23,13 +35,19 @@ export default function AuthenticatedProvider({ children }: ProvidersProps) {
     id: 0,
     name: "",
     lastName: "",
+    avatar: 0,
   });
   const [isLoading, setIsLoading] = useState(true); // Alterado para true
+
+  const updateAvatarValue = useCallback((avatarIndex: number) => {
+    setUser((prevUser) => ({ ...prevUser, avatar: avatarIndex }));
+  }, []);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
         const userDetails = await getUserDetails();
+
         setUser(userDetails);
       } finally {
         setIsLoading(false);
@@ -40,7 +58,7 @@ export default function AuthenticatedProvider({ children }: ProvidersProps) {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, isLoading }}>
+    <UserContext.Provider value={{ user, updateAvatarValue, isLoading }}>
       {children}
     </UserContext.Provider>
   );
@@ -51,7 +69,7 @@ export const useUserContext = () => {
 
   if (!context) {
     throw new Error(
-      "useUserContext must be used within an AuthenticatedProviders"
+      "useUserContext must be used within an AuthenticatedProviders",
     );
   }
 

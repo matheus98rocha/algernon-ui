@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   IconButton,
   Menu,
@@ -11,6 +10,9 @@ import React from "react";
 import { useSettings } from "./hooks/useSettings";
 import { SettingsProps } from "./settings.type";
 import Link from "next/link";
+import { avatarData } from "@/app/common/utils/avatar-data";
+import Image from "next/image";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 
 function Settings({ logout, user }: SettingsProps) {
   const {
@@ -19,11 +21,42 @@ function Settings({ logout, user }: SettingsProps) {
     handleOpenUserMenu,
     handleLogout,
   } = useSettings({ logout, user });
+
+  const userImageValue = (user.avatar ?? 1) - 1;
+  const userImage = avatarData[userImageValue];
+
   return (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Abrir Configurações">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt={user.name} src="/static/images/avatar/2.jpg" />
+          {user.avatar === 0 ? (
+            <Box
+              sx={{
+                width: "50px",
+                height: "50px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#e7e8e9",
+
+                borderRadius: "50%",
+              }}
+            >
+              <PersonOutlinedIcon
+                sx={{
+                  fontSize: "40px",
+                }}
+              />
+            </Box>
+          ) : (
+            <Image
+              alt={user.name}
+              src={userImage}
+              width={50}
+              height={50}
+              loading="eager"
+            />
+          )}
         </IconButton>
       </Tooltip>
       <Menu

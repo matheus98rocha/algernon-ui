@@ -1,18 +1,26 @@
 "use client";
 import Image from "next/image";
-import React from "react";
-import Image1 from "../../../assets/avatars/avataaars1.svg";
+import React, { useState } from "react";
 import { useUserContext } from "../../contexts/user-context";
 import LoadingContainer from "@/app/common/components/layout/loading/loading.component";
 import { Box } from "@mui/material";
 
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import { avatarData } from "@/app/common/utils/avatar-data";
+import ModalUserAvatar from "./components/modal-user-avatar";
 
 function Profile() {
   const { user, isLoading } = useUserContext();
+  const [isOpenModalEditAvatar, setIsOpenModalEditAvatar] = useState(false);
+  const userImage = avatarData[(user.avatar ?? 1) - 1];
+
   return (
     <>
+      <ModalUserAvatar
+        handleCloseModal={() => setIsOpenModalEditAvatar(false)}
+        isOpenModal={isOpenModalEditAvatar}
+      />
       {isLoading ? (
         <LoadingContainer />
       ) : (
@@ -41,7 +49,7 @@ function Profile() {
                 boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.2)",
               }}
             >
-              {true ? (
+              {user.avatar === 0 ? (
                 <Box
                   sx={{
                     width: "300px",
@@ -59,13 +67,14 @@ function Profile() {
                 </Box>
               ) : (
                 <Image
-                  src={Image1}
+                  src={userImage}
                   alt="testing-image"
                   loading="eager"
                   width={300}
                   height={300}
                   style={{
                     borderRadius: "50%",
+                    paddingBottom: "10px",
                   }}
                 />
               )}
@@ -86,9 +95,12 @@ function Profile() {
                   boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.2)",
                 }}
               >
-                <ModeEditOutlineOutlinedIcon sx={{
-                  fontSize: "35px",
-                }}/>
+                <ModeEditOutlineOutlinedIcon
+                  sx={{
+                    fontSize: "35px",
+                  }}
+                  onClick={() => setIsOpenModalEditAvatar(true)}
+                />
               </div>
             </Box>
             <Box

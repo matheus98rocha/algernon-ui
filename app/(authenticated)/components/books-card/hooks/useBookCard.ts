@@ -32,12 +32,12 @@ export function useBookCard({
           id,
           isFavorite: updatedFavorite,
           imageUrl,
-          rate
+          rate,
         },
         id,
       );
     },
-    [author, book, status, description, id, isFavorite, imageUrl,rate],
+    [author, book, status, description, id, isFavorite, imageUrl, rate],
   );
 
   const handleRateBookClick = useCallback(
