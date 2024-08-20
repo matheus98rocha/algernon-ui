@@ -92,7 +92,7 @@ function Header({ logout }: HeaderProps) {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -107,9 +107,7 @@ function Header({ logout }: HeaderProps) {
             Algernon
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {/*
-            Sera usado depois
-            {protectedRoutes.map((page) => (
+            {/* {protectedRoutes.map((page) => (
               <Button
                 key={page.title}
                 onClick={() => {

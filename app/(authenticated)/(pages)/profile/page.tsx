@@ -8,7 +8,7 @@ import { Box } from "@mui/material";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import { avatarData } from "@/app/common/utils/avatar-data";
-import ModalUserAvatar from "./components/modal-user-avatar";
+import ModalUserAvatar from "./components/modal-user-avatar/modal-user-avatar";
 
 function Profile() {
   const { user, isLoading } = useUserContext();
