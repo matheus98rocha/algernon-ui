@@ -15,7 +15,9 @@ export type orderByOptions =
   | "alphabetical_a_z"
   | "alphabetical_z_a"
   | "newest"
-  | "oldest";
+  | "oldest"
+  | "most_rated"
+  | "least_rated";
 
 interface BookByStatusProps {
   searchParams: {
@@ -29,7 +31,7 @@ interface BookByStatusProps {
 
 export default async function Home({ searchParams }: BookByStatusProps) {
   const { status, page, bookName, isFavorite, orderBy } = searchParams;
-
+  
   const booksQuery = getBooks({
     status,
     page,
@@ -55,4 +57,4 @@ export default async function Home({ searchParams }: BookByStatusProps) {
       </Suspense>
     </main>
   );
-}
+};
