@@ -15,6 +15,8 @@ function SelectOrder() {
         { value: "alphabetical_z_a", label: "Ordem Alfabética - Z-A" },
         { value: "newest", label: "Criação - Mais Recentes Primeiro" },
         { value: "oldest", label: "Criação - Mais Antigos Primeiro" },
+        { value: "most_rated", label: "Avaliação - Mais Popular Primeiro" },
+        { value: "least_rated", label: "Avaliação - Menos Popular Primeiro" },
       ]}
     />
   );
