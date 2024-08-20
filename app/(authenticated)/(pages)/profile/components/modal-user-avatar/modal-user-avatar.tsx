@@ -3,10 +3,7 @@ import React from "react";
 import LoadingComponent from "@/app/common/components/layout/loading/loading-component/loading-component";
 import ModalWrapper from "@/app/common/components/layout/modal-wrapper/modal-wrapper.layout";
 import { avatarData } from "@/app/common/utils/avatar-data";
-import { Box } from "@mui/material";
-import Image from "next/image";
-import CloseIcon from "@mui/icons-material/Close";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+
 import { useModalUserAvatar } from "./hooks/useModalUserAvatar";
 import { ModalUserAvatarProps } from "./modal-user-avatar.types";
 import * as S from "./modal-user-avatar.styles";

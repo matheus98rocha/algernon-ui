@@ -4,9 +4,7 @@ import revalidateTag from "@/app/common/utils/revalidate-tag";
 import { useState } from "react";
 import { ModalUserAvatarProps } from "../modal-user-avatar.types";
 
-export function useModalUserAvatar({
-  handleCloseModal,
-}: ModalUserAvatarProps) {
+export function useModalUserAvatar({ handleCloseModal }: ModalUserAvatarProps) {
   const { updateAvatarValue, user } = useUserContext();
   const [isLoading, setIsLoading] = useState(false);
   const handleChangeAvatar = (avatarIndex: number) => {

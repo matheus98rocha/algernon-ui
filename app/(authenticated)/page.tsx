@@ -31,7 +31,7 @@ interface BookByStatusProps {
 
 export default async function Home({ searchParams }: BookByStatusProps) {
   const { status, page, bookName, isFavorite, orderBy } = searchParams;
-  
+
   const booksQuery = getBooks({
     status,
     page,
@@ -57,4 +57,4 @@ export default async function Home({ searchParams }: BookByStatusProps) {
       </Suspense>
     </main>
   );
-};
+}

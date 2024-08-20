@@ -1,4 +1,4 @@
-import { User } from "@/app/common/types/user";
+import { UserDomain } from "@/app/common/types/user";
 import {
   createContext,
   useCallback,
@@ -6,11 +6,11 @@ import {
   useEffect,
   useState,
 } from "react";
-import getUserDetails from "../services/get-user-details.service";
+import getUserDetails from "../services/user/user.service";
 
 // Crie o contexto com o tipo User e isLoading
 export const UserContext = createContext<{
-  user: User;
+  user: UserDomain;
   updateAvatarValue: (avatarIndex: number) => void;
   isLoading: boolean;
 }>({
@@ -30,7 +30,7 @@ type ProvidersProps = {
 };
 
 export default function AuthenticatedProvider({ children }: ProvidersProps) {
-  const [user, setUser] = useState<User>({
+  const [user, setUser] = useState<UserDomain>({
     email: "",
     id: 0,
     name: "",
