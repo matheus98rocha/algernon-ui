@@ -1,9 +1,9 @@
 import React from "react";
 import { notFound } from "next/navigation";
 
-import { getBookById } from "../../services/get-book-by-id.service";
 import BackButton from "./components/back-button/back-button.component";
 import Image from "next/image";
+import { getBookById } from "../../services/books/book.service";
 
 type BookByIdParams = {
   searchParams: {

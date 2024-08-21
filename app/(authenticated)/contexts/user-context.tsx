@@ -6,9 +6,8 @@ import {
   useEffect,
   useState,
 } from "react";
-import getUserDetails from "../services/user/user.service";
+import { getUserDetails } from "../services/user/user.service";
 
-// Crie o contexto com o tipo User e isLoading
 export const UserContext = createContext<{
   user: UserDomain;
   updateAvatarValue: (avatarIndex: number) => void;
@@ -22,7 +21,7 @@ export const UserContext = createContext<{
     avatar: 0,
   },
   updateAvatarValue: () => {},
-  isLoading: true, // Alterado para true
+  isLoading: true,
 });
 
 type ProvidersProps = {

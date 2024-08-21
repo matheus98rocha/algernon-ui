@@ -25,11 +25,6 @@ export type Pagination = {
   totalPages: number;
 };
 
-export type BooksResponse = {
-  data: Book[];
-  pagination: Pagination;
-};
-
 export type ResponseError = {
   message: string;
   statusCode: number;

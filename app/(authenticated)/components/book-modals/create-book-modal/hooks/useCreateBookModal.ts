@@ -2,14 +2,15 @@ import { useCallback, useState } from "react";
 import { useCreateBookModalReturn } from "../create-book-modal.types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import createBook from "@/app/(authenticated)/services/create-book-modal.service";
 import {
   createBookFormData,
   createBookFormSchema,
 } from "@/app/(authenticated)/schema/create-book.schema";
 import { useRouter } from "next/navigation";
-import { getBooksOnGoogleApi } from "@/app/(authenticated)/services/get-books.service";
 import { BooksGoogleApi } from "@/app/common/types/books-google-api";
+import createBook, {
+  getBooksOnGoogleApi,
+} from "@/app/(authenticated)/services/books/book.service";
 
 export function useCreateModal({
   handleClose,
@@ -61,15 +62,8 @@ export function useCreateModal({
   };
 
   async function onSubmit(data: createBookFormData) {
-    const formData = new FormData();
-    formData.append("book", data.book);
-    formData.append("description", data.description);
-    formData.append("author", data.author);
-    formData.append("status", data.status ?? "");
-    formData.append("imageUrl", data.imageUrl ?? "");
-
     setIsLoading(true);
-    const res = await createBook(formData).finally(() => setIsLoading(false));
+    const res = await createBook(data).finally(() => setIsLoading(false));
     if (res.statusCode === 409) {
       setError("book", { type: "manual", message: res.message });
     }

@@ -1,8 +1,9 @@
 import { Suspense } from "react";
 import GridBooks from "./components/grid-books/grid-books.component";
-import { getBooks } from "./services/get-books.service";
+
 import LoadingContainer from "../common/components/layout/loading/loading.component";
 import FilterBooksContainer from "./components/filter-books-container/filter-books-container.component";
+import { getAllBooks } from "./services/books/book.service";
 
 type Status =
   | "wantToRead"
@@ -32,7 +33,7 @@ interface BookByStatusProps {
 export default async function Home({ searchParams }: BookByStatusProps) {
   const { status, page, bookName, isFavorite, orderBy } = searchParams;
 
-  const booksQuery = getBooks({
+  const booksQuery = getAllBooks({
     status,
     page,
     bookName,

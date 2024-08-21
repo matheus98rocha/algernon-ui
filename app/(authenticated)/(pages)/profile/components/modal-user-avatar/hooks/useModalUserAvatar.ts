@@ -1,8 +1,8 @@
 import { useUserContext } from "@/app/(authenticated)/contexts/user-context";
-import patchUser from "@/app/(authenticated)/services/edit-user.service";
 import revalidateTag from "@/app/common/utils/revalidate-tag";
 import { useState } from "react";
 import { ModalUserAvatarProps } from "../modal-user-avatar.types";
+import { patchUserAvatar } from "@/app/(authenticated)/services/user/user.service";
 
 export function useModalUserAvatar({ handleCloseModal }: ModalUserAvatarProps) {
   const { updateAvatarValue, user } = useUserContext();
@@ -10,7 +10,7 @@ export function useModalUserAvatar({ handleCloseModal }: ModalUserAvatarProps) {
   const handleChangeAvatar = (avatarIndex: number) => {
     setIsLoading(true);
 
-    patchUser({ avatar: avatarIndex }).finally(() => {
+    patchUserAvatar({ avatar: avatarIndex }).finally(() => {
       updateAvatarValue(avatarIndex);
       revalidateTag("user-details").finally(() => {
         setIsLoading(false);
