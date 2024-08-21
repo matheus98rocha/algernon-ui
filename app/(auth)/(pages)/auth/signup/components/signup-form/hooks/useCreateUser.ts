@@ -6,7 +6,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateUserFormReturn } from "../signup-form.types";
 import { useState } from "react";
-import createUser from "../services/create-user.service";
+import createUser from "../../../../../../services/create-user.service";
 
 export function useCreateUserForm(): useCreateUserFormReturn {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -22,18 +22,9 @@ export function useCreateUserForm(): useCreateUserFormReturn {
   });
 
   const onSubmit = async (data: createUserFormData) => {
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("lastName", data.lastName);
-    formData.append("email", data.email);
-    formData.append("password", data.password);
-
     setIsLoading(true);
-    const response = await createUser(formData).finally(() =>
-      setIsLoading(false),
-    );
+    const response = await createUser(data).finally(() => setIsLoading(false));
 
-    // Verificando se o objeto foi enviado incorretamente.
     if (
       (response && response.statusCode === 400) ||
       (response && response.statusCode === 500)

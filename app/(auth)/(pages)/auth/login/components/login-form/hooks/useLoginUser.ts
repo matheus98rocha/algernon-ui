@@ -6,7 +6,7 @@ import {
   loginUserFormData,
   loginUserFormSchema,
 } from "../schema/user-login.schema";
-import loginUser from "../services/login-user.service";
+import loginUser from "../../../../../../services/login-user.service";
 
 export function useLoginUserForm(): useLoginFormReturn {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -31,7 +31,7 @@ export function useLoginUserForm(): useLoginFormReturn {
     }
     setIsLoading(true);
     const response = await loginUser(formData).finally(() =>
-      setIsLoading(false),
+      setIsLoading(false)
     );
     if (response && response.message) {
       setError("password", {
