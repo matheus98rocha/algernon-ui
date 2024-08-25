@@ -1,6 +1,7 @@
 import React from "react";
-import { PrimaryButtonProps } from "./primary-button.types";
+
 import { WrapperPrimaryButton } from "./primary-button.styles";
+import { PrimaryButtonProps } from "./primary-button.types";
 
 function PrimaryButton({
   sx,

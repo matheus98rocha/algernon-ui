@@ -1,12 +1,13 @@
 import CloseIcon from "@mui/icons-material/Close";
 import DoneIcon from "@mui/icons-material/Done";
-import { ValidationProps } from "./validate-password.types";
+
 import { useValidationPassword } from "./hooks/useValidationPassword";
 import {
   TextValidation,
   ValidatePasswordContainer,
   WrapperValidatePassword,
 } from "./validate-password.styles";
+import { ValidationProps } from "./validate-password.types";
 
 const ValidationItem = ({
   condition,

@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import StatusStack from "./components/status-stack/status-stack.component";
+
 import SearchInput from "./components/search-input/search-input.component";
-import { FilterBooksContainerProps } from "./filter-books-container.types";
-import * as S from "./filter-books-container.styles";
 import SelectOrder from "./components/select-order/select-order.component";
+import StatusStack from "./components/status-stack/status-stack.component";
+import * as S from "./filter-books-container.styles";
+import { FilterBooksContainerProps } from "./filter-books-container.types";
 function FilterBooksContainer({
   statusQt,
   bookStatus,
@@ -26,6 +27,7 @@ function FilterBooksContainer({
         <S.WrapperSelectShort>
           <SelectOrder />
         </S.WrapperSelectShort>
+        <S.CreateBookButton>Criar Livro</S.CreateBookButton>
       </S.WrapperFilterFields>
     </S.WrapperFilterBooksContainer>
   );

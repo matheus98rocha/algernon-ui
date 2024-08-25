@@ -1,19 +1,20 @@
 "use client";
 import React from "react";
+
 import LoadingComponent from "@/app/common/components/layout/loading/loading-component/loading-component";
 import ModalWrapper from "@/app/common/components/layout/modal-wrapper/modal-wrapper.layout";
-import { avatarData } from "@/app/common/utils/avatar-data";
+import { avatarDataArray } from "@/app/common/utils/avatar-data";
 
-import { useModalUserAvatar } from "./hooks/useModalUserAvatar";
-import { ModalUserAvatarProps } from "./modal-user-avatar.types";
-import * as S from "./modal-user-avatar.styles";
+import { useModalUserAvatars } from "./hooks/useModalUserAvatars";
+import * as S from "./modal-user-avatars.styles";
+import { ModalUserAvatarsProps } from "./modal-user-avatars.types";
 
-function ModalUserAvatar({
+function ModalUserAvatars({
   handleCloseModal,
   isOpenModal,
-}: ModalUserAvatarProps) {
+}: ModalUserAvatarsProps) {
   const { handleChangeAvatar, verifyIfUserHasAvatar, isLoading } =
-    useModalUserAvatar({ handleCloseModal, isOpenModal });
+    useModalUserAvatars({ handleCloseModal, isOpenModal });
   return (
     <ModalWrapper handleCloseModal={handleCloseModal} open={isOpenModal}>
       <S.WrapperModalUser>
@@ -27,7 +28,7 @@ function ModalUserAvatar({
             </S.WrapperModalUserContent>
 
             <S.GridIconsOptions>
-              {avatarData.map((avatar, index) => {
+              {avatarDataArray.map((avatar, index) => {
                 return (
                   <S.WrapperImageAvatar key={index}>
                     <S.StyledImage
@@ -52,4 +53,4 @@ function ModalUserAvatar({
   );
 }
 
-export default ModalUserAvatar;
+export default ModalUserAvatars;

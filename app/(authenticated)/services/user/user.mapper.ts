@@ -1,4 +1,5 @@
 import { UserPersistence, UserDomain } from "@/app/common/types/user";
+
 import { editUserAvatarDomain, editUserAvatarPersistence } from "./user.types";
 
 class UserMapper {

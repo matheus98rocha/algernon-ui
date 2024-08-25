@@ -2,8 +2,9 @@
 
 import { UserDomain, UserPersistence } from "@/app/common/types/user";
 import { authPatch, get } from "@/app/common/utils/fetchWrapper";
-import { userMapper } from "./user.mapper";
 import revalidateTag from "@/app/common/utils/revalidate-tag";
+
+import { userMapper } from "./user.mapper";
 import { editUserAvatarDomain } from "./user.types";
 
 export async function getUserDetails(): Promise<UserDomain> {

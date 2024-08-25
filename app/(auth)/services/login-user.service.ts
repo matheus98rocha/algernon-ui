@@ -1,11 +1,12 @@
 "use server";
 
-import { AUTHENTICATION_COOKIE } from "@/app/common/constants/auth-cookie.constant";
-import { Error } from "@/app/common/types/error";
-import { post } from "@/app/common/utils/fetchWrapper";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+
+import { AUTHENTICATION_COOKIE } from "@/app/common/constants/auth-cookie.constant";
+import { Error } from "@/app/common/types/error";
+import { post } from "@/app/common/utils/fetchWrapper";
 
 interface LoginUserResponse extends Error {}
 

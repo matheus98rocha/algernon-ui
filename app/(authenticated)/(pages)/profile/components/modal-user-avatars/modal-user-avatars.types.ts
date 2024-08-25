@@ -1,4 +1,4 @@
-export type ModalUserAvatarProps = {
+export type ModalUserAvatarsProps = {
   handleCloseModal: () => void;
   isOpenModal: boolean;
 };

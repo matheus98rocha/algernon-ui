@@ -2,8 +2,9 @@
 
 import { Button } from "@mui/material";
 import Link from "next/link";
-import { ErrorContentProps } from "./error-content.types";
+
 import { WrapperErrorContent } from "./error-content.styles";
+import { ErrorContentProps } from "./error-content.types";
 
 const ErrorContent = ({ message }: ErrorContentProps) => {
   return (

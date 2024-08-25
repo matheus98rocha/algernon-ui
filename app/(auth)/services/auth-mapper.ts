@@ -1,5 +1,5 @@
-import { createUserFormData } from "../(pages)/auth/signup/components/signup-form/schema/user-signup.schema";
 import { CreateUserPersistence } from "./auth-types";
+import { createUserFormData } from "../(pages)/auth/signup/components/signup-form/schema/user-signup.schema";
 
 class AuthMapper {
   toPersistenceCreateUser(domain: createUserFormData): FormData {

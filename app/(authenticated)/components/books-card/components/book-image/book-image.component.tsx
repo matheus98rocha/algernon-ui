@@ -1,7 +1,8 @@
 import { Box, Grow } from "@mui/material";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import Image from "next/image";
+
 import NotAvaibleImage from "@/app/common/components/not-avaible-image/not-avaible-image.component";
 
 type BookImageProps = {

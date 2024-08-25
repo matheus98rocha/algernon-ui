@@ -1,18 +1,20 @@
 "use client";
 
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useMediaQuery, useTheme } from "@mui/material";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import React, { useCallback, useEffect } from "react";
+
+import revalidateTag from "@/app/common/utils/revalidate-tag";
+
+import * as S from "./status-stack.styles";
+import { BookStatus } from "../../../../../common/types/book.type";
 import {
   statusOptions,
   statusTextMap,
 } from "../../../../constants/books-status";
-import Link from "next/link";
-import * as S from "./status-stack.styles";
-import { useMediaQuery, useTheme } from "@mui/material";
-import { useSearchParams } from "next/navigation";
-import revalidateTag from "@/app/common/utils/revalidate-tag";
 import BookMark from "../../../bookmark/book-mark.component";
-import { BookStatus } from "../../../../../common/types/book.type";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 
 interface StatusStackProps {
   setBookName: (name: string) => void;

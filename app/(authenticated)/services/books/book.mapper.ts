@@ -1,4 +1,6 @@
 import { Book } from "@/app/common/types/book.type";
+import { BooksGoogleApi } from "@/app/common/types/books-google-api";
+
 import {
   BooksGoogleApiPersistence,
   CreateBookDomain,
@@ -7,7 +9,6 @@ import {
   GetBooksPersistence,
   PersistenceBookById,
 } from "./book.types";
-import { BooksGoogleApi } from "@/app/common/types/books-google-api";
 
 class BookMapper {
   toDomainGetAllBooks(persistence: GetBooksPersistence): GetBooksDomain {

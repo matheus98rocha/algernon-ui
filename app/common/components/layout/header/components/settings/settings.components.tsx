@@ -1,3 +1,4 @@
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import {
   Box,
   IconButton,
@@ -6,13 +7,14 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+
+import { avatarData } from "@/app/common/utils/avatar-data";
+
 import { useSettings } from "./hooks/useSettings";
 import { SettingsProps } from "./settings.type";
-import Link from "next/link";
-import { avatarData } from "@/app/common/utils/avatar-data";
-import Image from "next/image";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 
 function Settings({ logout, user }: SettingsProps) {
   const {
@@ -22,8 +24,7 @@ function Settings({ logout, user }: SettingsProps) {
     handleLogout,
   } = useSettings({ logout, user });
 
-  const userImageValue = (user.avatar ?? 1) - 1;
-  const userImage = avatarData[userImageValue];
+  const userImage = avatarData[user.avatar];
 
   return (
     <Box sx={{ flexGrow: 0 }}>

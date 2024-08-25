@@ -1,8 +1,8 @@
-import React from "react";
+import Image from "next/image";
 import { notFound } from "next/navigation";
+import React from "react";
 
 import BackButton from "./components/back-button/back-button.component";
-import Image from "next/image";
 import { getBookById } from "../../services/books/book.service";
 
 type BookByIdParams = {

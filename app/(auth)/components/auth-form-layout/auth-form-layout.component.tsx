@@ -1,7 +1,8 @@
 import React from "react";
 import { FieldValues } from "react-hook-form";
-import { AuthFormLayoutProps } from "./auth-form-layout.types";
+
 import * as S from "./auth-form-layout.styles";
+import { AuthFormLayoutProps } from "./auth-form-layout.types";
 
 function AuthFormLayout<T extends FieldValues>({
   handleSubmit,

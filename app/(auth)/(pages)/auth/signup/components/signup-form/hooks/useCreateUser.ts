@@ -1,12 +1,13 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+
+import createUser from "../../../../../../services/create-user.service";
 import {
   createUserFormData,
   createUserFormSchema,
 } from "../schema/user-signup.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateUserFormReturn } from "../signup-form.types";
-import { useState } from "react";
-import createUser from "../../../../../../services/create-user.service";
 
 export function useCreateUserForm(): useCreateUserFormReturn {
   const [isLoading, setIsLoading] = useState<boolean>(false);

@@ -1,18 +1,20 @@
 "use client";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Skeleton, useTheme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Settings from "./components/settings/settings.components";
-import { useHeader } from "./hooks/useHeader";
-import { HeaderProps } from "./header.type";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 import Link from "next/link";
-import { Skeleton, useTheme } from "@mui/material";
+
 import { useUserContext } from "@/app/(authenticated)/contexts/user-context";
+
+import Settings from "./components/settings/settings.components";
+import { HeaderProps } from "./header.type";
+import { useHeader } from "./hooks/useHeader";
 
 function Header({ logout }: HeaderProps) {
   const { anchorElNav, handleCloseNavMenu, handleOpenNavMenu } = useHeader();

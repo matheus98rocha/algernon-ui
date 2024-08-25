@@ -1,4 +1,5 @@
 import { MouseEvent, useCallback, useState } from "react";
+
 import { SettingsProps, useSettingsReturn } from "../settings.type";
 
 export function useSettings({

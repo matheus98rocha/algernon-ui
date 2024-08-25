@@ -1,130 +1,62 @@
 "use client";
-import Image from "next/image";
+import { Box, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { useUserContext } from "../../contexts/user-context";
-import LoadingContainer from "@/app/common/components/layout/loading/loading.component";
-import { Box } from "@mui/material";
 
-import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import LoadingContainer from "@/app/common/components/layout/loading/loading.component";
 import { avatarData } from "@/app/common/utils/avatar-data";
-import ModalUserAvatar from "./components/modal-user-avatar/modal-user-avatar";
+
+import ModalUserAvatars from "./components/modal-user-avatars/modal-user-avatars";
+import * as S from "./profile.styles";
+import { useUserContext } from "../../contexts/user-context";
 
 function Profile() {
   const { user, isLoading } = useUserContext();
   const [isOpenModalEditAvatar, setIsOpenModalEditAvatar] = useState(false);
-  const userImage = avatarData[(user.avatar ?? 1) - 1];
+
+  const userImage = avatarData[user.avatar];
+  const userFullName = user.name + " " + user.lastName;
+  const isUndefinedAvatar = user.avatar === 0;
 
   return (
     <>
-      <ModalUserAvatar
+      <ModalUserAvatars
         handleCloseModal={() => setIsOpenModalEditAvatar(false)}
         isOpenModal={isOpenModalEditAvatar}
       />
       {isLoading ? (
         <LoadingContainer />
       ) : (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "flex-start",
-              justifyContent: "center",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "#e7e8e9",
-
-                borderRadius: "50%",
-                position: "relative",
-                boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.2)",
-              }}
-            >
-              {user.avatar === 0 ? (
-                <Box
-                  sx={{
-                    width: "300px",
-                    height: "300px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <PersonOutlinedIcon
-                    sx={{
-                      fontSize: "240px",
-                    }}
-                  />
-                </Box>
+        <S.ProfilePageWrapper>
+          <S.UserProfileWrapper>
+            <S.UserImageWrapper>
+              {isUndefinedAvatar ? (
+                <S.WrapperNoAvatarImage>
+                  <S.NoAvatarIcon />
+                </S.WrapperNoAvatarImage>
               ) : (
-                <Image
+                <S.UserAvatar
                   src={userImage}
                   alt="testing-image"
                   loading="eager"
                   width={300}
                   height={300}
-                  style={{
-                    borderRadius: "50%",
-                    paddingBottom: "10px",
-                  }}
                 />
               )}
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "40px",
-                  right: "7px",
-                  borderRadius: "50%",
-                  backgroundColor: "#e7e8e9",
-                  padding: "5px",
-
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer",
-
-                  boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.2)",
-                }}
-              >
-                <ModeEditOutlineOutlinedIcon
-                  sx={{
-                    fontSize: "35px",
-                  }}
+              <S.WrapperEditAvatarIcon>
+                <S.EditAvatarIcon
                   onClick={() => setIsOpenModalEditAvatar(true)}
                 />
-              </div>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "flex-start",
-                justifyContent: "center",
-                flexDirection: "column",
-              }}
-            >
-              <p>{user.name + " " + user.lastName}</p>
+              </S.WrapperEditAvatarIcon>
+            </S.UserImageWrapper>
+            <Box>
+              <p>{userFullName}</p>
               <p>{user.email}</p>
             </Box>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "flex-start",
-              justifyContent: "center",
-            }}
-          >
-            <h2>Meus amigos</h2>
-          </Box>
-        </div>
+          </S.UserProfileWrapper>
+          <S.FriendsWrapper>
+            <Typography variant="h2">Meus amigos</Typography>
+          </S.FriendsWrapper>
+        </S.ProfilePageWrapper>
       )}
     </>
   );

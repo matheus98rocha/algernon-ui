@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
-import { API_URL } from "../constants/api";
 import { redirect } from "next/navigation";
+
+import { API_URL } from "../constants/api";
 type fetchWrapperResponse = {
   data: Response;
   result: any;

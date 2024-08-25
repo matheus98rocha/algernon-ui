@@ -1,12 +1,13 @@
 "use client";
+import { Fade } from "@mui/material";
 import React from "react";
-import { gridBooksProps } from "./grid-books.types";
+
+import CustomPagination from "@/app/common/components/custom-pagination/custom-pagination.component";
 
 import EmptyBooks from "./components/empty-books/empty-books.component";
-import { Fade } from "@mui/material";
-import CustomPagination from "@/app/common/components/custom-pagination/custom-pagination.component";
-import { Book } from "../../../common/types/book.type";
 import * as S from "./grid-books.styles";
+import { gridBooksProps } from "./grid-books.types";
+import { Book } from "../../../common/types/book.type";
 import BookCard from "../books-card/book-card.component";
 
 function GridBooks({ books, totalPages }: gridBooksProps) {

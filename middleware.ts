@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
-import { unauthenticatedRoutes } from "./app/common/constants/routes";
+
 import authenticated from "./app/(auth)/services/authenticated";
+import { unauthenticatedRoutes } from "./app/common/constants/routes";
 
 export function middleware(request: NextRequest) {
   const isAuthenticated = authenticated();

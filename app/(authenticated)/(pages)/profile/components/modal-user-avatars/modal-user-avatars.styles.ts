@@ -1,7 +1,7 @@
-import { Box, styled } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import Image from "next/image";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CloseIcon from "@mui/icons-material/Close";
+import { Box, styled } from "@mui/material";
+import Image from "next/image";
 
 export const WrapperModalUser = styled(Box)(({ theme }) => ({
   display: "flex",

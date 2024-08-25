@@ -1,5 +1,6 @@
-import React from "react";
 import dynamic from "next/dynamic";
+import React from "react";
+
 import LoadingContainer from "@/app/common/components/layout/loading/loading.component";
 const DynamicSignupForm = dynamic(
   () => import("./components/signup-form/signup-form.component"),

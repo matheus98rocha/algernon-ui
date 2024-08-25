@@ -1,4 +1,3 @@
-import { UserDomain } from "@/app/common/types/user";
 import {
   createContext,
   useCallback,
@@ -6,6 +5,9 @@ import {
   useEffect,
   useState,
 } from "react";
+
+import { UserDomain } from "@/app/common/types/user";
+
 import { getUserDetails } from "../services/user/user.service";
 
 export const UserContext = createContext<{

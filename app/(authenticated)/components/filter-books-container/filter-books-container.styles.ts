@@ -1,4 +1,4 @@
-import { Box, Grid, styled } from "@mui/material";
+import { Box, Button, Grid, styled } from "@mui/material";
 
 export const WrapperFilterBooksContainer = styled(Grid)(({ theme }) => ({
   display: "flex",
@@ -10,9 +10,13 @@ export const WrapperFilterBooksContainer = styled(Grid)(({ theme }) => ({
 }));
 
 export const WrapperFilterFields = styled(Box)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+  // display: "flex",
+  // justifyContent: "center",
+  // alignItems: "center",
+
+  display: "grid",
+  gridTemplateColumns: "800px auto auto",
+
   [theme.breakpoints.down("sm")]: {
     flexDirection: "column",
   },
@@ -26,4 +30,9 @@ export const WrapperSelectShort = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     width: "100%",
   },
+}));
+
+export const CreateBookButton = styled(Button)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  color: "white",
 }));

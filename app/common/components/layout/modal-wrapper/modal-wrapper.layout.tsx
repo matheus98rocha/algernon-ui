@@ -1,6 +1,7 @@
-import React from "react";
-import * as S from "./modal-wrapper.styles";
 import { Modal } from "@mui/material";
+import React from "react";
+
+import * as S from "./modal-wrapper.styles";
 
 export type ModalWrapperProps = {
   open: boolean;

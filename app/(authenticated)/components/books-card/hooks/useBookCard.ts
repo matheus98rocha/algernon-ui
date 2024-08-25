@@ -1,7 +1,8 @@
+import { useCallback, useState } from "react";
+
 import { deleteBook } from "@/app/(authenticated)/services/books/book.service";
 import patchBook from "@/app/(authenticated)/services/patch-book.service";
 import { Book } from "@/app/common/types/book.type";
-import { useCallback, useState } from "react";
 
 export function useBookCard({
   author,
@@ -34,10 +35,10 @@ export function useBookCard({
           imageUrl,
           rate,
         },
-        id
+        id,
       );
     },
-    [author, book, status, description, id, isFavorite, imageUrl, rate]
+    [author, book, status, description, id, isFavorite, imageUrl, rate],
   );
 
   const handleRateBookClick = useCallback(
@@ -58,10 +59,10 @@ export function useBookCard({
           imageUrl,
           rate: rating,
         },
-        id
+        id,
       );
     },
-    [author, book, status, description, id, isFavorite, imageUrl]
+    [author, book, status, description, id, isFavorite, imageUrl],
   );
 
   const handleDeleteBook = useCallback(
@@ -70,7 +71,7 @@ export function useBookCard({
       await deleteBook(id);
       setOpenDeleteBook(false);
     },
-    [id]
+    [id],
   );
 
   const handleOpenMoreOptionsBookCard = useCallback(
@@ -78,7 +79,7 @@ export function useBookCard({
       e.stopPropagation();
       setOpenMoreOptions(!openMoreOptions);
     },
-    [openMoreOptions]
+    [openMoreOptions],
   );
 
   return {

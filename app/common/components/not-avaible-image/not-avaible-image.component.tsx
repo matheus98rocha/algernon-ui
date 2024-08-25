@@ -1,6 +1,6 @@
+import HideImageIcon from "@mui/icons-material/HideImage";
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import HideImageIcon from "@mui/icons-material/HideImage";
 
 function NotAvaibleImage() {
   return (

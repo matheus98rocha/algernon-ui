@@ -1,5 +1,7 @@
-import SelectDefault from "@/app/common/components/select/select-default.component";
 import React from "react";
+
+import SelectDefault from "@/app/common/components/select/select-default.component";
+
 import { useSelectOder } from "./hooks/useSelectOrder";
 
 function SelectOrder() {

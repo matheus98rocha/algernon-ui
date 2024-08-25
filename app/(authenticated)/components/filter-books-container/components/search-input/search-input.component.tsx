@@ -1,10 +1,11 @@
 "use client";
-import { Button, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import React, { useCallback, useMemo } from "react";
+import { Button, InputAdornment } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
-import { SearchInputProps } from "./search-input.types";
+import React, { useCallback, useMemo } from "react";
+
 import * as S from "./search-input.styles";
+import { SearchInputProps } from "./search-input.types";
 
 function SearchInput({
   setBookName,

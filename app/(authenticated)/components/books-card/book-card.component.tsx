@@ -1,14 +1,16 @@
 "use client";
-import React from "react";
-import * as S from "./book-card.styles";
-import { Book } from "@/app/common/types/book.type";
-import BookMark from "../bookmark/book-mark.component";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import DialogBookOptions from "./components/dialog-book-options/dialog-book-options.component";
-import DeleteBookModal from "../book-modals/delete-book-modal/delete-book-modal.component";
 import { Rating, Tooltip } from "@mui/material";
-import { useBookCard } from "./hooks/useBookCard";
+import React from "react";
+
+import { Book } from "@/app/common/types/book.type";
+
+import * as S from "./book-card.styles";
 import BookImage from "./components/book-image/book-image.component";
+import DialogBookOptions from "./components/dialog-book-options/dialog-book-options.component";
+import { useBookCard } from "./hooks/useBookCard";
+import DeleteBookModal from "../book-modals/delete-book-modal/delete-book-modal.component";
+import BookMark from "../bookmark/book-mark.component";
 
 function BookCard({
   author,
