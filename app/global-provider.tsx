@@ -1,6 +1,9 @@
 "use client";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+
 import React from "react";
 
 import DefaultProgressBar from "./common/components/default-progress-bar/default-progress-bar.component";
@@ -12,12 +15,15 @@ type GlobalProvidersProps = {
 };
 
 function GlobalProvider({ children }: GlobalProvidersProps) {
+  const [queryClient] = useState(() => new QueryClient());
   return (
     <AppRouterCacheProvider>
       <DefaultProgressBar />
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        {children}
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
       </ThemeProvider>
     </AppRouterCacheProvider>
   );

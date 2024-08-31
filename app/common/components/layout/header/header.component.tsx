@@ -10,15 +10,37 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
 
-import { useUserContext } from "@/app/(authenticated)/contexts/user-context";
-
 import Settings from "./components/settings/settings.components";
 import { HeaderProps } from "./header.type";
 import { useHeader } from "./hooks/useHeader";
+import { useStore } from "@/app/(authenticated)/store/store";
+import { useQuery } from "@tanstack/react-query";
+import { getUserDetails } from "@/app/(authenticated)/services/user/user.service";
+import { UserDomain } from "@/app/common/types/user";
 
 function Header({ logout }: HeaderProps) {
   const { anchorElNav, handleCloseNavMenu, handleOpenNavMenu } = useHeader();
-  const { user, isLoading } = useUserContext();
+  const { user, setUser, setLoading } = useStore();
+
+  const { isLoading, isFetching, isFetched } = useQuery({
+    queryFn: async () => {
+      getUserDetails()
+        .then((data: UserDomain) => {
+          setLoading(true);
+          setUser(data);
+        })
+        .finally(() => setLoading(false));
+      console.log({
+        isFetching,
+      });
+      console.log({
+        isFetched,
+      });
+    },
+
+    queryKey: ["user-details"], //Array according to Documentation
+  });
+
   return (
     <AppBar
       position="static"
