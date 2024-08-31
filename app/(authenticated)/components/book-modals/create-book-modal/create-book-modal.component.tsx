@@ -16,7 +16,7 @@ import { Controller } from "react-hook-form";
 
 import ButtonLoading from "@/app/common/components/buttons/button-loading/button-loading.component";
 import AutoCompleteField from "@/app/common/components/inputs/auto-complete-field/auto-complete-field.component";
-import ModalWrapper from "@/app/common/components/layout/modal-wrapper/modal-wrapper.layout";
+import ModalWrapper from "@/app/common/components/modal-wrapper/modal-wrapper.layout";
 import NotAvaibleImage from "@/app/common/components/not-avaible-image/not-avaible-image.component";
 
 import * as S from "./create-book-modal.styles";

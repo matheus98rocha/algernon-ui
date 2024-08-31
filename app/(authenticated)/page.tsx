@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import FilterBooksContainer from "./components/filter-books-container/filter-books-container.component";
 import GridBooks from "./components/grid-books/grid-books.component";
 import { getAllBooks } from "./services/books/book.service";
-import LoadingContainer from "../common/components/layout/loading/loading.component";
+import LoadingContainer from "../common/components/loading/loading.component";
 
 type Status =
   | "wantToRead"

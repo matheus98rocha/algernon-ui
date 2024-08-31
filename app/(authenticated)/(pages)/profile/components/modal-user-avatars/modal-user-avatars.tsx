@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 
-import LoadingComponent from "@/app/common/components/layout/loading/loading-component/loading-component";
-import ModalWrapper from "@/app/common/components/layout/modal-wrapper/modal-wrapper.layout";
+import LoadingComponent from "@/app/common/components/loading/loading-component/loading-component";
+import ModalWrapper from "@/app/common/components/modal-wrapper/modal-wrapper.layout";
 import { avatarDataArray } from "@/app/common/utils/avatar-data";
 
 import { useModalUserAvatars } from "./hooks/useModalUserAvatars";

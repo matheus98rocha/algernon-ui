@@ -1,4 +1,3 @@
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import {
   Box,
   IconButton,
@@ -7,14 +6,12 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-import { avatarData } from "@/app/common/utils/avatar-data";
-
 import { useSettings } from "./hooks/useSettings";
 import { SettingsProps } from "./settings.type";
+import UserAvatar from "@/app/(authenticated)/(pages)/profile/components/avatar/user-avatar.component";
 
 function Settings({ logout, user }: SettingsProps) {
   const {
@@ -24,13 +21,12 @@ function Settings({ logout, user }: SettingsProps) {
     handleLogout,
   } = useSettings({ logout, user });
 
-  const userImage = avatarData[user.avatar];
-
   return (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Abrir Configurações">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          {user.avatar === 0 ? (
+          <UserAvatar type="small" />
+          {/* {user.avatar === 0 ? (
             <Box
               sx={{
                 width: "50px",
@@ -58,6 +54,7 @@ function Settings({ logout, user }: SettingsProps) {
               loading="eager"
             />
           )}
+          */}
         </IconButton>
       </Tooltip>
       <Menu

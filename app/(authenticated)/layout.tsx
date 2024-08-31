@@ -6,7 +6,7 @@ import { Container } from "@mui/material";
 import FloatingButton from "./components/floating-button/floating-button.component";
 import AuthenticatedProviders from "./provider";
 import logout from "../(auth)/services/logout";
-import Header from "../common/components/layout/header/header.component";
+import Header from "../common/components/header/header.component";
 
 export const metadata: Metadata = {
   title: "Algernon",

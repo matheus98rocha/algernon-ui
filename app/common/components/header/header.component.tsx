@@ -1,6 +1,6 @@
 "use client";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Skeleton, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -22,7 +22,7 @@ function Header({ logout }: HeaderProps) {
   const { anchorElNav, handleCloseNavMenu, handleOpenNavMenu } = useHeader();
   const { user, setUser, setLoading } = useStore();
 
-  const { isLoading, isFetching, isFetched } = useQuery({
+  const {} = useQuery({
     queryFn: async () => {
       getUserDetails()
         .then((data: UserDomain) => {
@@ -30,12 +30,6 @@ function Header({ logout }: HeaderProps) {
           setUser(data);
         })
         .finally(() => setLoading(false));
-      console.log({
-        isFetching,
-      });
-      console.log({
-        isFetched,
-      });
     },
 
     queryKey: ["user-details"], //Array according to Documentation
@@ -149,11 +143,7 @@ function Header({ logout }: HeaderProps) {
               </Button>
             ))} */}
           </Box>
-          {isLoading ? (
-            <Skeleton variant="circular" width={40} height={40} />
-          ) : (
-            <Settings logout={logout} user={user} />
-          )}
+          <Settings logout={logout} user={user} />
         </Toolbar>
       </Container>
     </AppBar>
