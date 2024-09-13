@@ -6,7 +6,6 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import React, { ReactNode } from "react";
-import { RenderList } from "../list/list.component";
 
 type SelectDefaultProps = {
   label: string;
@@ -42,11 +41,11 @@ const SelectDefault = ({
         label={label}
         onChange={onChange}
       >
-        <RenderList
-          getKey={({ value }) => value}
-          items={options}
-          renderItem={({ label }) => <MenuItem value={label}>{label}</MenuItem>}
-        />
+        {options.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   );
