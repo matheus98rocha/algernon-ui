@@ -8,6 +8,7 @@ import { avatarDataArray } from "@/app/common/utils/avatar-data";
 import { useModalUserAvatars } from "./hooks/useModalUserAvatars";
 import * as S from "./modal-user-avatars.styles";
 import { ModalUserAvatarsProps } from "./modal-user-avatars.types";
+import { RenderList } from "@/app/common/components/list/list.component";
 
 function ModalUserAvatars({
   handleCloseModal,
@@ -28,13 +29,13 @@ function ModalUserAvatars({
             </S.WrapperModalUserContent>
 
             <S.GridIconsOptions>
-              {avatarDataArray.map((avatar, index) => {
-                return (
+              <RenderList
+                items={avatarDataArray}
+                renderItem={(avatar, index) => (
                   <S.WrapperImageAvatar key={index}>
                     <S.StyledImage
                       src={avatar}
                       alt="avatar"
-                      key={avatar}
                       height={100}
                       width={100}
                       onClick={() => handleChangeAvatar(index + 1)}
@@ -43,8 +44,9 @@ function ModalUserAvatars({
                       <S.CheckCircleIconStyled />
                     ) : null}
                   </S.WrapperImageAvatar>
-                );
-              })}
+                )}
+                getKey={(avatar) => avatar}
+              />
             </S.GridIconsOptions>
           </>
         )}

@@ -22,6 +22,7 @@ import NotAvaibleImage from "@/app/common/components/not-avaible-image/not-avaib
 import * as S from "./create-book-modal.styles";
 import { createBookModalProps } from "./create-book-modal.types";
 import { useCreateModal } from "./hooks/useCreateBookModal";
+import { RenderList } from "@/app/common/components/list/list.component";
 
 function CreateBookModal({ open, handleClose }: createBookModalProps) {
   const {
@@ -180,11 +181,13 @@ function CreateBookModal({ open, handleClose }: createBookModalProps) {
                       label="Status"
                       {...field}
                     >
-                      {statusOptions.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
+                      <RenderList
+                        getKey={(option) => option.value}
+                        items={statusOptions}
+                        renderItem={({ value, label }) => (
+                          <MenuItem value={value}>{label}</MenuItem>
+                        )}
+                      />
                     </Select>
                   )}
                 />

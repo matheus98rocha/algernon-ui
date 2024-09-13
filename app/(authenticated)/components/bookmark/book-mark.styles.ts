@@ -13,5 +13,6 @@ const statusColors: { [key in BookMarkProps["status"]]: string } = {
 export const BookmarkIconStyled = styled(BookmarkIcon)<BookMarkProps>(
   ({ status }) => ({
     color: statusColors[status],
+    cursor: "pointer",
   }),
 );

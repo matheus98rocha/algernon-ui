@@ -6,10 +6,11 @@ import { BookStatus } from "../../../common/types/book.type";
 export type BookMarkProps = {
   status: BookStatus;
   sx?: SxProps<Theme>;
+  onClick?: () => void;
 };
 
-function BookMark({ status, sx }: BookMarkProps) {
-  return <S.BookmarkIconStyled status={status} sx={sx} />;
+function BookMark({ status, sx, onClick }: BookMarkProps) {
+  return <S.BookmarkIconStyled status={status} sx={sx} onClick={onClick} />;
 }
 
 export default BookMark;

@@ -4,13 +4,7 @@ import FilterBooksContainer from "./components/filter-books-container/filter-boo
 import GridBooks from "./components/grid-books/grid-books.component";
 import { getAllBooks } from "./services/books/book.service";
 import LoadingContainer from "../common/components/loading/loading.component";
-
-type Status =
-  | "wantToRead"
-  | "alreadyRead"
-  | "reading"
-  | "abandoned"
-  | "rereading";
+import { BookStatus } from "../common/types/book.type";
 
 export type orderByOptions =
   | "alphabetical_a_z"
@@ -22,7 +16,7 @@ export type orderByOptions =
 
 interface BookByStatusProps {
   searchParams: {
-    status: Status;
+    status: BookStatus;
     page: number;
     bookName: string;
     isFavorite?: boolean;

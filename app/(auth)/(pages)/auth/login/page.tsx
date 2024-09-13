@@ -6,7 +6,7 @@ const DynamicLoginForm = dynamic(
   () => import("./components/login-form/login-form.component"),
   {
     loading: () => <LoadingContainer />,
-  }
+  },
 );
 
 function Login() {

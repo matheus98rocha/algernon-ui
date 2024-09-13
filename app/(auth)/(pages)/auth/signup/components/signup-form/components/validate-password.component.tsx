@@ -8,6 +8,7 @@ import {
   WrapperValidatePassword,
 } from "./validate-password.styles";
 import { ValidationProps } from "./validate-password.types";
+import { RenderList } from "@/app/common/components/list/list.component";
 
 const ValidationItem = ({
   condition,
@@ -33,15 +34,16 @@ export const ValidatePassword = ({
 
   return (
     <ValidatePasswordContainer>
-      {validationItems.map((validation) => {
-        return (
+      <RenderList
+        items={validationItems}
+        renderItem={(validation) => (
           <ValidationItem
-            key={validation.text}
             condition={validation.condition}
             text={validation.text}
           />
-        );
-      })}
+        )}
+        getKey={(validation) => validation.text}
+      />
     </ValidatePasswordContainer>
   );
 };

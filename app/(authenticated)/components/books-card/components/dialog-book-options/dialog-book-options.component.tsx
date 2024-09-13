@@ -9,6 +9,7 @@ import {
 import React from "react";
 
 import { useDialogBookOptions } from "./hooks/useDialogBookOptions";
+import { RenderList } from "@/app/common/components/list/list.component";
 
 export type DialogBookOptionsProps = {
   open: boolean;
@@ -51,12 +52,16 @@ export default function DialogBookOptions({
       ref={ref}
     >
       <List>
-        {dialogItems.map((item) => (
-          <ListItemButton key={item.itemText} onClick={item.onClick}>
-            <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.itemText} />
-          </ListItemButton>
-        ))}
+        <RenderList
+          getKey={({ itemText }) => itemText}
+          items={dialogItems}
+          renderItem={({ itemText, icon, onClick }) => (
+            <ListItemButton key={itemText} onClick={onClick}>
+              <ListItemIcon>{icon}</ListItemIcon>
+              <ListItemText primary={itemText} />
+            </ListItemButton>
+          )}
+        />
       </List>
     </Box>
   );

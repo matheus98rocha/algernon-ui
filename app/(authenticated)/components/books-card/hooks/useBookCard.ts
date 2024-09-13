@@ -1,7 +1,9 @@
 import { useCallback, useState } from "react";
 
-import { deleteBook } from "@/app/(authenticated)/services/books/book.service";
-import patchBook from "@/app/(authenticated)/services/patch-book.service";
+import {
+  deleteBook,
+  patchBook,
+} from "@/app/(authenticated)/services/books/book.service";
 import { Book } from "@/app/common/types/book.type";
 
 export function useBookCard({

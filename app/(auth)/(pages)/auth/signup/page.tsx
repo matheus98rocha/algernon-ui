@@ -6,7 +6,7 @@ const DynamicSignupForm = dynamic(
   () => import("./components/signup-form/signup-form.component"),
   {
     loading: () => <LoadingContainer />,
-  }
+  },
 );
 
 function Signup() {

@@ -1,7 +1,7 @@
 "use client";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Rating, Tooltip } from "@mui/material";
-import React from "react";
+import React, { useCallback, useState } from "react";
 
 import { Book } from "@/app/common/types/book.type";
 
@@ -11,6 +11,7 @@ import DialogBookOptions from "./components/dialog-book-options/dialog-book-opti
 import { useBookCard } from "./hooks/useBookCard";
 import DeleteBookModal from "../book-modals/delete-book-modal/delete-book-modal.component";
 import BookMark from "../bookmark/book-mark.component";
+import ChangeBookStatusModal from "../book-modals/change-book-status-modal/change-book-status-modal.component";
 
 function BookCard({
   author,
@@ -45,6 +46,13 @@ function BookCard({
     rate,
   });
 
+  const [isOpenChangeStatusModal, setIsOpenChangeStatusModal] =
+    useState<boolean>(false);
+
+  const handleChangeStatusModal = useCallback((stateModal: boolean) => {
+    setIsOpenChangeStatusModal(stateModal);
+  }, []);
+
   return (
     <>
       <S.WrapperBookCard sx={{ position: "relative" }}>
@@ -60,8 +68,17 @@ function BookCard({
           isFavorite={isFavorite}
           handleDeleteBook={() => setOpenDeleteBook(true)}
         />
+        <ChangeBookStatusModal
+          bookId={id}
+          currentBookStatus={status}
+          handleCloseModal={() => handleChangeStatusModal(false)}
+          open={isOpenChangeStatusModal}
+        />
         <S.HeaderBookCard>
-          <BookMark status={status} />
+          <BookMark
+            status={status}
+            onClick={() => handleChangeStatusModal(true)}
+          />
           <MoreHorizIcon
             sx={{ zIndex: 2, cursor: "pointer" }}
             onClick={(event) => handleOpenMoreOptionsBookCard(event)}

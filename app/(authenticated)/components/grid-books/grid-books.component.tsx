@@ -7,8 +7,8 @@ import CustomPagination from "@/app/common/components/custom-pagination/custom-p
 import EmptyBooks from "./components/empty-books/empty-books.component";
 import * as S from "./grid-books.styles";
 import { gridBooksProps } from "./grid-books.types";
-import { Book } from "../../../common/types/book.type";
 import BookCard from "../books-card/book-card.component";
+import { RenderList } from "@/app/common/components/list/list.component";
 
 function GridBooks({ books, totalPages }: gridBooksProps) {
   if (books.length === 0) {
@@ -19,9 +19,11 @@ function GridBooks({ books, totalPages }: gridBooksProps) {
     <Fade in>
       <S.WrapperGridBooks>
         <S.WrapperBooksList container>
-          {books.map((book: Book) => (
-            <BookCard key={book.id} {...book} />
-          ))}
+          <RenderList
+            getKey={({ id }) => id}
+            items={books}
+            renderItem={(book) => <BookCard {...book} />}
+          />
         </S.WrapperBooksList>
         {totalPages > 1 && <CustomPagination count={totalPages} />}
       </S.WrapperGridBooks>
