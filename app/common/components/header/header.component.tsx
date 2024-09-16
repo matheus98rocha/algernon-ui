@@ -8,15 +8,17 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+
+import { getUserDetails } from "@/app/(authenticated)/services/user/user.service";
+import { useStore } from "@/app/(authenticated)/store/store";
+import { UserDomain } from "@/app/common/types/user";
 
 import Settings from "./components/settings/settings.components";
 import { HeaderProps } from "./header.type";
 import { useHeader } from "./hooks/useHeader";
-import { useStore } from "@/app/(authenticated)/store/store";
-import { useQuery } from "@tanstack/react-query";
-import { getUserDetails } from "@/app/(authenticated)/services/user/user.service";
-import { UserDomain } from "@/app/common/types/user";
 
 function Header({ logout }: HeaderProps) {
   const { anchorElNav, handleCloseNavMenu, handleOpenNavMenu } = useHeader();

@@ -1,6 +1,7 @@
 "use client";
-import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 import React from "react";
+
+import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 
 function DefaultProgressBar() {
   return (

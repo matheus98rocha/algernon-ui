@@ -1,10 +1,11 @@
 import { Suspense } from "react";
 
+import LoadingContainer from "../common/components/loading/loading.component";
+import { BookStatus } from "../common/types/book.type";
+
 import FilterBooksContainer from "./components/filter-books-container/filter-books-container.component";
 import GridBooks from "./components/grid-books/grid-books.component";
 import { getAllBooks } from "./services/books/book.service";
-import LoadingContainer from "../common/components/loading/loading.component";
-import { BookStatus } from "../common/types/book.type";
 
 export type orderByOptions =
   | "alphabetical_a_z"

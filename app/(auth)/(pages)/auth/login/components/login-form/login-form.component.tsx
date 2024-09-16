@@ -1,6 +1,7 @@
 "use client";
-import { Checkbox, FormControlLabel, Link, TextField } from "@mui/material";
 import React from "react";
+
+import { Checkbox, FormControlLabel, Link, TextField } from "@mui/material";
 
 import AuthFormLayout from "@/app/(auth)/components/auth-form-layout/auth-form-layout.component";
 import ButtonLoading from "@/app/common/components/buttons/button-loading/button-loading.component";

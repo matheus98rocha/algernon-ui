@@ -1,4 +1,5 @@
 import { create } from "zustand";
+
 import { UserDomain } from "@/app/common/types/user";
 
 type UserState = {

@@ -1,11 +1,13 @@
 "use client";
+import * as React from "react";
+
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import MuiPagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import Stack from "@mui/material/Stack";
+
 import { useRouter, useSearchParams } from "next/navigation";
-import * as React from "react";
 
 export type CustomPaginationProps = {
   count: number;

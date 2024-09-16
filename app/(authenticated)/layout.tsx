@@ -1,12 +1,13 @@
+import { Container } from "@mui/material";
+
 import type { Metadata } from "next";
 import "../globals.css";
 
-import { Container } from "@mui/material";
+import logout from "../(auth)/services/logout";
+import Header from "../common/components/header/header.component";
 
 import FloatingButton from "./components/floating-button/floating-button.component";
 import AuthenticatedProviders from "./provider";
-import logout from "../(auth)/services/logout";
-import Header from "../common/components/header/header.component";
 
 export const metadata: Metadata = {
   title: "Algernon",

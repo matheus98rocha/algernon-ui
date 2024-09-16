@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 import { patchUserAvatar } from "@/app/(authenticated)/services/user/user.service";
+import { useStore } from "@/app/(authenticated)/store/store";
 import revalidateTag from "@/app/common/utils/revalidate-tag";
 
 import { ModalUserAvatarsProps } from "../modal-user-avatars.types";
-import { useStore } from "@/app/(authenticated)/store/store";
 
 export function useModalUserAvatars({
   handleCloseModal,

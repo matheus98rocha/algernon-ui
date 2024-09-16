@@ -1,6 +1,7 @@
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import { Box, styled } from "@mui/material";
+
 import Image from "next/image";
 
 export const UserProfileWrapper = styled(Box)(() => ({

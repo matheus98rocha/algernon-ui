@@ -1,9 +1,13 @@
-import { useStore } from "@/app/(authenticated)/store/store";
-import { Box, Skeleton } from "@mui/material";
 import React, { useState } from "react";
-import * as S from "./avatar.styles";
+
+import { Box, Skeleton } from "@mui/material";
+
+import { useStore } from "@/app/(authenticated)/store/store";
 import { avatarData } from "@/app/common/utils/avatar-data";
+
 import ModalUserAvatars from "../modal-user-avatars/modal-user-avatars";
+
+import * as S from "./avatar.styles";
 
 type UserAvatarProps = {
   type?: "full" | "small";

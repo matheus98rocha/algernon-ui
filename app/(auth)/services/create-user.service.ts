@@ -5,8 +5,9 @@ import { redirect } from "next/navigation";
 import { Error } from "@/app/common/types/error";
 import { post } from "@/app/common/utils/fetchWrapper";
 
-import { authMapper } from "./auth-mapper";
 import { createUserFormData } from "../(pages)/auth/signup/components/signup-form/schema/user-signup.schema";
+
+import { authMapper } from "./auth-mapper";
 
 interface UserResponse extends Error {
   data: {

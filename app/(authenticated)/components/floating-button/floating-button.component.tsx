@@ -1,10 +1,12 @@
 "use client";
-import AddIcon from "@mui/icons-material/Add";
-import { Collapse, Fab } from "@mui/material";
 import React, { useState } from "react";
 
-import { WrapperForgotPassAndKeepLogged } from "./floating-button.styles";
+import AddIcon from "@mui/icons-material/Add";
+import { Collapse, Fab } from "@mui/material";
+
 import CreateBookModal from "../book-modals/create-book-modal/create-book-modal.component";
+
+import { WrapperForgotPassAndKeepLogged } from "./floating-button.styles";
 
 function FloatingButton() {
   const [isOpenCreateBookModal, setisOpenCreateBookModal] = useState(false);

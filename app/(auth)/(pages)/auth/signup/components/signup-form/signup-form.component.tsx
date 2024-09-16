@@ -1,7 +1,9 @@
 "use client";
-import { Link, Stack, TextField } from "@mui/material";
-import NextLink from "next/link";
 import React from "react";
+
+import { Link, Stack, TextField } from "@mui/material";
+
+import NextLink from "next/link";
 
 import AuthFormLayout from "@/app/(auth)/components/auth-form-layout/auth-form-layout.component";
 import ButtonLoading from "@/app/common/components/buttons/button-loading/button-loading.component";

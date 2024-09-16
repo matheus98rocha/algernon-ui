@@ -1,6 +1,7 @@
 "use client";
 
 import { Box, Grow, useMediaQuery, useTheme } from "@mui/material";
+
 import Image from "next/image";
 
 import DefaultProgressBar from "@/app/common/components/default-progress-bar/default-progress-bar.component";

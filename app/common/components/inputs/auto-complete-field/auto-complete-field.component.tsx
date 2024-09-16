@@ -1,8 +1,9 @@
+import * as React from "react";
+
 import SearchIcon from "@mui/icons-material/Search";
 import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
 import TextField from "@mui/material/TextField";
-import * as React from "react";
 
 type AutoCompleteFieldProps = {
   isLoading: boolean;

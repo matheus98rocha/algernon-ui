@@ -1,5 +1,6 @@
-import { Modal } from "@mui/material";
 import React from "react";
+
+import { Modal } from "@mui/material";
 
 import * as S from "./modal-wrapper.styles";
 

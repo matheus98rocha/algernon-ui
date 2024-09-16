@@ -1,11 +1,14 @@
 "use client";
+import React from "react";
+
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
-import React from "react";
+
 import { FieldValues } from "react-hook-form";
 
-import { useTextFieldPassword } from "./hooks/useTextFieldPassword";
 import { TextFormFieldProps } from "../inputs.types";
+
+import { useTextFieldPassword } from "./hooks/useTextFieldPassword";
 
 function TextFieldPassword<TFieldValues extends FieldValues>({
   label,

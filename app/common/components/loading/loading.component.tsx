@@ -1,5 +1,6 @@
-import { Box } from "@mui/material";
 import React from "react";
+
+import { Box } from "@mui/material";
 
 import LoadingComponent from "./loading-component/loading-component";
 

@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   Box,
   IconButton,
@@ -6,12 +8,13 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+
 import Link from "next/link";
-import React from "react";
+
+import UserAvatar from "@/app/(authenticated)/(pages)/profile/components/avatar/user-avatar.component";
 
 import { useSettings } from "./hooks/useSettings";
 import { SettingsProps } from "./settings.type";
-import UserAvatar from "@/app/(authenticated)/(pages)/profile/components/avatar/user-avatar.component";
 
 function Settings({ logout, user }: SettingsProps) {
   const {

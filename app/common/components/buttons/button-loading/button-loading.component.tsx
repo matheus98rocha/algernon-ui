@@ -1,8 +1,10 @@
-import { LoadingButton } from "@mui/lab";
 import React from "react";
 
-import { ButtonLoadingProps } from "./button-loading.type";
+import { LoadingButton } from "@mui/lab";
+
 import LoadingComponent from "../../loading/loading-component/loading-component";
+
+import { ButtonLoadingProps } from "./button-loading.type";
 
 function ButtonLoading({ isLoading, type, buttonText }: ButtonLoadingProps) {
   return (

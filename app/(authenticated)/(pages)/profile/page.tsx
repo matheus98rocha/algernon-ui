@@ -1,8 +1,10 @@
 "use client";
-import { Typography } from "@mui/material";
 import React from "react";
-import * as S from "./profile.styles";
+
+import { Typography } from "@mui/material";
+
 import UserAvatar from "./components/avatar/user-avatar.component";
+import * as S from "./profile.styles";
 function Profile() {
   return (
     <>

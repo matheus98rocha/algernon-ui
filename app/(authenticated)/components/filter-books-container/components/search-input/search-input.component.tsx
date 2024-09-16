@@ -1,8 +1,10 @@
 "use client";
+import React, { useCallback, useMemo } from "react";
+
 import SearchIcon from "@mui/icons-material/Search";
 import { Button, InputAdornment } from "@mui/material";
+
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useCallback, useMemo } from "react";
 
 import * as S from "./search-input.styles";
 import { SearchInputProps } from "./search-input.types";

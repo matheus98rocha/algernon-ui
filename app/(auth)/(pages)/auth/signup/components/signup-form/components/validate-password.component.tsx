@@ -1,6 +1,8 @@
 import CloseIcon from "@mui/icons-material/Close";
 import DoneIcon from "@mui/icons-material/Done";
 
+import { RenderList } from "@/app/common/components/list/list.component";
+
 import { useValidationPassword } from "./hooks/useValidationPassword";
 import {
   TextValidation,
@@ -8,7 +10,6 @@ import {
   WrapperValidatePassword,
 } from "./validate-password.styles";
 import { ValidationProps } from "./validate-password.types";
-import { RenderList } from "@/app/common/components/list/list.component";
 
 const ValidationItem = ({
   condition,

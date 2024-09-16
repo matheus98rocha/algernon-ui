@@ -1,3 +1,47 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals"],
+  "plugins": ["import"],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin", // Imports nativos do Node.js
+          "external", // Imports de bibliotecas externas
+          "internal", // Imports internos (caminhos absolutos usando @/ ou similares)
+          "parent", // Imports relativos de pastas superiores
+          "sibling", // Imports relativos da mesma pasta
+          "index" // Imports do index.js ou index.ts
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "@mui/**",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@/app/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "./**",
+            "group": "sibling",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
 }
