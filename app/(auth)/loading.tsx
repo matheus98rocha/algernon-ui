@@ -1,4 +1,4 @@
-import LoadingContainer from "../common/components/loading/loading.component";
+import { LoadingContainer } from "../common/components";
 
 export default function Loading() {
   return <LoadingContainer />;

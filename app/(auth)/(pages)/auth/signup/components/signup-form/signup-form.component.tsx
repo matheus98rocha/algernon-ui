@@ -6,8 +6,7 @@ import { Link, Stack, TextField } from "@mui/material";
 import NextLink from "next/link";
 
 import AuthFormLayout from "@/app/(auth)/components/auth-form-layout/auth-form-layout.component";
-import ButtonLoading from "@/app/common/components/buttons/button-loading/button-loading.component";
-import TextFieldPassword from "@/app/common/components/inputs/text-field-password/text-field-password";
+import { ButtonLoading, TextFieldPassword } from "@/app/common/components";
 
 import { ValidatePassword } from "./components/validate-password.component";
 import { useCreateUserForm } from "./hooks/useCreateUser";

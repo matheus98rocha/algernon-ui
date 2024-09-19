@@ -2,7 +2,7 @@ import React from "react";
 
 import { LoadingButton } from "@mui/lab";
 
-import LoadingComponent from "../../loading/loading-component/loading-component";
+import { LoadingComponent } from "../../loading";
 
 import { ButtonLoadingProps } from "./button-loading.type";
 

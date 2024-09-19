@@ -1,10 +1,6 @@
 import React, { memo } from "react";
 
-type ListProps<T> = {
-  items: T[];
-  renderItem: (item: T, index: number) => React.ReactNode;
-  getKey: (item: T) => React.Key; // Chave única para cada item
-};
+import { ListProps } from "./list.types";
 
 const ListComponent = <T,>({ items, renderItem, getKey }: ListProps<T>) => {
   return (

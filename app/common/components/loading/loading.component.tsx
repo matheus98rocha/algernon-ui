@@ -2,9 +2,19 @@ import React from "react";
 
 import { Box } from "@mui/material";
 
-import LoadingComponent from "./loading-component/loading-component";
+import Image from "next/image";
 
-function LoadingContainer() {
+import dancingMouse from "../../../assets/dancing-mice-dancing.gif";
+
+export function LoadingComponent() {
+  return (
+    <div>
+      <Image src={dancingMouse} alt="dancing mouse" height={35} width={35} />
+    </div>
+  );
+}
+
+export function LoadingContainer() {
   return (
     <Box
       sx={{
@@ -20,9 +30,7 @@ function LoadingContainer() {
         alignItems: "center",
       }}
     >
-      <LoadingComponent />
+      <Image src={dancingMouse} alt="dancing mouse" height={35} width={35} />
     </Box>
   );
 }
-
-export default LoadingContainer;

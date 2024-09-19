@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import "../globals.css";
 
 import logout from "../(auth)/services/logout";
-import Header from "../common/components/header/header.component";
+import { Header } from "../common/components";
 
 import FloatingButton from "./components/floating-button/floating-button.component";
 import AuthenticatedProviders from "./provider";

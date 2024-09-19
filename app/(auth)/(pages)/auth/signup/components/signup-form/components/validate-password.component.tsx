@@ -1,7 +1,7 @@
 import CloseIcon from "@mui/icons-material/Close";
 import DoneIcon from "@mui/icons-material/Done";
 
-import { RenderList } from "@/app/common/components/list/list.component";
+import { RenderList } from "@/app/common/components";
 
 import { useValidationPassword } from "./hooks/useValidationPassword";
 import {

@@ -7,7 +7,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
-import DefaultProgressBar from "./common/components/default-progress-bar/default-progress-bar.component";
+import { DefaultProgressBar } from "./common/components";
 import darkTheme from "./theme/dark.theme";
 
 type GlobalProvidersProps = {

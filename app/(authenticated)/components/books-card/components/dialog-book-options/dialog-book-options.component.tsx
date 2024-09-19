@@ -9,7 +9,7 @@ import {
   ListItemText,
 } from "@mui/material";
 
-import { RenderList } from "@/app/common/components/list/list.component";
+import { RenderList } from "@/app/common/components";
 
 import { useDialogBookOptions } from "./hooks/useDialogBookOptions";
 

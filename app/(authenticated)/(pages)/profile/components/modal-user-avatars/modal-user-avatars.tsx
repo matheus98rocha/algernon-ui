@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
 
-import { RenderList } from "@/app/common/components/list/list.component";
-import LoadingComponent from "@/app/common/components/loading/loading-component/loading-component";
-import ModalWrapper from "@/app/common/components/modal-wrapper/modal-wrapper.layout";
+import {
+  ModalWrapper,
+  LoadingContainer,
+  RenderList,
+} from "@/app/common/components";
 import { avatarDataArray } from "@/app/common/utils/avatar-data";
 
 import { useModalUserAvatars } from "./hooks/useModalUserAvatars";
@@ -20,7 +22,7 @@ function ModalUserAvatars({
     <ModalWrapper handleCloseModal={handleCloseModal} open={isOpenModal}>
       <S.WrapperModalUser>
         {isLoading ? (
-          <LoadingComponent />
+          <LoadingContainer />
         ) : (
           <>
             <S.WrapperModalUserContent>

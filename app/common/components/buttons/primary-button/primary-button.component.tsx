@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 import { WrapperPrimaryButton } from "./primary-button.styles";

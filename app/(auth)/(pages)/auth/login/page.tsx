@@ -2,7 +2,8 @@ import React from "react";
 
 import dynamic from "next/dynamic";
 
-import LoadingContainer from "@/app/common/components/loading/loading.component";
+import { LoadingContainer } from "@/app/common/components";
+
 const DynamicLoginForm = dynamic(
   () => import("./components/login-form/login-form.component"),
   {

@@ -1,5 +1,6 @@
 "use client";
-import ErrorContent from "./common/components/error-content/error-content.component";
+
+import { ErrorContent } from "./common/components";
 
 const ErrorPage = () => {
   return <ErrorContent message="Não encontramos essa página..." />;

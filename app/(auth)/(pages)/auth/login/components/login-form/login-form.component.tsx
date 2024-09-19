@@ -4,9 +4,11 @@ import React from "react";
 import { Checkbox, FormControlLabel, Link, TextField } from "@mui/material";
 
 import AuthFormLayout from "@/app/(auth)/components/auth-form-layout/auth-form-layout.component";
-import ButtonLoading from "@/app/common/components/buttons/button-loading/button-loading.component";
-import PrimaryButton from "@/app/common/components/buttons/primary-button/primary-button.component";
-import TextFieldPassword from "@/app/common/components/inputs/text-field-password/text-field-password";
+import {
+  ButtonLoading,
+  PrimaryButton,
+  TextFieldPassword,
+} from "@/app/common/components";
 
 import { useLoginUserForm } from "./hooks/useLoginUser";
 import * as S from "./login-form.styles";

@@ -4,9 +4,8 @@ import { Box, Grow, useMediaQuery, useTheme } from "@mui/material";
 
 import Image from "next/image";
 
-import DefaultProgressBar from "@/app/common/components/default-progress-bar/default-progress-bar.component";
-
 import AlgernonLogo from "../assets/logo-algernon.png";
+import { DefaultProgressBar } from "../common/components";
 
 type ProvidersProps = {
   children: React.ReactNode;

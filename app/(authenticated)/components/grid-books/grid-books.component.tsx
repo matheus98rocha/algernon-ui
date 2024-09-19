@@ -3,8 +3,7 @@ import React from "react";
 
 import { Fade } from "@mui/material";
 
-import CustomPagination from "@/app/common/components/custom-pagination/custom-pagination.component";
-import { RenderList } from "@/app/common/components/list/list.component";
+import { CustomPagination, RenderList } from "@/app/common/components";
 
 import BookCard from "../books-card/book-card.component";
 

@@ -10,9 +10,11 @@ import ListItemText from "@mui/material/ListItemText";
 import { useRouter } from "next/navigation";
 
 import { patchBookStatus } from "@/app/(authenticated)/services/books/book.service";
-import { RenderList } from "@/app/common/components/list/list.component";
-import LoadingComponent from "@/app/common/components/loading/loading-component/loading-component";
-import ModalWrapper from "@/app/common/components/modal-wrapper/modal-wrapper.layout";
+import {
+  LoadingContainer,
+  ModalWrapper,
+  RenderList,
+} from "@/app/common/components";
 import { BookStatus } from "@/app/common/types/book.type";
 
 import BookMark from "../../bookmark/book-mark.component";
@@ -78,7 +80,7 @@ function ChangeBookStatusModal({
               alignItems: "center",
             }}
           >
-            <LoadingComponent />
+            <LoadingContainer />
           </Box>
         ) : (
           <>

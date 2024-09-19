@@ -5,12 +5,9 @@ import { Box, Grow } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 
-import NotAvaibleImage from "@/app/common/components/not-avaible-image/not-avaible-image.component";
+import { NotAvaibleImage } from "@/app/common/components";
 
-type BookImageProps = {
-  imageUrl: string;
-  id: number;
-};
+import { BookImageProps } from "./book-image.types";
 
 function BookImage({ id, imageUrl }: BookImageProps) {
   const [isHover, setIsHover] = useState<boolean>(false);

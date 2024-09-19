@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-import LoadingContainer from "../common/components/loading/loading.component";
+import { LoadingContainer } from "../common/components";
 import { BookStatus } from "../common/types/book.type";
 
 import FilterBooksContainer from "./components/filter-books-container/filter-books-container.component";

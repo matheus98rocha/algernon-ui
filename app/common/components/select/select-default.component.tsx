@@ -1,23 +1,8 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from "@mui/material";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-type SelectDefaultProps = {
-  label: string;
-  value: string;
-  onChange: (event: SelectChangeEvent<string>, child: ReactNode) => void;
-  options: {
-    value: string | number;
-    label: string;
-  }[];
-  id?: string;
-};
+import { SelectDefaultProps } from "./select-default.types";
 
 // Usando forwardRef para passar a ref corretamente
 const SelectDefault = ({
