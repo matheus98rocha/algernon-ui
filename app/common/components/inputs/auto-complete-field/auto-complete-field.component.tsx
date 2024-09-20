@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 
 import { AutoCompleteFieldProps } from "./auto-complete-field.types";
 
-export default function AutoCompleteField({
+export function AutoCompleteField({
   isLoading,
   options,
   value,

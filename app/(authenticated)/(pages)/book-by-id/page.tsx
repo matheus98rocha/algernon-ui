@@ -3,9 +3,8 @@ import React from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
+import { BackButton } from "../../components";
 import { getBookById } from "../../services/books/book.service";
-
-import BackButton from "./components/back-button/back-button.component";
 
 type BookByIdParams = {
   searchParams: {

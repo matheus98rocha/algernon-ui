@@ -10,7 +10,7 @@ import { TextFormFieldProps } from "../inputs.types";
 
 import { useTextFieldPassword } from "./hooks/useTextFieldPassword";
 
-function TextFieldPassword<TFieldValues extends FieldValues>({
+export function TextFieldPassword<TFieldValues extends FieldValues>({
   label,
   register,
   errors,
@@ -43,5 +43,3 @@ function TextFieldPassword<TFieldValues extends FieldValues>({
     />
   );
 }
-
-export default TextFieldPassword;

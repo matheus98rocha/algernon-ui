@@ -20,7 +20,7 @@ import Settings from "./components/settings/settings.components";
 import { HeaderProps } from "./header.type";
 import { useHeader } from "./hooks/useHeader";
 
-function Header({ logout }: HeaderProps) {
+export function Header({ logout }: HeaderProps) {
   const { anchorElNav, handleCloseNavMenu, handleOpenNavMenu } = useHeader();
   const { user, setUser, setLoading } = useStore();
 
@@ -151,4 +151,3 @@ function Header({ logout }: HeaderProps) {
     </AppBar>
   );
 }
-export default Header;

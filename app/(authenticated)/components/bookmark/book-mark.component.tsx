@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 import { SxProps, Theme } from "@mui/material";
@@ -11,8 +12,6 @@ export type BookMarkProps = {
   onClick?: () => void;
 };
 
-function BookMark({ status, sx, onClick }: BookMarkProps) {
+export function BookMark({ status, sx, onClick }: BookMarkProps) {
   return <S.BookmarkIconStyled status={status} sx={sx} onClick={onClick} />;
 }
-
-export default BookMark;

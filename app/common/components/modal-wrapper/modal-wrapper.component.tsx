@@ -7,7 +7,7 @@ import { Modal } from "@mui/material";
 import * as S from "./modal-wrapper.styles";
 import { ModalWrapperProps } from "./modal-wrapper.types";
 
-function ModalWrapper({
+export function ModalWrapper({
   handleCloseModal,
   open,
   customWidth,
@@ -21,5 +21,3 @@ function ModalWrapper({
     </Modal>
   );
 }
-
-export default ModalWrapper;

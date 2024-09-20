@@ -5,7 +5,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { SelectDefaultProps } from "./select-default.types";
 
 // Usando forwardRef para passar a ref corretamente
-const SelectDefault = ({
+export const SelectDefault = ({
   label,
   onChange,
   options,
@@ -36,5 +36,3 @@ const SelectDefault = ({
     </FormControl>
   );
 };
-
-export default SelectDefault;

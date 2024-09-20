@@ -5,13 +5,13 @@ import { Fade } from "@mui/material";
 
 import { CustomPagination, RenderList } from "@/app/common/components";
 
-import BookCard from "../books-card/book-card.component";
+import { BookCard } from "../books-card/book-card.component";
+import { EmptyBooks } from "../empty-books/empty-books.component";
 
-import EmptyBooks from "./components/empty-books/empty-books.component";
 import * as S from "./grid-books.styles";
 import { gridBooksProps } from "./grid-books.types";
 
-function GridBooks({ books, totalPages }: gridBooksProps) {
+export function GridBooks({ books, totalPages }: gridBooksProps) {
   if (books.length === 0) {
     return <EmptyBooks />;
   }
@@ -31,5 +31,3 @@ function GridBooks({ books, totalPages }: gridBooksProps) {
     </Fade>
   );
 }
-
-export default GridBooks;

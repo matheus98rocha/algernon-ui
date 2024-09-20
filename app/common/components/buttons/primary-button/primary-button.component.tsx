@@ -4,7 +4,7 @@ import React from "react";
 import { WrapperPrimaryButton } from "./primary-button.styles";
 import { PrimaryButtonProps } from "./primary-button.types";
 
-function PrimaryButton({
+export function PrimaryButton({
   sx,
   type,
   LinkComponent,
@@ -25,5 +25,3 @@ function PrimaryButton({
     </WrapperPrimaryButton>
   );
 }
-
-export default PrimaryButton;

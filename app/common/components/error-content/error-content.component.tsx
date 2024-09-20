@@ -7,7 +7,7 @@ import Link from "next/link";
 import { WrapperErrorContent } from "./error-content.styles";
 import { ErrorContentProps } from "./error-content.types";
 
-const ErrorContent = ({ message }: ErrorContentProps) => {
+export const ErrorContent = ({ message }: ErrorContentProps) => {
   return (
     <WrapperErrorContent>
       <h1>{message}</h1>
@@ -17,5 +17,3 @@ const ErrorContent = ({ message }: ErrorContentProps) => {
     </WrapperErrorContent>
   );
 };
-
-export default ErrorContent;

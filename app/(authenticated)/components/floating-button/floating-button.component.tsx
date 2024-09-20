@@ -4,11 +4,11 @@ import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { Collapse, Fab } from "@mui/material";
 
-import CreateBookModal from "../book-modals/create-book-modal/create-book-modal.component";
+import { CreateBookModal } from "../modals/create-book-modal/create-book-modal.component";
 
 import { WrapperForgotPassAndKeepLogged } from "./floating-button.styles";
 
-function FloatingButton() {
+export function FloatingButton() {
   const [isOpenCreateBookModal, setisOpenCreateBookModal] = useState(false);
   const [isHoverFloatingButton, setIsHoverFloatingButton] = useState(false);
 
@@ -33,5 +33,3 @@ function FloatingButton() {
     </WrapperForgotPassAndKeepLogged>
   );
 }
-
-export default FloatingButton;

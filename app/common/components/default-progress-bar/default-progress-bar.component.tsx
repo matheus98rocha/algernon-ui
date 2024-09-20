@@ -3,7 +3,7 @@ import React from "react";
 
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 
-function DefaultProgressBar() {
+export function DefaultProgressBar() {
   return (
     <ProgressBar
       height="4px"

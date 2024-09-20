@@ -13,7 +13,7 @@ export type CustomPaginationProps = {
   count: number;
 };
 
-export default function CustomPagination({ count }: CustomPaginationProps) {
+export function CustomPagination({ count }: CustomPaginationProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 

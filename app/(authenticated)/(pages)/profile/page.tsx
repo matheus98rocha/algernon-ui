@@ -3,7 +3,8 @@ import React from "react";
 
 import { Typography } from "@mui/material";
 
-import UserAvatar from "./components/avatar/user-avatar.component";
+import { UserAvatar } from "../../components";
+
 import * as S from "./profile.styles";
 function Profile() {
   return (

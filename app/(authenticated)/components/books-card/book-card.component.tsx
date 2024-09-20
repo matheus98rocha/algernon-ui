@@ -6,16 +6,16 @@ import { Rating, Tooltip } from "@mui/material";
 
 import { Book } from "@/app/common/types/book.type";
 
-import ChangeBookStatusModal from "../book-modals/change-book-status-modal/change-book-status-modal.component";
-import DeleteBookModal from "../book-modals/delete-book-modal/delete-book-modal.component";
-import BookMark from "../bookmark/book-mark.component";
+import { BookImage } from "../book-image/book-image.component";
+import { BookMark } from "../bookmark/book-mark.component";
+import { DialogBookOptions } from "../dialog-book-options/dialog-book-options.component";
+import { ChangeBookStatusModal } from "../modals/change-book-status-modal/change-book-status-modal.component";
+import { DeleteBookModal } from "../modals/delete-book-modal/delete-book-modal.component";
 
 import * as S from "./book-card.styles";
-import BookImage from "./components/book-image/book-image.component";
-import DialogBookOptions from "./components/dialog-book-options/dialog-book-options.component";
 import { useBookCard } from "./hooks/useBookCard";
 
-function BookCard({
+export function BookCard({
   author,
   book,
   status,
@@ -104,5 +104,3 @@ function BookCard({
     </>
   );
 }
-
-export default BookCard;

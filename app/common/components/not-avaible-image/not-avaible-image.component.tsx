@@ -3,7 +3,7 @@ import React from "react";
 import HideImageIcon from "@mui/icons-material/HideImage";
 import { Box, Typography } from "@mui/material";
 
-function NotAvaibleImage() {
+export function NotAvaibleImage() {
   return (
     <Box
       sx={{
@@ -25,5 +25,3 @@ function NotAvaibleImage() {
     </Box>
   );
 }
-
-export default NotAvaibleImage;

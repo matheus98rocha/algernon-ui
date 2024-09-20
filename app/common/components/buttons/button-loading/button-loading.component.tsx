@@ -6,7 +6,11 @@ import { LoadingComponent } from "../../loading";
 
 import { ButtonLoadingProps } from "./button-loading.type";
 
-function ButtonLoading({ isLoading, type, buttonText }: ButtonLoadingProps) {
+export function ButtonLoading({
+  isLoading,
+  type,
+  buttonText,
+}: ButtonLoadingProps) {
   return (
     <LoadingButton
       type={type}
@@ -22,5 +26,3 @@ function ButtonLoading({ isLoading, type, buttonText }: ButtonLoadingProps) {
     </LoadingButton>
   );
 }
-
-export default ButtonLoading;

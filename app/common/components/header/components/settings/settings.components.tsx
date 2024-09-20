@@ -11,7 +11,7 @@ import {
 
 import Link from "next/link";
 
-import UserAvatar from "@/app/(authenticated)/(pages)/profile/components/avatar/user-avatar.component";
+import { UserAvatar } from "@/app/(authenticated)/components";
 
 import { useSettings } from "./hooks/useSettings";
 import { SettingsProps } from "./settings.type";
