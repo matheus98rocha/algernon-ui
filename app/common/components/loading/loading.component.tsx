@@ -9,7 +9,13 @@ import dancingMouse from "../../../assets/dancing-mice-dancing.gif";
 export function LoadingComponent() {
   return (
     <div>
-      <Image src={dancingMouse} alt="dancing mouse" height={35} width={35} />
+      <Image
+        src={dancingMouse}
+        alt="dancing mouse"
+        height={35}
+        width={35}
+        unoptimized
+      />
     </div>
   );
 }

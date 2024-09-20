@@ -7,7 +7,6 @@ export * from "./books-card/book-card.component";
 export * from "./dialog-book-options/dialog-book-options.component";
 export * from "./empty-books/empty-books.component";
 export * from "./filter-books-container/filter-books-container.component";
-export * from "./floating-button/floating-button.component";
 export * from "./grid-books/grid-books.component";
 export * from "./search-input/search-input.component";
 export * from "./select-order/select-order.component";

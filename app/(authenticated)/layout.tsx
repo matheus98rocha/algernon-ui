@@ -6,7 +6,6 @@ import "../globals.css";
 import logout from "../(auth)/services/logout";
 import { Header } from "../common/components";
 
-import { FloatingButton } from "./components";
 import AuthenticatedProviders from "./provider";
 
 export const metadata: Metadata = {
@@ -28,7 +27,6 @@ export default async function RootLayout({
         }}
       >
         {children}
-        <FloatingButton />
       </Container>
     </AuthenticatedProviders>
   );
