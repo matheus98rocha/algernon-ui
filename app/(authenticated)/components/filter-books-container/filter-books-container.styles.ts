@@ -7,19 +7,17 @@ export const WrapperFilterBooksContainer = styled(Grid)(({ theme }) => ({
   flexDirection: "column",
   gap: theme.spacing(1),
   marginBottom: theme.spacing(1),
+  width: "100%",
 }));
 
 export const WrapperFilterFields = styled(Box)(({ theme }) => ({
-  // display: "flex",
-  // justifyContent: "center",
-  // alignItems: "center",
-
   display: "grid",
   gridTemplateColumns: "800px auto auto",
 
   [theme.breakpoints.down("sm")]: {
-    flexDirection: "column",
+    gridTemplateColumns: "1fr",
   },
+
   width: "100%",
   gap: theme.spacing(1),
   marginBottom: theme.spacing(1),

@@ -42,6 +42,7 @@ export function Header({ logout }: HeaderProps) {
       position="static"
       sx={{
         boxShadow: useTheme().shadows[1],
+        width: "100%",
       }}
     >
       <Container maxWidth="xl">

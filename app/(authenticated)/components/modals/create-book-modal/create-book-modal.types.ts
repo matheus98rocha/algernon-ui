@@ -5,11 +5,14 @@ import {
   UseFormRegister,
 } from "react-hook-form";
 
+import { BooksGoogleApiPersistence } from "@/app/(authenticated)/services/books/book.types";
+
 import { createBookFormData } from "../../../schema/create-book.schema";
 
 export type createBookModalProps = {
   open: boolean;
   handleClose: () => void;
+  book: BooksGoogleApiPersistence;
 };
 
 export type useCreateBookModalReturn = {
@@ -23,13 +26,6 @@ export type useCreateBookModalReturn = {
   watch: (name: keyof createBookFormData) => string;
   booksSearch: any[];
   isLoadingBooksSearch: boolean;
-  handleSetValues: (
-    book: {
-      title: string;
-      authors: string;
-      description: string;
-      bookImage: string;
-    } | null,
-  ) => void;
+  handleSetValues: (book: BooksGoogleApiPersistence | null) => void;
   handleCloseModal: () => void;
 };

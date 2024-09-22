@@ -36,7 +36,8 @@ export function SearchInput({
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
-      event.preventDefault(); // Impede o comportamento padrão do Enter
+      event.stopPropagation();
+      event.preventDefault();
       handleSearchBookName();
     }
   };

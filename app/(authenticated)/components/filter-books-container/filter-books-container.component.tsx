@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { CreateBookModal } from "../modals";
+import { AddNewBookModal } from "../modals/add-new-book-modal/add-new-book-modal.component";
 import { SearchInput } from "../search-input/search-input.component";
 import { SelectOrder } from "../select-order/select-order.component";
 import { StatusStack } from "../status-stack/status-stack.component";
@@ -13,15 +13,22 @@ export function FilterBooksContainer({
   statusQt,
   bookStatus,
   isFavorite,
+  isBookNotFound,
 }: FilterBooksContainerProps) {
   const [bookName, setBookName] = useState<string>("");
-  const [isOpenCreateBookModal, setIsOpenCreateBookModal] = useState(false);
+  const [isOpenAddNewBookModal, setIsOpenAddNewBookModal] =
+    useState<boolean>(false);
 
+  // Sincroniza o modal com o valor de isBookNotFound
+  useEffect(() => {
+    setIsOpenAddNewBookModal(isBookNotFound);
+  }, [isBookNotFound]);
   return (
     <>
-      <CreateBookModal
-        open={isOpenCreateBookModal}
-        handleClose={() => setIsOpenCreateBookModal(false)}
+      <AddNewBookModal
+        handleCloseModal={() => setIsOpenAddNewBookModal(false)}
+        open={isOpenAddNewBookModal}
+        bookName={bookName}
       />
       <S.WrapperFilterBooksContainer container>
         <StatusStack setBookName={setBookName} />
@@ -36,9 +43,9 @@ export function FilterBooksContainer({
           <S.WrapperSelectShort>
             <SelectOrder />
           </S.WrapperSelectShort>
-          <S.CreateBookButton onClick={() => setIsOpenCreateBookModal(true)}>
+          {/* <S.CreateBookButton onClick={() => setIsOpenSearchBookModal(true)}>
             Criar Livro
-          </S.CreateBookButton>
+          </S.CreateBookButton> */}
         </S.WrapperFilterFields>
       </S.WrapperFilterBooksContainer>
     </>

@@ -9,6 +9,7 @@ const darkTheme = createTheme({
     primary: {
       main: "#d6b13b",
       contrastText: "#fff",
+      light: "rgba(218, 185, 106, 0.9)",
     },
     secondary: {
       main: "#b39230",

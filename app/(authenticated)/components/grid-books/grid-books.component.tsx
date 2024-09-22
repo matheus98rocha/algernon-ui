@@ -11,8 +11,12 @@ import { EmptyBooks } from "../empty-books/empty-books.component";
 import * as S from "./grid-books.styles";
 import { gridBooksProps } from "./grid-books.types";
 
-export function GridBooks({ books, totalPages }: gridBooksProps) {
-  if (books.length === 0) {
+export function GridBooks({
+  books,
+  totalPages,
+  isBookNotFound,
+}: gridBooksProps) {
+  if (books.length === 0 && !isBookNotFound) {
     return <EmptyBooks />;
   }
 

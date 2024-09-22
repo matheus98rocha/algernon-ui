@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -8,22 +8,16 @@ import {
   createBookFormData,
   createBookFormSchema,
 } from "@/app/(authenticated)/schema/create-book.schema";
-import createBook, {
-  getBooksOnGoogleApi,
-} from "@/app/(authenticated)/services/books/book.service";
-import { BooksGoogleApi } from "@/app/common/types/books-google-api";
+import createBook from "@/app/(authenticated)/services/books/book.service";
 
-import { useCreateBookModalReturn } from "../create-book-modal.types";
+import { createBookModalProps } from "../create-book-modal.types";
 
 export function useCreateModal({
   handleClose,
-}: {
-  handleClose: () => void;
-}): useCreateBookModalReturn {
+  book,
+  open,
+}: createBookModalProps) {
   const [isLoading, setIsLoading] = useState(false);
-
-  const [booksSearch, setBooksSearch] = useState<BooksGoogleApi[]>([]);
-  const [isLoadingBooksSearch, setIsLoadingBooksSearch] = useState(false);
 
   const router = useRouter();
 
@@ -34,35 +28,21 @@ export function useCreateModal({
     reset,
     control,
     watch,
-    setValue,
     setError,
   } = useForm<createBookFormData>({
     resolver: zodResolver(createBookFormSchema),
   });
 
-  const handleSearchBookName = (bookName: string) => {
-    setIsLoadingBooksSearch(true);
-    getBooksOnGoogleApi(bookName)
-      .then((data) => {
-        setBooksSearch(data);
-      })
-      .finally(() => {
-        setIsLoadingBooksSearch(false);
+  useEffect(() => {
+    if (open) {
+      reset({
+        book: book.title ?? "",
+        author: book.authors ?? "",
+        description: book.description ?? "",
+        imageUrl: book.bookImage ?? "",
       });
-  };
-
-  const handleSetValues = (
-    values: {
-      title: string;
-      authors: string;
-      description: string;
-      bookImage: string;
-    } | null,
-  ) => {
-    setValue("author", values?.authors ?? "");
-    setValue("description", values?.description ?? "");
-    setValue("imageUrl", values?.bookImage ?? "");
-  };
+    }
+  }, [open, book, reset]);
 
   async function onSubmit(data: createBookFormData) {
     setIsLoading(true);
@@ -74,15 +54,12 @@ export function useCreateModal({
     if (res.statusCode === 200) {
       reset();
       handleClose();
-      router.push(`?status=${data.status}`, {
-        scroll: false,
-      });
+      router.push(`/?bookName=${encodeURIComponent(data.book)}`);
     }
   }
 
   const handleCloseModal = useCallback(() => {
     handleClose();
-    setBooksSearch([]);
     reset();
   }, [handleClose, reset]);
 
@@ -93,11 +70,7 @@ export function useCreateModal({
     isLoading,
     onSubmit,
     control,
-    handleSearchBookName,
     watch,
-    booksSearch,
-    isLoadingBooksSearch,
-    handleSetValues,
     handleCloseModal,
   };
 }

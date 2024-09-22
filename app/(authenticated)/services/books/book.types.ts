@@ -33,6 +33,13 @@ export type PersistenceBookById = {
   rate: number;
 };
 
+export type BooksGoogleApiDomain = {
+  title: string;
+  authors: string;
+  description: string;
+  bookImage: string;
+};
+
 export type BooksGoogleApiPersistence = {
   title: string;
   authors: string;

@@ -37,18 +37,20 @@ export default async function Home({ searchParams }: BookByStatusProps) {
   });
 
   const [books] = await Promise.all([booksQuery]);
-
+  const isBookNotFound = !!bookName && books.data.length === 0;
   return (
     <main>
       <FilterBooksContainer
         statusQt={books.pagination.totalItems}
         bookStatus={status}
         isFavorite={isFavorite ?? false}
+        isBookNotFound={isBookNotFound}
       />
       <Suspense fallback={<LoadingContainer />}>
         <GridBooks
           books={books.data}
           totalPages={books.pagination.totalPages}
+          isBookNotFound={isBookNotFound}
         />
       </Suspense>
     </main>

@@ -4,4 +4,5 @@ export type FilterBooksContainerProps = {
   statusQt: number;
   bookStatus: BookStatus;
   isFavorite: boolean;
+  isBookNotFound: boolean;
 };

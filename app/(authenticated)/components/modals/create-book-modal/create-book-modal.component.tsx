@@ -17,7 +17,6 @@ import Image from "next/image";
 import { Controller } from "react-hook-form";
 
 import {
-  AutoCompleteField,
   ButtonLoading,
   ModalWrapper,
   NotAvaibleImage,
@@ -27,7 +26,11 @@ import * as S from "./create-book-modal.styles";
 import { createBookModalProps } from "./create-book-modal.types";
 import { useCreateModal } from "./hooks/useCreateBookModal";
 
-export function CreateBookModal({ open, handleClose }: createBookModalProps) {
+export function CreateBookModal({
+  open,
+  handleClose,
+  book,
+}: createBookModalProps) {
   const {
     errors,
     handleSubmit,
@@ -35,15 +38,8 @@ export function CreateBookModal({ open, handleClose }: createBookModalProps) {
     onSubmit,
     register,
     control,
-    handleSearchBookName,
-    watch,
-    booksSearch,
-    isLoadingBooksSearch,
-    handleSetValues,
     handleCloseModal,
-  } = useCreateModal({ handleClose });
-
-  const showFields = !!watch("author") && !!watch("description");
+  } = useCreateModal({ handleClose, book, open });
 
   const statusOptions = [
     { value: "wantToRead", label: "Quero Ler" },
@@ -72,150 +68,137 @@ export function CreateBookModal({ open, handleClose }: createBookModalProps) {
   return (
     <ModalWrapper handleCloseModal={handleCloseModal} open={open}>
       <S.ModalHeader>
-        <S.StyledModalTitle>
-          {showFields ? "Adicionar Livro" : "Pesquisar Livro"}
-        </S.StyledModalTitle>
+        <S.StyledModalTitle>{"Adicionar Livro"}</S.StyledModalTitle>
         <S.CloseIconStyled onClick={handleCloseModal} />
       </S.ModalHeader>
       <S.StyledFormControl onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3}>
+          <Controller
+            control={control}
+            name="imageUrl"
+            render={({ field: { value } }) => renderImage(value)}
+          />
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              gap: 3,
+            }}
+          >
+            <Controller
+              control={control}
+              name="book"
+              render={({ field: { onChange, onBlur, value, ref } }) => (
+                <TextField
+                  {...register("book")}
+                  sx={{
+                    width: "100%",
+                  }}
+                  label="Nome do Livro"
+                  variant="outlined"
+                  value={value}
+                  inputRef={ref}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  type="text"
+                  helperText={errors.book?.message}
+                  error={!!errors.book}
+                  disabled
+                />
+              )}
+            />
+
+            <Controller
+              control={control}
+              name="author"
+              render={({ field: { onChange, onBlur, value, ref } }) => (
+                <TextField
+                  {...register("author")}
+                  sx={{
+                    width: "100%",
+                  }}
+                  label="Nome do Autor"
+                  variant="outlined"
+                  value={value}
+                  inputRef={ref}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  type="text"
+                  helperText={errors.author?.message}
+                  error={!!errors.author}
+                  disabled
+                />
+              )}
+            />
+          </Box>
+
+          <Controller
+            control={control}
+            name="description"
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextField
+                {...register("description")}
+                multiline
+                rows={3}
+                onChange={onChange}
+                onBlur={onBlur}
+                value={value}
+                label="Descrição do livro"
+                placeholder="Descrição"
+                autoComplete="off"
+                variant="outlined"
+                helperText={errors.description?.message}
+                error={!!errors.description}
+                disabled
+              />
+            )}
+          />
+          <FormControl fullWidth error={!!errors.status} variant="outlined">
+            <InputLabel id="status-label">Status</InputLabel>
+            {/* User o componente SelectDefault */}
+            <Controller
+              name="status"
+              control={control}
+              defaultValue={undefined}
+              rules={{ required: "Status é obrigatório" }}
+              render={({ field }) => (
+                <Select
+                  labelId="status-label"
+                  id="status"
+                  label="Status"
+                  {...field}
+                >
+                  {statusOptions.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              )}
+            />
+            <FormHelperText>{errors.status?.message}</FormHelperText>
+          </FormControl>
           <Box
             sx={{
               display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              gap: 4,
+              justifyContent: "center",
+              alignItems: "center",
               width: "100%",
             }}
           >
-            {showFields && (
-              <Controller
-                control={control}
-                name="imageUrl"
-                render={({ field: { value } }) => renderImage(value)}
-              />
-            )}
             <Box
               sx={{
-                width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                gap: 3,
+                width: "200px",
               }}
             >
-              <Controller
-                control={control}
-                name="book"
-                render={({ field: { onChange, value } }) => (
-                  <AutoCompleteField
-                    {...register("book")}
-                    isLoading={isLoadingBooksSearch}
-                    options={booksSearch}
-                    handleSearchBookName={() => handleSearchBookName(value)}
-                    value={value}
-                    onChange={onChange}
-                    setSelectedBook={handleSetValues}
-                    helperText={errors.book?.message}
-                    error={!!errors.book}
-                  />
-                )}
+              <ButtonLoading
+                buttonText="Adicionar"
+                isLoading={isLoading}
+                type={"submit"}
               />
-              {showFields && (
-                <Controller
-                  control={control}
-                  name="author"
-                  render={({ field: { onChange, onBlur, value, ref } }) => (
-                    <TextField
-                      {...register("author")}
-                      sx={{
-                        width: "100%",
-                      }}
-                      label="Nome do Autor"
-                      variant="outlined"
-                      value={value}
-                      inputRef={ref}
-                      onChange={onChange}
-                      onBlur={onBlur}
-                      type="text"
-                      helperText={errors.author?.message}
-                      error={!!errors.author}
-                      disabled
-                    />
-                  )}
-                />
-              )}
             </Box>
           </Box>
-          {showFields && (
-            <>
-              <Controller
-                control={control}
-                name="description"
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <TextField
-                    {...register("description")}
-                    multiline
-                    rows={3}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                    value={value}
-                    label="Descrição do livro"
-                    placeholder="Descrição"
-                    autoComplete="off"
-                    variant="outlined"
-                    helperText={errors.description?.message}
-                    error={!!errors.description}
-                    disabled
-                  />
-                )}
-              />
-              <FormControl fullWidth error={!!errors.status} variant="outlined">
-                <InputLabel id="status-label">Status</InputLabel>
-                {/* User o componente SelectDefault */}
-                <Controller
-                  name="status"
-                  control={control}
-                  defaultValue={undefined}
-                  rules={{ required: "Status é obrigatório" }}
-                  render={({ field }) => (
-                    <Select
-                      labelId="status-label"
-                      id="status"
-                      label="Status"
-                      {...field}
-                    >
-                      {statusOptions.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  )}
-                />
-                <FormHelperText>{errors.status?.message}</FormHelperText>
-              </FormControl>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "100%",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "200px",
-                  }}
-                >
-                  <ButtonLoading
-                    buttonText="Adicionar"
-                    isLoading={isLoading}
-                    type={"submit"}
-                  />
-                </Box>
-              </Box>
-            </>
-          )}
         </Stack>
       </S.StyledFormControl>
     </ModalWrapper>
