@@ -6,11 +6,17 @@ import { Box, Typography } from "@mui/material";
 
 import { useRouter } from "next/navigation";
 
-export function BackButton() {
+type BackButtonProps = {
+  handleGoBack?: () => void;
+};
+
+export function BackButton({
+  handleGoBack = () => router.back(),
+}: BackButtonProps) {
   const router = useRouter();
   return (
     <Box
-      onClick={() => router.back()}
+      onClick={handleGoBack}
       sx={{
         display: "flex",
         alignItems: "center",

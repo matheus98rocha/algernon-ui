@@ -22,7 +22,7 @@ export async function getAllBooks({
   page = 1,
   size = 12,
   isFavorite,
-  orderBy,
+  orderBy = "newest",
 }: GetBooksParams): Promise<GetBooksDomain> {
   const params: Record<string, any> = {
     page,

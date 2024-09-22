@@ -11,11 +11,10 @@ export const WrapperFilterBooksContainer = styled(Grid)(({ theme }) => ({
 }));
 
 export const WrapperFilterFields = styled(Box)(({ theme }) => ({
-  display: "grid",
-  gridTemplateColumns: "800px auto auto",
+  display: "flex",
 
   [theme.breakpoints.down("sm")]: {
-    gridTemplateColumns: "1fr",
+    flexDirection: "column",
   },
 
   width: "100%",

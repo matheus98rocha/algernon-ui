@@ -10,9 +10,6 @@ import * as S from "./filter-books-container.styles";
 import { FilterBooksContainerProps } from "./filter-books-container.types";
 
 export function FilterBooksContainer({
-  statusQt,
-  bookStatus,
-  isFavorite,
   isBookNotFound,
 }: FilterBooksContainerProps) {
   const [bookName, setBookName] = useState<string>("");
@@ -33,19 +30,10 @@ export function FilterBooksContainer({
       <S.WrapperFilterBooksContainer container>
         <StatusStack setBookName={setBookName} />
         <S.WrapperFilterFields>
-          <SearchInput
-            bookName={bookName}
-            setBookName={setBookName}
-            statusQt={statusQt}
-            bookStatus={bookStatus}
-            isFavorite={isFavorite}
-          />
+          <SearchInput bookName={bookName} setBookName={setBookName} />
           <S.WrapperSelectShort>
             <SelectOrder />
           </S.WrapperSelectShort>
-          {/* <S.CreateBookButton onClick={() => setIsOpenSearchBookModal(true)}>
-            Criar Livro
-          </S.CreateBookButton> */}
         </S.WrapperFilterFields>
       </S.WrapperFilterBooksContainer>
     </>

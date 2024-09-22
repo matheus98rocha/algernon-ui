@@ -1,8 +1,6 @@
 import React from "react";
 
-import { BackButton } from "../../components";
-
-import { GoogleBookList } from "./google-book-list";
+import { CreatBookGrid } from "./creat-book-grid";
 
 type CreateBookParams = {
   searchParams: {
@@ -12,12 +10,7 @@ type CreateBookParams = {
 
 async function CreateBook({ searchParams }: CreateBookParams) {
   const { bookName } = searchParams;
-  return (
-    <div>
-      <BackButton />
-      <GoogleBookList bookName={bookName} />
-    </div>
-  );
+  return <CreatBookGrid bookName={bookName} />;
 }
 
 export default CreateBook;
