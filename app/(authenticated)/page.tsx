@@ -3,9 +3,7 @@ import { Suspense } from "react";
 import { LoadingContainer } from "../common/components";
 import { BookStatus } from "../common/types/book.type";
 
-import FilterBooksContainer from "./components/filter-books-container/filter-books-container.component";
 import { GridBooks } from "./components/grid-books/grid-books.component";
-import { getAllBooks } from "./services/books/book.service";
 
 export type orderByOptions =
   | "alphabetical_a_z"
@@ -15,43 +13,23 @@ export type orderByOptions =
   | "most_rated"
   | "least_rated";
 
-interface BookByStatusProps {
-  searchParams: {
-    status: BookStatus;
-    page: number;
-    bookName: string;
-    isFavorite?: boolean;
-    orderBy?: orderByOptions;
-  };
+export type SearchParamsType = {
+  status: BookStatus;
+  page: number;
+  bookName: string;
+  isFavorite?: boolean;
+  orderBy?: orderByOptions;
+};
+
+export interface BookByStatusProps {
+  searchParams: SearchParamsType;
 }
 
 export default async function Home({ searchParams }: BookByStatusProps) {
-  const { status, page, bookName, isFavorite, orderBy } = searchParams;
-
-  const booksQuery = getAllBooks({
-    status,
-    page,
-    bookName,
-    isFavorite,
-    orderBy,
-  });
-
-  const [books] = await Promise.all([booksQuery]);
-  const isBookNotFound = !!bookName && books.data.length === 0;
   return (
     <main>
-      <FilterBooksContainer
-        statusQt={books.pagination.totalItems}
-        bookStatus={status}
-        isFavorite={isFavorite ?? false}
-        isBookNotFound={isBookNotFound}
-      />
       <Suspense fallback={<LoadingContainer />}>
-        <GridBooks
-          books={books.data}
-          totalPages={books.pagination.totalPages}
-          isBookNotFound={isBookNotFound}
-        />
+        <GridBooks searchParams={searchParams} />
       </Suspense>
     </main>
   );

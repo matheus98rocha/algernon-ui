@@ -13,9 +13,6 @@ export function ModalWrapper({
   customWidth,
   children,
 }: ModalWrapperProps) {
-  console.log(
-    `Largura: ${window.innerWidth}px, Altura: ${window.innerHeight}px`,
-  );
   return (
     <Modal open={open} onClose={handleCloseModal}>
       <S.WrapperModalContent customWidth={customWidth}>

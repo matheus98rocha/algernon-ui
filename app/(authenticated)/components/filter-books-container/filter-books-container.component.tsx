@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { AddNewBookModal } from "../modals/add-new-book-modal/add-new-book-modal.component";
 import { SearchInput } from "../search-input/search-input.component";
@@ -9,17 +9,10 @@ import { StatusStack } from "../status-stack/status-stack.component";
 import * as S from "./filter-books-container.styles";
 import { FilterBooksContainerProps } from "./filter-books-container.types";
 
-export function FilterBooksContainer({
-  isBookNotFound,
-}: FilterBooksContainerProps) {
-  const [bookName, setBookName] = useState<string>("");
+export function FilterBooksContainer({ bookName }: FilterBooksContainerProps) {
   const [isOpenAddNewBookModal, setIsOpenAddNewBookModal] =
     useState<boolean>(false);
 
-  // Sincroniza o modal com o valor de isBookNotFound
-  useEffect(() => {
-    setIsOpenAddNewBookModal(isBookNotFound);
-  }, [isBookNotFound]);
   return (
     <>
       <AddNewBookModal
@@ -28,9 +21,9 @@ export function FilterBooksContainer({
         bookName={bookName}
       />
       <S.WrapperFilterBooksContainer container>
-        <StatusStack setBookName={setBookName} />
+        <StatusStack />
         <S.WrapperFilterFields>
-          <SearchInput bookName={bookName} setBookName={setBookName} />
+          <SearchInput />
           <S.WrapperSelectShort>
             <SelectOrder />
           </S.WrapperSelectShort>

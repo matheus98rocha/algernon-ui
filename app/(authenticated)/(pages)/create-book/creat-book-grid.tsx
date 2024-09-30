@@ -15,6 +15,7 @@ import { getBooksOnGoogleApi } from "../../services/books/book.service";
 import { BooksGoogleApiPersistence } from "../../services/books/book.types";
 
 import { WrapperBooksList } from "./creat-book-grid.styles";
+import { createFallbackArray } from "../../utils/create-fallback-array";
 
 type GoogleBookListProps = {
   bookName: string;
@@ -37,9 +38,7 @@ export function CreatBookGrid({ bookName }: GoogleBookListProps) {
     queryKey: ["google-book-api", bookName], // Adiciona bookName à queryKey
   });
 
-  const fallbackItems = Array.from({ length: 3 }, (_, index) => ({
-    id: index,
-  }));
+  const fallbackItems = createFallbackArray();
 
   return (
     <>

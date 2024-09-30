@@ -14,7 +14,7 @@ const getHeader = () => ({
 export async function post<T = unknown>(
   input: RequestInfo | URL,
   formData: FormData,
-  init?: RequestInit | undefined,
+  init?: RequestInit | undefined
 ): Promise<fetchWrapperResponse> {
   const data = await fetch(`${API_URL}/${input}`, {
     ...init,
@@ -32,13 +32,13 @@ export async function post<T = unknown>(
 export const get = async <T>(
   path: string,
   params?: Record<string, any>,
-  tags?: string[],
+  tags?: string[]
 ): Promise<T> => {
   const url = new URL(`${API_URL}/${path}`);
 
   if (params) {
     Object.keys(params).forEach((key) =>
-      url.searchParams.append(key, params[key]),
+      url.searchParams.append(key, params[key])
     );
   }
 
@@ -62,7 +62,7 @@ export const get = async <T>(
 export async function authPost<T = unknown>(
   input: RequestInfo | URL,
   formData: FormData,
-  init?: RequestInit | undefined,
+  init?: RequestInit | undefined
 ): Promise<fetchWrapperResponse> {
   const data = await fetch(`${API_URL}/${input}`, {
     ...init,
@@ -80,7 +80,7 @@ export async function authPost<T = unknown>(
 export async function authPatch<T = unknown>(
   input: RequestInfo | URL,
   newValues: any,
-  init?: RequestInit | undefined,
+  init?: RequestInit | undefined
 ): Promise<fetchWrapperResponse> {
   try {
     const response = await fetch(`${API_URL}/${input}`, {
@@ -111,7 +111,7 @@ export async function authPatch<T = unknown>(
 
 export async function authDelete<T = unknown>(
   input: RequestInfo | URL,
-  init?: RequestInit | undefined,
+  init?: RequestInit | undefined
 ): Promise<fetchWrapperResponse> {
   try {
     const response = await fetch(`${API_URL}/${input}`, {
@@ -127,10 +127,6 @@ export async function authDelete<T = unknown>(
     if (contentType.includes("application/json")) {
       result = (await response.json()) as T;
     }
-    console.log({
-      data: response,
-      result,
-    });
     return {
       data: response,
       result,

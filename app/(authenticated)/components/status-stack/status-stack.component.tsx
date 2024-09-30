@@ -16,11 +16,7 @@ import { BookMark } from "../bookmark/book-mark.component";
 
 import * as S from "./status-stack.styles";
 
-interface StatusStackProps {
-  setBookName: (name: string) => void;
-}
-
-export const StatusStack: React.FC<StatusStackProps> = ({ setBookName }) => {
+export const StatusStack = () => {
   const theme = useTheme();
   const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const searchParams = useSearchParams();
@@ -28,9 +24,8 @@ export const StatusStack: React.FC<StatusStackProps> = ({ setBookName }) => {
   const isFavoriteParam = searchParams.get("isFavorite");
 
   useEffect(() => {
-    setBookName("");
     revalidateTag("books");
-  }, [statusParam, isFavoriteParam, setBookName]);
+  }, [statusParam, isFavoriteParam]);
 
   const renderLink = useCallback(
     (status: string | null, label: string) => (
@@ -49,7 +44,7 @@ export const StatusStack: React.FC<StatusStackProps> = ({ setBookName }) => {
         </S.ItemStyled>
       </Link>
     ),
-    [statusParam, isFavoriteParam],
+    [statusParam, isFavoriteParam]
   );
 
   return (

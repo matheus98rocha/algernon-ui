@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 
 import SearchIcon from "@mui/icons-material/Search";
 import { Button, InputAdornment } from "@mui/material";
@@ -7,23 +7,24 @@ import { Button, InputAdornment } from "@mui/material";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import * as S from "./search-input.styles";
-import { SearchInputProps } from "./search-input.types";
 
-export function SearchInput({ setBookName, bookName }: SearchInputProps) {
-  const router = useRouter();
+export function SearchInput() {
   const searchParams = useSearchParams();
+  const initialBookName = searchParams.get("bookName") || "";
+  const [bookName, setBookName] = React.useState<string>(initialBookName);
+  const router = useRouter();
 
   const newParams = useMemo(
     () => new URLSearchParams(searchParams.toString()),
-    [searchParams],
+    [searchParams]
   );
 
   const handleSearchBookName = () => {
     if (bookName.length === 0) {
-      return;
+      newParams.delete("bookName"); // Remove o parâmetro quando estiver vazio
+    } else {
+      newParams.set("bookName", bookName); // Adiciona/atualiza o parâmetro
     }
-
-    newParams.set("bookName", bookName);
 
     router.push(`?${newParams.toString()}`);
   };
@@ -36,16 +37,11 @@ export function SearchInput({ setBookName, bookName }: SearchInputProps) {
     }
   };
 
-  const handleCallGetBooksEmptyField = useCallback(() => {
-    if (bookName.length === 0) {
-      newParams.delete("bookName");
-      router.push(`?${newParams.toString()}`);
-    }
-  }, [bookName.length, newParams, router]);
-
-  React.useEffect(() => {
-    handleCallGetBooksEmptyField();
-  }, [bookName, handleCallGetBooksEmptyField]);
+  const handleClearBookName = () => {
+    setBookName(""); // Limpa o estado
+    newParams.delete("bookName"); // Remove o parâmetro da URL
+    router.push(`?${newParams.toString()}`); // Atualiza a URL
+  };
 
   return (
     <S.WrapperSearchInput>
@@ -61,13 +57,13 @@ export function SearchInput({ setBookName, bookName }: SearchInputProps) {
             <InputAdornment position="end">
               <S.StyledButtonsInput>
                 {bookName.length > 0 && (
-                  <Button onClick={() => setBookName("")}>Limpar</Button>
+                  <Button onClick={handleClearBookName}>Limpar</Button>
                 )}
                 <SearchIcon
                   sx={{
                     cursor: "pointer",
                   }}
-                  onClick={() => handleSearchBookName()}
+                  onClick={handleSearchBookName}
                 />
               </S.StyledButtonsInput>
             </InputAdornment>

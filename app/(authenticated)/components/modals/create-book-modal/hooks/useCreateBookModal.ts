@@ -49,7 +49,7 @@ export function useCreateModal({
   async function onSubmit(data: createBookFormData) {
     setIsLoading(true);
     const res = await createBook(data).finally(() => setIsLoading(false));
-    console.log(res);
+
     if (res.statusCode === 409) {
       setError("root", { type: "manual", message: res.message });
       showToast(res.message, "error");
