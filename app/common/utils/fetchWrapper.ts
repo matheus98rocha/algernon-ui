@@ -90,10 +90,6 @@ export async function authPatch<T = unknown>(
       headers: { ...getHeader(), "Content-Type": "application/json" },
     });
 
-    if (!response.ok) {
-      throw new Error(`Erro na requisição: ${response.statusText}`);
-    }
-
     const contentType = response.headers.get("Content-Type") || "";
 
     let result: T;
@@ -124,10 +120,6 @@ export async function authDelete<T = unknown>(
       headers: { ...getHeader() },
     });
 
-    if (!response.ok) {
-      throw new Error(`Erro na requisição: ${response.statusText}`);
-    }
-
     // Caso a resposta não tenha um corpo JSON, omita a propriedade result
     const contentType = response.headers.get("Content-Type") || "";
 
@@ -135,7 +127,10 @@ export async function authDelete<T = unknown>(
     if (contentType.includes("application/json")) {
       result = (await response.json()) as T;
     }
-
+    console.log({
+      data: response,
+      result,
+    });
     return {
       data: response,
       result,

@@ -67,7 +67,7 @@ export async function deleteBook(bookId: number) {
   const res = await authDelete<FavoriteBookResponse>(
     `books/delete-book/${bookId}`,
   );
-
+  console.log(res);
   if (!!res.result.message) {
     return {
       message: res.result.message,

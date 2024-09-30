@@ -5,6 +5,7 @@ import {
   patchBook,
 } from "@/app/(authenticated)/services/books/book.service";
 import { Book } from "@/app/common/types/book.type";
+import { useToast } from "@/app/contexts/toast.context";
 
 export function useBookCard({
   author,
@@ -20,6 +21,7 @@ export function useBookCard({
   const [openMoreOptions, setOpenMoreOptions] = useState<boolean>(false);
   const [openDeleteBook, setOpenDeleteBook] = useState<boolean>(false);
   const [rating, setRating] = useState<number>(rate);
+  const { showToast } = useToast();
 
   const handleFavoriteClick = useCallback(
     async (e: React.MouseEvent) => {
@@ -37,10 +39,10 @@ export function useBookCard({
           imageUrl,
           rate,
         },
-        id,
+        id
       );
     },
-    [author, book, status, description, id, isFavorite, imageUrl, rate],
+    [author, book, status, description, id, isFavorite, imageUrl, rate]
   );
 
   const handleRateBookClick = useCallback(
@@ -61,19 +63,25 @@ export function useBookCard({
           imageUrl,
           rate: rating,
         },
-        id,
+        id
       );
     },
-    [author, book, status, description, id, isFavorite, imageUrl],
+    [author, book, status, description, id, isFavorite, imageUrl]
   );
 
   const handleDeleteBook = useCallback(
     async (e: React.MouseEvent) => {
       e.stopPropagation();
-      await deleteBook(id);
+      const res = await deleteBook(id);
+
+      if (res.statusCode !== 200) {
+        showToast("Ops! Algo deu errado", "error");
+      } else {
+        showToast("Livro deletado com sucesso!", "success");
+      }
       setOpenDeleteBook(false);
     },
-    [id],
+    [id, showToast]
   );
 
   const handleOpenMoreOptionsBookCard = useCallback(
@@ -81,7 +89,7 @@ export function useBookCard({
       e.stopPropagation();
       setOpenMoreOptions(!openMoreOptions);
     },
-    [openMoreOptions],
+    [openMoreOptions]
   );
 
   return {

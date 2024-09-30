@@ -5,23 +5,6 @@ export const WrapperForm = styled("form")(() => ({
   width: "100%",
 }));
 
-export const WrapperModalContent = styled(Box)(({ theme }) => ({
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "600px",
-  backgroundColor: theme.palette.background.paper,
-  boxShadow: theme.shadows[2],
-  padding: theme.spacing(4),
-  borderRadius: "5px",
-  [theme.breakpoints.down("sm")]: {
-    width: "100%",
-    paddingTop: theme.spacing(2),
-    borderRadius: 0,
-  },
-}));
-
 export const CloseIconStyled = styled(CloseIcon)(() => ({
   cursor: "pointer",
 }));

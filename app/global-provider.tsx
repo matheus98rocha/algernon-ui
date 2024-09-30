@@ -8,6 +8,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 import { DefaultProgressBar } from "./common/components";
+import { ToastProvider } from "./contexts/toast.context";
 import darkTheme from "./theme/dark.theme";
 
 type GlobalProvidersProps = {
@@ -23,7 +24,7 @@ function GlobalProvider({ children }: GlobalProvidersProps) {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <QueryClientProvider client={queryClient}>
-          {children}
+          <ToastProvider>{children}</ToastProvider>
         </QueryClientProvider>
       </ThemeProvider>
     </AppRouterCacheProvider>

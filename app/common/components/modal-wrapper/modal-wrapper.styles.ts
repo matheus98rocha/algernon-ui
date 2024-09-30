@@ -12,9 +12,15 @@ export const WrapperModalContent = styled(Box)<{
   boxShadow: theme.shadows[2],
   padding: theme.spacing(4),
   borderRadius: "5px",
+
+  overflowY: "auto",
+  height: "90vh",
+
   [theme.breakpoints.down("sm")]: {
     width: "100%",
+    height: "100%",
     paddingTop: theme.spacing(2),
     borderRadius: 0,
+    overflowy: "scroll",
   },
 }));

@@ -9,6 +9,7 @@ import {
   createBookFormSchema,
 } from "@/app/(authenticated)/schema/create-book.schema";
 import createBook from "@/app/(authenticated)/services/books/book.service";
+import { useToast } from "@/app/contexts/toast.context";
 
 import { createBookModalProps } from "../create-book-modal.types";
 
@@ -18,6 +19,7 @@ export function useCreateModal({
   open,
 }: createBookModalProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const { showToast } = useToast();
 
   const router = useRouter();
 
@@ -47,14 +49,17 @@ export function useCreateModal({
   async function onSubmit(data: createBookFormData) {
     setIsLoading(true);
     const res = await createBook(data).finally(() => setIsLoading(false));
+    console.log(res);
     if (res.statusCode === 409) {
-      setError("book", { type: "manual", message: res.message });
+      setError("root", { type: "manual", message: res.message });
+      showToast(res.message, "error");
     }
 
     if (res.statusCode === 200) {
       reset();
       handleClose();
       router.push(`/?bookName=${encodeURIComponent(data.book)}`);
+      showToast("Livro criado com sucesso!", "success");
     }
   }
 
