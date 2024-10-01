@@ -13,9 +13,9 @@ import { NotAvaibleImage, RenderList } from "@/app/common/components";
 import { BackButton, CreateBookModal, SearchInput } from "../../components";
 import { getBooksOnGoogleApi } from "../../services/books/book.service";
 import { BooksGoogleApiPersistence } from "../../services/books/book.types";
+import { createFallbackArray } from "../../utils/create-fallback-array";
 
 import { WrapperBooksList } from "./creat-book-grid.styles";
-import { createFallbackArray } from "../../utils/create-fallback-array";
 
 type GoogleBookListProps = {
   bookName: string;
@@ -25,7 +25,6 @@ export function CreatBookGrid({ bookName }: GoogleBookListProps) {
   const router = useRouter();
   const [isOpenCreateBookModal, setIsOpenCreateBookModal] =
     useState<boolean>(false);
-  const [bookNameState, setBookName] = useState<string>(bookName);
   const [selectedBook, setSelectedBook] = useState<BooksGoogleApiPersistence>({
     title: "",
     description: "",
@@ -48,7 +47,7 @@ export function CreatBookGrid({ bookName }: GoogleBookListProps) {
         handleClose={() => setIsOpenCreateBookModal(false)}
       />
       <BackButton handleGoBack={() => router.push("/")} />
-      <SearchInput bookName={bookNameState} setBookName={setBookName} />
+      <SearchInput />
       <WrapperBooksList>
         {!isFetched ? (
           <RenderList

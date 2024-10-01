@@ -1,20 +1,22 @@
 "use client";
 import React, { useCallback, useState } from "react";
+
 import { Fade, Skeleton } from "@mui/material";
 
+import { useQuery } from "@tanstack/react-query";
+
 import { CustomPagination, RenderList } from "@/app/common/components";
+import { Book, Pagination } from "@/app/common/types/book.type";
+
+import { BookByStatusProps } from "../../page";
+import { getAllBooks } from "../../services/books/book.service";
+import { createFallbackArray } from "../../utils/create-fallback-array";
 import { BookCard } from "../books-card/book-card.component";
 import { EmptyBooks } from "../empty-books/empty-books.component";
+import FilterBooksContainer from "../filter-books-container/filter-books-container.component";
+import { AddNewBookModal } from "../modals/add-new-book-modal/add-new-book-modal.component";
 
 import * as S from "./grid-books.styles";
-import { useQuery } from "@tanstack/react-query";
-import { getAllBooks } from "../../services/books/book.service";
-import { BookByStatusProps } from "../../page";
-import FilterBooksContainer from "../filter-books-container/filter-books-container.component";
-
-import { createFallbackArray } from "../../utils/create-fallback-array";
-import { Book, Pagination } from "@/app/common/types/book.type";
-import { AddNewBookModal } from "../modals/add-new-book-modal/add-new-book-modal.component";
 
 type GridBooksProps = {
   searchParams: BookByStatusProps["searchParams"];
@@ -43,7 +45,7 @@ export function GridBooks({ searchParams }: GridBooksProps) {
     // select: (data) => data,
     select: useCallback(
       (data: { data: Book[]; pagination: Pagination }) => data,
-      []
+      [],
     ),
   });
 

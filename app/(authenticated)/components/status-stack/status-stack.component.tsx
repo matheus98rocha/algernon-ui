@@ -44,7 +44,7 @@ export const StatusStack = () => {
         </S.ItemStyled>
       </Link>
     ),
-    [statusParam, isFavoriteParam]
+    [statusParam, isFavoriteParam],
   );
 
   return (

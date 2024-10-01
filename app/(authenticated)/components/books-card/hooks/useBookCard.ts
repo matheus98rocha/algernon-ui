@@ -39,10 +39,10 @@ export function useBookCard({
           imageUrl,
           rate,
         },
-        id
+        id,
       );
     },
-    [author, book, status, description, id, isFavorite, imageUrl, rate]
+    [author, book, status, description, id, isFavorite, imageUrl, rate],
   );
 
   const handleRateBookClick = useCallback(
@@ -63,10 +63,10 @@ export function useBookCard({
           imageUrl,
           rate: rating,
         },
-        id
+        id,
       );
     },
-    [author, book, status, description, id, isFavorite, imageUrl]
+    [author, book, status, description, id, isFavorite, imageUrl],
   );
 
   const handleDeleteBook = useCallback(
@@ -81,7 +81,7 @@ export function useBookCard({
       }
       setOpenDeleteBook(false);
     },
-    [id, showToast]
+    [id, showToast],
   );
 
   const handleOpenMoreOptionsBookCard = useCallback(
@@ -89,7 +89,7 @@ export function useBookCard({
       e.stopPropagation();
       setOpenMoreOptions(!openMoreOptions);
     },
-    [openMoreOptions]
+    [openMoreOptions],
   );
 
   return {
