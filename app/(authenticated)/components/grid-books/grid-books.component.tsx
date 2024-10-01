@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Fade, Skeleton } from "@mui/material";
 
 import { CustomPagination, RenderList } from "@/app/common/components";
@@ -15,7 +15,6 @@ import FilterBooksContainer from "../filter-books-container/filter-books-contain
 import { createFallbackArray } from "../../utils/create-fallback-array";
 import { Book, Pagination } from "@/app/common/types/book.type";
 import { AddNewBookModal } from "../modals/add-new-book-modal/add-new-book-modal.component";
-import { ConstructionOutlined } from "@mui/icons-material";
 
 type GridBooksProps = {
   searchParams: BookByStatusProps["searchParams"];
@@ -32,6 +31,12 @@ export function GridBooks({ searchParams }: GridBooksProps) {
     queryFn: async () =>
       getAllBooks({
         ...searchParams,
+      }).then((data) => {
+        if (data.data.length === 0 && bookName.length > 0) {
+          setIsOpenAddBookModal(true);
+        }
+
+        return data;
       }),
 
     queryKey: ["books", bookName, page, status, isFavorite, orderBy],
@@ -54,11 +59,17 @@ export function GridBooks({ searchParams }: GridBooksProps) {
   if (showEmptyBooks) {
     return (
       <>
+        <AddNewBookModal
+          bookName={searchParams.bookName}
+          handleCloseModal={() => setIsOpenAddBookModal(false)}
+          open={isOpenAddBookModal}
+        />
         <FilterBooksContainer bookName={searchParams.bookName} />
         <EmptyBooks />;
       </>
     );
   }
+
   if (isFetching) {
     return (
       <S.WrapperBooksList container>
@@ -75,14 +86,6 @@ export function GridBooks({ searchParams }: GridBooksProps) {
 
   return (
     <>
-      {/* Preciso abrir esse modal quando o usuário 
-        enviar o searchParams.bookname e o retorno da api for vázio
-        */}
-      <AddNewBookModal
-        bookName={searchParams.bookName}
-        handleCloseModal={() => setIsOpenAddBookModal(false)}
-        open={isOpenAddBookModal}
-      />
       <FilterBooksContainer bookName={searchParams.bookName} />
       <Fade in>
         <S.WrapperGridBooks>
