@@ -23,7 +23,7 @@ async function BookById({ searchParams }: BookByIdParams) {
 
   return (
     <div>
-      <BackButton />
+      <BackButton isBack={true} />
       <ul>
         <Image
           alt="book image by id"

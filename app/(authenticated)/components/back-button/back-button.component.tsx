@@ -1,30 +1,25 @@
 "use client";
-import React from "react";
-
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Box, Typography } from "@mui/material";
+import React, { useCallback } from "react";
 
 import { useRouter } from "next/navigation";
 
-type BackButtonProps = {
-  handleGoBack?: () => void;
-};
+import * as S from "./back-button.styles";
+import { BackButtonProps } from "./back-button.types";
 
-export function BackButton({
-  handleGoBack = () => router.back(),
-}: BackButtonProps) {
+export function BackButton({ path = "/", isBack = false }: BackButtonProps) {
   const router = useRouter();
+
+  const handleRoutePush = useCallback(
+    (isBack: boolean) => {
+      isBack ? router.back() : router.push(path);
+    },
+    [path, router],
+  );
+
   return (
-    <Box
-      onClick={handleGoBack}
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        cursor: "pointer",
-      }}
-    >
-      <ArrowBackIcon />
-      <Typography variant="h6">Voltar</Typography>
-    </Box>
+    <S.WrapperBackButton onClick={() => handleRoutePush(isBack)}>
+      <S.StyledArrowBackIcon />
+      <S.BackButtonTypography variant="h6">Voltar</S.BackButtonTypography>
+    </S.WrapperBackButton>
   );
 }

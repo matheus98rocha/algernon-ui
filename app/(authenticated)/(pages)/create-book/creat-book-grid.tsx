@@ -6,7 +6,6 @@ import Skeleton from "@mui/material/Skeleton"; // Import do Skeleton do Material
 
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 import { NotAvaibleImage, RenderList } from "@/app/common/components";
 
@@ -22,7 +21,6 @@ type GoogleBookListProps = {
 };
 
 export function CreatBookGrid({ bookName }: GoogleBookListProps) {
-  const router = useRouter();
   const [isOpenCreateBookModal, setIsOpenCreateBookModal] =
     useState<boolean>(false);
   const [selectedBook, setSelectedBook] = useState<BooksGoogleApiPersistence>({
@@ -46,7 +44,7 @@ export function CreatBookGrid({ bookName }: GoogleBookListProps) {
         open={isOpenCreateBookModal}
         handleClose={() => setIsOpenCreateBookModal(false)}
       />
-      <BackButton handleGoBack={() => router.push("/")} />
+      <BackButton />
       <SearchInput />
       <WrapperBooksList>
         {!isFetched ? (
