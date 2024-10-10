@@ -10,6 +10,7 @@ import {
 } from "@/app/(authenticated)/schema/create-book.schema";
 import createBook from "@/app/(authenticated)/services/books/book.service";
 import { useToast } from "@/app/contexts/toast.context";
+import { queryClient } from "@/app/global-provider";
 
 import { createBookModalProps } from "../create-book-modal.types";
 
@@ -46,6 +47,12 @@ export function useCreateModal({
     }
   }, [open, book, reset]);
 
+  const prefetchBooks = async () => {
+    await queryClient.prefetchQuery({
+      queryKey: ["books"],
+    });
+  };
+
   async function onSubmit(data: createBookFormData) {
     setIsLoading(true);
     const res = await createBook(data).finally(() => setIsLoading(false));
@@ -58,8 +65,13 @@ export function useCreateModal({
     if (res.statusCode === 200) {
       reset();
       handleClose();
-      router.push(`/?bookName=${encodeURIComponent(data.book)}`);
-      showToast("Livro criado com sucesso!", "success");
+      prefetchTodos()
+        .then((resp) => console.log(resp))
+        .finally(() => {
+          router.push(`/`);
+
+          showToast("Livro criado com sucesso!", "success");
+        });
     }
   }
 
