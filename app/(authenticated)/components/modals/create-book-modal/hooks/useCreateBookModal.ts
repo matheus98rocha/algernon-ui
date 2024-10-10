@@ -65,13 +65,11 @@ export function useCreateModal({
     if (res.statusCode === 200) {
       reset();
       handleClose();
-      prefetchTodos()
-        .then((resp) => console.log(resp))
-        .finally(() => {
-          router.push(`/`);
+      prefetchBooks().finally(() => {
+        router.push(`/`);
 
-          showToast("Livro criado com sucesso!", "success");
-        });
+        showToast("Livro criado com sucesso!", "success");
+      });
     }
   }
 
