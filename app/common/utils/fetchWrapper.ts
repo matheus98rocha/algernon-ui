@@ -48,6 +48,7 @@ export const get = async <T>(
       next: {
         tags,
       },
+      cache: "no-store",
     });
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${res.status} - ${res.statusText}`);

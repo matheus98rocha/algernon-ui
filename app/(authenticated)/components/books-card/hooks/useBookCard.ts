@@ -6,6 +6,7 @@ import {
 } from "@/app/(authenticated)/services/books/book.service";
 import { Book } from "@/app/common/types/book.type";
 import { useToast } from "@/app/contexts/toast.context";
+import { queryClient } from "@/app/global-provider";
 
 export function useBookCard({
   author,
@@ -22,6 +23,14 @@ export function useBookCard({
   const [openDeleteBook, setOpenDeleteBook] = useState<boolean>(false);
   const [rating, setRating] = useState<number>(rate);
   const { showToast } = useToast();
+
+  const handleRefresh = () => {
+    queryClient
+      .resetQueries({
+        queryKey: ["books"],
+      })
+      .then((resp) => console.log(resp));
+  };
 
   const handleFavoriteClick = useCallback(
     async (e: React.MouseEvent) => {
@@ -40,7 +49,12 @@ export function useBookCard({
           rate,
         },
         id,
-      );
+      ).then((response) => {
+        if (response.statusCode === 200) {
+          handleRefresh();
+        }
+        return response;
+      });
     },
     [author, book, status, description, id, isFavorite, imageUrl, rate],
   );

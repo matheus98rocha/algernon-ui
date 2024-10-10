@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import React from "react";
 
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -16,8 +15,15 @@ type GlobalProvidersProps = {
   authenticated: boolean;
 };
 
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 0,
+    },
+  },
+});
+
 function GlobalProvider({ children }: GlobalProvidersProps) {
-  const [queryClient] = useState(() => new QueryClient());
   return (
     <AppRouterCacheProvider>
       <DefaultProgressBar />
