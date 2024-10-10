@@ -36,7 +36,7 @@ export function useGridBooks({ searchParams }: GridBooksProps) {
     queryKey: ["books", bookName, page, status, isFavorite, orderBy],
     select: useCallback(
       (data: { data: Book[]; pagination: Pagination }) => data,
-      [],
+      []
     ),
   });
 
