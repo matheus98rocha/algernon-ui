@@ -1,12 +1,14 @@
 import { useCallback, useState } from "react";
 
+import { useMutation } from "@tanstack/react-query";
+
 import {
   deleteBook,
   patchBook,
 } from "@/app/(authenticated)/services/books/book.service";
 import { Book } from "@/app/common/types/book.type";
 import { useToast } from "@/app/contexts/toast.context";
-import { queryClient } from "@/app/global-provider";
+import { useRefetchQuerie } from "@/app/hooks/useRefetchQuerie.hook";
 
 export function useBookCard({
   author,
@@ -24,44 +26,45 @@ export function useBookCard({
   const [rating, setRating] = useState<number>(rate);
   const { showToast } = useToast();
 
-  const handleRefresh = () => {
-    queryClient
-      .resetQueries({
-        queryKey: ["books"],
-      })
-      .then((resp) => console.log(resp));
-  };
+  const { handleResetQuerie } = useRefetchQuerie();
 
-  const handleFavoriteClick = useCallback(
-    async (e: React.MouseEvent) => {
-      e.stopPropagation();
+  const { mutateAsync: handleAddFavorite } = useMutation({
+    mutationFn: async (event: React.MouseEvent) => {
+      event.stopPropagation();
+
       const updatedFavorite = !isFavorite;
       setIsFavorite(updatedFavorite);
-      await patchBook(
-        {
-          author,
-          book,
-          status,
-          description,
-          id,
-          isFavorite: updatedFavorite,
-          imageUrl,
-          rate,
-        },
-        id,
-      ).then((response) => {
-        if (response.statusCode === 200) {
-          handleRefresh();
-        }
-        return response;
-      });
-    },
-    [author, book, status, description, id, isFavorite, imageUrl, rate],
-  );
 
-  const handleRateBookClick = useCallback(
-    async (e: React.SyntheticEvent<Element, Event>, rating: number) => {
-      e.stopPropagation();
+      const bookData = {
+        author,
+        book,
+        status,
+        description,
+        id,
+        isFavorite: updatedFavorite,
+        imageUrl,
+        rate,
+      };
+
+      return await patchBook(bookData, id);
+    },
+    onSuccess: () => {
+      handleResetQuerie("books");
+    },
+    onError: () => {
+      showToast("Ops! Algo deu errado", "error");
+    },
+  });
+
+  const { mutateAsync: handleRateBook } = useMutation({
+    mutationFn: async ({
+      event,
+      rating,
+    }: {
+      event: React.SyntheticEvent<Element, Event>;
+      rating: number;
+    }) => {
+      event.stopPropagation();
       if (!rating) {
         return;
       }
@@ -77,46 +80,51 @@ export function useBookCard({
           imageUrl,
           rate: rating,
         },
-        id,
+        id
       );
     },
-    [author, book, status, description, id, isFavorite, imageUrl],
-  );
+    onError: () => {
+      showToast("Ops! Algo deu errado", "error");
+    },
+  });
 
-  const handleDeleteBook = useCallback(
-    async (e: React.MouseEvent) => {
-      e.stopPropagation();
-      const res = await deleteBook(id);
+  const { mutateAsync: handleDeleteBook } = useMutation({
+    mutationFn: async (event: React.MouseEvent) => {
+      event.stopPropagation();
 
-      if (res.statusCode !== 200) {
-        showToast("Ops! Algo deu errado", "error");
-      } else {
-        showToast("Livro deletado com sucesso!", "success");
-      }
+      await deleteBook(id);
+    },
+    onSuccess: () => {
+      handleResetQuerie("books");
+      showToast("Livro deletado com sucesso!", "success");
+    },
+    onError: () => {
+      showToast("Ops! Algo deu errado", "error");
+    },
+    onSettled: () => {
       setOpenDeleteBook(false);
     },
-    [id, showToast],
-  );
+  });
 
   const handleOpenMoreOptionsBookCard = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
       setOpenMoreOptions(!openMoreOptions);
     },
-    [openMoreOptions],
+    [openMoreOptions]
   );
 
   return {
     openDeleteBook,
     openMoreOptions,
     isFavorite,
-    handleFavoriteClick,
+    handleAddFavorite,
     handleDeleteBook,
     handleOpenMoreOptionsBookCard,
     setOpenMoreOptions,
     setOpenDeleteBook,
     rating,
     setRating,
-    handleRateBookClick,
+    handleRateBook,
   };
 }

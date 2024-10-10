@@ -27,14 +27,14 @@ export function BookCard({
 }: Book) {
   const {
     handleDeleteBook,
-    handleFavoriteClick,
+    handleAddFavorite,
     handleOpenMoreOptionsBookCard,
     isFavorite,
     openDeleteBook,
     openMoreOptions,
     setOpenDeleteBook,
     setOpenMoreOptions,
-    handleRateBookClick,
+    handleRateBook,
     setRating,
     rating,
   } = useBookCard({
@@ -66,7 +66,7 @@ export function BookCard({
         <DialogBookOptions
           handleClose={() => setOpenMoreOptions(false)}
           open={openMoreOptions}
-          handleFavoriteBook={handleFavoriteClick}
+          handleFavoriteBook={handleAddFavorite}
           isFavorite={isFavorite}
           handleDeleteBook={() => setOpenDeleteBook(true)}
         />
@@ -97,7 +97,10 @@ export function BookCard({
           value={rating}
           onChange={(event, newValue) => {
             setRating(newValue ?? 0);
-            handleRateBookClick(event, newValue ?? 0);
+            handleRateBook({
+              event,
+              rating: newValue ?? 0,
+            });
           }}
         />
       </S.WrapperBookCard>
