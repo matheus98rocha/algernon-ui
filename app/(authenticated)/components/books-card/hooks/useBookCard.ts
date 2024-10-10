@@ -80,7 +80,7 @@ export function useBookCard({
           imageUrl,
           rate: rating,
         },
-        id
+        id,
       );
     },
     onError: () => {
@@ -88,30 +88,31 @@ export function useBookCard({
     },
   });
 
-  const { mutateAsync: handleDeleteBook } = useMutation({
-    mutationFn: async (event: React.MouseEvent) => {
-      event.stopPropagation();
+  const { mutateAsync: handleDeleteBook, isPending: isPendingDeleteBook } =
+    useMutation({
+      mutationFn: async (event: React.MouseEvent) => {
+        event.stopPropagation();
 
-      await deleteBook(id);
-    },
-    onSuccess: () => {
-      handleResetQuerie("books");
-      showToast("Livro deletado com sucesso!", "success");
-    },
-    onError: () => {
-      showToast("Ops! Algo deu errado", "error");
-    },
-    onSettled: () => {
-      setOpenDeleteBook(false);
-    },
-  });
+        await deleteBook(id);
+      },
+      onSuccess: () => {
+        handleResetQuerie("books");
+        showToast("Livro deletado com sucesso!", "success");
+      },
+      onError: () => {
+        showToast("Ops! Algo deu errado", "error");
+      },
+      onSettled: () => {
+        setOpenDeleteBook(false);
+      },
+    });
 
   const handleOpenMoreOptionsBookCard = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
       setOpenMoreOptions(!openMoreOptions);
     },
-    [openMoreOptions]
+    [openMoreOptions],
   );
 
   return {
@@ -126,5 +127,6 @@ export function useBookCard({
     rating,
     setRating,
     handleRateBook,
+    isPendingDeleteBook,
   };
 }

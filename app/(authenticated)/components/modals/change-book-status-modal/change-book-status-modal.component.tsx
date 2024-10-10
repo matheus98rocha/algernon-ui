@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 
 import { Box, Typography } from "@mui/material";
 import List from "@mui/material/List";
@@ -8,6 +8,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 import { patchBookStatus } from "@/app/(authenticated)/services/books/book.service";
@@ -17,6 +18,8 @@ import {
   RenderList,
 } from "@/app/common/components";
 import { BookStatus } from "@/app/common/types/book.type";
+import { useToast } from "@/app/contexts/toast.context";
+import { useRefetchQuerie } from "@/app/hooks/useRefetchQuerie.hook";
 
 import { BookMark } from "../../bookmark/book-mark.component";
 
@@ -37,7 +40,8 @@ export function ChangeBookStatusModal({
   currentBookStatus,
   bookId,
 }: ChangeBookStatusModalProps) {
-  const [isLoading, setIsLoading] = useState(false);
+  const { showToast } = useToast();
+  const { handleResetQuerie } = useRefetchQuerie();
 
   const router = useRouter();
 
@@ -58,22 +62,25 @@ export function ChangeBookStatusModal({
     [router],
   );
 
-  const handleChangeBookStatus = useCallback(
-    (status: BookStatus) => {
-      setIsLoading(true);
+  const { mutateAsync: handleChangeBookStatus, isPending } = useMutation({
+    mutationFn: async (status: BookStatus) => {
       patchBookStatus(status, bookId).finally(() => {
-        setIsLoading(false);
-        handleCloseModal();
         handlePageChange(status);
       });
     },
-    [bookId, handleCloseModal, handlePageChange],
-  );
+    onSuccess: () => {
+      handleResetQuerie("books");
+      handleCloseModal();
+    },
+    onError: () => {
+      showToast("Ops! Algo deu errado", "error");
+    },
+  });
 
   return (
     <ModalWrapper handleCloseModal={handleCloseModal} open={open}>
       <>
-        {isLoading ? (
+        {isPending ? (
           <Box
             sx={{
               display: "flex",

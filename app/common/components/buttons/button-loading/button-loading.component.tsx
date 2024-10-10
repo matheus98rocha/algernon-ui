@@ -10,10 +10,13 @@ export function ButtonLoading({
   isLoading,
   type,
   buttonText,
+  onClick,
+  color = "primary",
 }: ButtonLoadingProps) {
   return (
     <LoadingButton
       type={type}
+      color={color}
       variant="contained"
       loading={isLoading}
       loadingPosition="center"
@@ -21,6 +24,7 @@ export function ButtonLoading({
       sx={{
         width: "100%",
       }}
+      onClick={onClick}
     >
       {buttonText}
     </LoadingButton>

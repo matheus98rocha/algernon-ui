@@ -7,16 +7,20 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
+import { ButtonLoading } from "@/app/common/components";
+
 export type DeleteBookModalProps = {
   open: boolean;
   handleClose: () => void;
   handleDeleteBook: (e: React.MouseEvent) => void;
+  isLoading: boolean;
 };
 
 export function DeleteBookModal({
   handleClose,
   open,
   handleDeleteBook,
+  isLoading,
 }: DeleteBookModalProps) {
   return (
     <Dialog
@@ -32,17 +36,21 @@ export function DeleteBookModal({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button color="success" variant="contained" onClick={handleClose}>
+        <Button
+          color="success"
+          variant="contained"
+          onClick={handleClose}
+          sx={{ width: "100%" }}
+        >
           Não
         </Button>
-        <Button
-          color="error"
-          variant="contained"
-          onClick={handleDeleteBook}
-          autoFocus
-        >
-          Sim
-        </Button>
+        <ButtonLoading
+          buttonText="Sim"
+          isLoading={isLoading}
+          type={"button"}
+          onClick={(e: React.MouseEvent) => handleDeleteBook(e)}
+          color={"error"}
+        />
       </DialogActions>
     </Dialog>
   );

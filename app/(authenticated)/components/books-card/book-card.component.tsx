@@ -37,6 +37,7 @@ export function BookCard({
     handleRateBook,
     setRating,
     rating,
+    isPendingDeleteBook,
   } = useBookCard({
     author,
     book,
@@ -62,6 +63,7 @@ export function BookCard({
           handleClose={() => setOpenDeleteBook(false)}
           handleDeleteBook={(e: React.MouseEvent) => handleDeleteBook(e)}
           open={openDeleteBook}
+          isLoading={isPendingDeleteBook}
         />
         <DialogBookOptions
           handleClose={() => setOpenMoreOptions(false)}
