@@ -44,7 +44,6 @@ export function useGridBooks({ searchParams }: GridBooksProps) {
   const totalPages = booksResponse?.pagination.totalPages || 0;
   const hasBooks = books.length > 0;
   const showEmptyBooks = !hasBooks && isFetched;
-
   const showPagination = totalPages > 1;
 
   return {

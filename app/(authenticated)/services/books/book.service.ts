@@ -20,7 +20,7 @@ export async function getAllBooks({
   status,
   bookName,
   page = 1,
-  size = 12,
+  size = 9,
   isFavorite,
   orderBy = "newest",
 }: GetBooksParams): Promise<GetBooksDomain> {
@@ -65,7 +65,7 @@ export async function getBookById(id: string): Promise<Book> {
 
 export async function deleteBook(bookId: number) {
   const res = await authDelete<FavoriteBookResponse>(
-    `books/delete-book/${bookId}`,
+    `books/delete-book/${bookId}`
   );
 
   if (!!res.result.message) {
@@ -85,7 +85,7 @@ export async function deleteBook(bookId: number) {
 }
 
 export async function getBooksOnGoogleApi(
-  name: string,
+  name: string
 ): Promise<BooksGoogleApi[]> {
   const resp = await get<BooksGoogleApi[]>("books/googleBookApi", { name }, [
     "books",
@@ -98,7 +98,7 @@ export async function getBooksOnGoogleApi(
 export async function patchBook(bookData: Book, bookId: number) {
   const res = await authPatch<PatchBookResponse>(
     `books/updateBook/${bookId}`,
-    bookData,
+    bookData
   );
 
   if (!!res.result.message) {
@@ -120,7 +120,7 @@ export async function patchBook(bookData: Book, bookId: number) {
 export async function patchBookStatus(status: BookStatus, bookId: number) {
   const res = await authPatch<PatchBookResponse>(
     `books/updateBookStatus/${bookId}`,
-    { status },
+    { status }
   );
 
   if (!!res.result.message) {

@@ -16,12 +16,17 @@ export type CustomPaginationProps = {
 export function CustomPagination({ count }: CustomPaginationProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [page, setPage] = React.useState(1);
 
   const handlePageChange = (_: React.ChangeEvent<unknown>, page: number) => {
     // Cria uma cópia dos parâmetros da URL existentes
     const newParams = new URLSearchParams(searchParams.toString());
     // Adiciona ou atualiza o parâmetro da página
     newParams.set("page", page.toString());
+
+    // Atualiza o estado da página
+    setPage(page);
+
     // Atualiza a URL sem remover os parâmetros existentes
     router.push(`?${newParams.toString()}`);
   };
@@ -31,6 +36,7 @@ export function CustomPagination({ count }: CustomPaginationProps) {
       <MuiPagination
         count={count}
         onChange={handlePageChange}
+        page={page}
         renderItem={(item) => (
           <PaginationItem
             {...item}

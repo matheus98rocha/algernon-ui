@@ -59,7 +59,6 @@ export function GridBooks({ searchParams }: GridBooksProps) {
       </S.WrapperBooksList>
     );
   }
-
   return (
     <>
       <FilterBooksContainer bookName={searchParams.bookName} />
