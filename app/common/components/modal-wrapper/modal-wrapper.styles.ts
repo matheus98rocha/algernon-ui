@@ -14,7 +14,7 @@ export const WrapperModalContent = styled(Box)<{
   borderRadius: "5px",
 
   overflowY: "auto",
-  height: "90vh",
+  // height: "90vh",
 
   [theme.breakpoints.down("sm")]: {
     width: "100%",

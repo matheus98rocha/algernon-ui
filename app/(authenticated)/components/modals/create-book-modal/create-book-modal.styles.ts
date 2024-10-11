@@ -9,12 +9,11 @@ export const CloseIconStyled = styled(CloseIcon)(() => ({
   cursor: "pointer",
 }));
 
-export const ModalHeader = styled(Box)(({ theme }) => ({
+export const ModalHeader = styled(Box)(() => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
   width: "100%",
-  padding: theme.spacing(2), // 16px
 }));
 
 export const StyledTextField = styled(TextField)(() => ({
