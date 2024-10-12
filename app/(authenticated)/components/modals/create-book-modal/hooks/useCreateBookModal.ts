@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
@@ -19,7 +20,6 @@ export function useCreateModal({
   book,
   open,
 }: createBookModalProps) {
-  const [isLoading, setIsLoading] = useState(false);
   const { showToast } = useToast();
 
   const router = useRouter();
@@ -34,6 +34,12 @@ export function useCreateModal({
     setError,
   } = useForm<createBookFormData>({
     resolver: zodResolver(createBookFormSchema),
+    defaultValues: {
+      book: book.title,
+      author: book.authors,
+      description: book.description,
+      imageUrl: book.bookImage,
+    },
   });
 
   useEffect(() => {
@@ -47,25 +53,34 @@ export function useCreateModal({
     }
   }, [open, book, reset]);
 
-  async function onSubmit(data: createBookFormData) {
-    setIsLoading(true);
-    const res = await createBook(data).finally(() => setIsLoading(false));
+  const { mutateAsync: onSubmitMutation, isPending: isLoading } = useMutation({
+    mutationFn: async (data: createBookFormData) => createBook(data),
+    onSuccess: (response) => {
+      console.log(response);
+      if (response.statusCode === 409) {
+        setError("root", { type: "manual", message: response.message });
+        showToast(response.message, "error");
+      } else {
+        reset();
+        handleClose();
+        prefetchQuery("books").finally(() => {
+          showToast("Livro criado com sucesso!", "success");
+        });
+      }
+    },
+    onError: (response) => {
+      setError("root", { type: "manual", message: response.message });
+      showToast(response.message, "error");
+    },
+  });
 
-    if (res.statusCode === 409) {
-      setError("root", { type: "manual", message: res.message });
-      showToast(res.message, "error");
+  const onSubmit = async (data: createBookFormData) => {
+    try {
+      await onSubmitMutation(data);
+    } catch (error) {
+      return error;
     }
-
-    if (res.statusCode === 200) {
-      reset();
-      handleClose();
-      prefetchQuery("books").finally(() => {
-        router.push(`/`);
-
-        showToast("Livro criado com sucesso!", "success");
-      });
-    }
-  }
+  };
 
   const handleCloseModal = useCallback(() => {
     handleClose();

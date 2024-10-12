@@ -1,6 +1,6 @@
 "use client";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useTheme } from "@mui/material";
+import { Button, MenuItem, useTheme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -19,10 +19,12 @@ import { UserDomain } from "@/app/common/types/user";
 import Settings from "./components/settings/settings.components";
 import { HeaderProps } from "./header.type";
 import { useHeader } from "./hooks/useHeader";
+import { useRouter } from "next/navigation";
 
 export function Header({ logout }: HeaderProps) {
   const { anchorElNav, handleCloseNavMenu, handleOpenNavMenu } = useHeader();
   const { user, setUser, setLoading } = useStore();
+  const router = useRouter();
 
   const {} = useQuery({
     queryFn: async () => {
@@ -94,19 +96,13 @@ export function Header({ logout }: HeaderProps) {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {/*
-               Sera usado depois
-               {protectedRoutes.map((page) => (
-                <MenuItem
-                  key={page.title}
-                  onClick={() => {
-                    handleCloseNavMenu;
-                    router.push(page.path);
-                  }}
-                >
-                  <Typography textAlign="center">{page.title}</Typography>
-                </MenuItem>
-              ))} */}
+              <MenuItem
+                onClick={() => {
+                  router.push("/create-book");
+                }}
+              >
+                <Typography textAlign="center">{"Criar Livro"}</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -128,23 +124,20 @@ export function Header({ logout }: HeaderProps) {
             Algernon
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {/* {protectedRoutes.map((page) => (
-              <Button
-                key={page.title}
-                onClick={() => {
-                  handleCloseNavMenu();
-                  router.push(page.path);
-                }}
-                sx={{
-                  my: 2,
-                  color: "white",
-                  display: "block",
-                  boxShadow: "none",
-                }}
-              >
-                {page.title}
-              </Button>
-            ))} */}
+            <Button
+              onClick={() => {
+                handleCloseNavMenu();
+                router.push("/create-book");
+              }}
+              sx={{
+                my: 2,
+                color: "white",
+                display: "block",
+                boxShadow: "none",
+              }}
+            >
+              {"Criar Livro"}
+            </Button>
           </Box>
           <Settings logout={logout} user={user} />
         </Toolbar>

@@ -40,6 +40,7 @@ export async function getAllBooks({
 
 export default async function createBook(formData: CreateBookPersistence) {
   const form = bookMapper.toPersistenceCreateBook(formData);
+
   const res = await authPost<CreateBookResponse>("books", form);
   if (!!res.result.message) {
     return {
