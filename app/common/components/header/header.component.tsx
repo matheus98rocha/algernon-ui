@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { getUserDetails } from "@/app/(authenticated)/services/user/user.service";
 import { useStore } from "@/app/(authenticated)/store/store";
@@ -19,7 +20,6 @@ import { UserDomain } from "@/app/common/types/user";
 import Settings from "./components/settings/settings.components";
 import { HeaderProps } from "./header.type";
 import { useHeader } from "./hooks/useHeader";
-import { useRouter } from "next/navigation";
 
 export function Header({ logout }: HeaderProps) {
   const { anchorElNav, handleCloseNavMenu, handleOpenNavMenu } = useHeader();

@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 import {
@@ -21,9 +20,6 @@ export function useCreateModal({
   open,
 }: createBookModalProps) {
   const { showToast } = useToast();
-
-  const router = useRouter();
-
   const {
     register,
     handleSubmit,

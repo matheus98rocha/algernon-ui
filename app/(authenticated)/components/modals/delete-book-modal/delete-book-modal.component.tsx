@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { Box } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -8,7 +9,6 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 import { ButtonLoading } from "@/app/common/components";
-import { Box } from "@mui/material";
 
 export type DeleteBookModalProps = {
   open: boolean;

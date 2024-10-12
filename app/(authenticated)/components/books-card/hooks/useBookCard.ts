@@ -80,7 +80,7 @@ export function useBookCard({
           imageUrl,
           rate: rating,
         },
-        id
+        id,
       );
     },
     onError: () => {
@@ -112,7 +112,7 @@ export function useBookCard({
       e.stopPropagation();
       setOpenMoreOptions(!openMoreOptions);
     },
-    [openMoreOptions]
+    [openMoreOptions],
   );
 
   return {
