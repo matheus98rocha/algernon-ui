@@ -53,6 +53,10 @@ class BookMapper {
       rate: domain.rate,
     };
 
+    if (mappedOjbect.status !== "alreadyRead") {
+      delete mappedOjbect.rate;
+    }
+
     const formData = new FormData();
 
     formData.append("book", mappedOjbect.book);
