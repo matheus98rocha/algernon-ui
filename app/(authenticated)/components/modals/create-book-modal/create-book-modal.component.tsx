@@ -8,9 +8,11 @@ import {
   FormHelperText,
   InputLabel,
   MenuItem,
+  Rating,
   Select,
   Stack,
   TextField,
+  Typography,
 } from "@mui/material";
 
 import Image from "next/image";
@@ -39,6 +41,7 @@ export function CreateBookModal({
     register,
     control,
     handleCloseModal,
+    isAlreadyReadBook,
   } = useCreateModal({ handleClose, book, open });
 
   const statusOptions = [
@@ -179,6 +182,29 @@ export function CreateBookModal({
             />
             <FormHelperText>{errors.status?.message}</FormHelperText>
           </FormControl>
+          {isAlreadyReadBook && (
+            <Controller
+              control={control}
+              name="rate"
+              defaultValue={0} // Defina um valor inicial
+              render={({ field: { onChange, onBlur, value } }) => (
+                <FormControl>
+                  <Typography component="legend">Avaliação</Typography>
+                  <Rating
+                    name="rate"
+                    value={Number(value)}
+                    onChange={(_, newValue) => {
+                      onChange(newValue); // Atualiza o valor no formulário
+                    }}
+                    onBlur={onBlur}
+                  />
+                  {errors.rate && (
+                    <FormHelperText error>{errors.rate.message}</FormHelperText>
+                  )}
+                </FormControl>
+              )}
+            />
+          )}
           <Box
             sx={{
               display: "flex",

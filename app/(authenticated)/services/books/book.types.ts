@@ -20,6 +20,7 @@ export type CreateBookPersistence = {
   author: string;
   status: "wantToRead" | "alreadyRead" | "reading" | "rereading" | "abandoned";
   imageUrl: string;
+  rate?: number;
 };
 
 export type PersistenceBookById = {

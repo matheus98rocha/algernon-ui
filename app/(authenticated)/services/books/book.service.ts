@@ -41,14 +41,13 @@ export async function getAllBooks({
 export default async function createBook(formData: CreateBookPersistence) {
   const form = bookMapper.toPersistenceCreateBook(formData);
 
+  // Preciso tratar melhor os erros aqui...
   const res = await authPost<CreateBookResponse>("books", form);
-  if (!!res.result.message) {
-    return {
-      message: res.result.message,
-      statusCode: res.result.statusCode,
-      timestamp: res.result.timestamp,
-      path: res.result.path,
-    };
+
+  if (!res.data.ok) {
+    const error = new Error(res.result.message);
+    (error as any).statusCode = res.result.statusCode;
+    throw error;
   } else {
     revalidateTag("books");
     return {

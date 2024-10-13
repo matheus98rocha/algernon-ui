@@ -48,7 +48,6 @@ export function BookCard({
     imageUrl,
     rate,
   });
-
   const [isOpenChangeStatusModal, setIsOpenChangeStatusModal] =
     useState<boolean>(false);
 

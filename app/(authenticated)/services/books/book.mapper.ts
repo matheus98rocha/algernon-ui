@@ -50,6 +50,7 @@ class BookMapper {
       author: domain.author,
       status: domain.status,
       imageUrl: domain.imageUrl,
+      rate: domain.rate,
     };
 
     const formData = new FormData();
@@ -60,9 +61,16 @@ class BookMapper {
     formData.append("status", mappedOjbect.status);
     formData.append("imageUrl", mappedOjbect.imageUrl);
 
+    // Verifica se o status é "alreadyRead" e se o rate não é undefined
+    if (
+      mappedOjbect.status === "alreadyRead" &&
+      mappedOjbect.rate !== undefined
+    ) {
+      formData.append("rate", mappedOjbect.rate.toString()); // Converte o rate para string
+    }
+
     return formData;
   }
-
   toDomainGetBooksGoogleApi(domain: BooksGoogleApiPersistence): BooksGoogleApi {
     return {
       title: domain.title,

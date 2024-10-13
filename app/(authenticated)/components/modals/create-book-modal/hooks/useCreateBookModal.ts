@@ -38,6 +38,8 @@ export function useCreateModal({
     },
   });
 
+  const isAlreadyReadBook = watch("status") === "alreadyRead";
+
   useEffect(() => {
     if (open) {
       reset({
@@ -51,18 +53,12 @@ export function useCreateModal({
 
   const { mutateAsync: onSubmitMutation, isPending: isLoading } = useMutation({
     mutationFn: async (data: createBookFormData) => createBook(data),
-    onSuccess: (response) => {
-      console.log(response);
-      if (response.statusCode === 409) {
-        setError("root", { type: "manual", message: response.message });
-        showToast(response.message, "error");
-      } else {
-        reset();
-        handleClose();
-        prefetchQuery("books").finally(() => {
-          showToast("Livro criado com sucesso!", "success");
-        });
-      }
+    onSuccess: () => {
+      reset();
+      handleClose();
+      prefetchQuery("books").finally(() => {
+        showToast("Livro criado com sucesso!", "success");
+      });
     },
     onError: (response) => {
       setError("root", { type: "manual", message: response.message });
@@ -92,5 +88,6 @@ export function useCreateModal({
     control,
     watch,
     handleCloseModal,
+    isAlreadyReadBook,
   };
 }
