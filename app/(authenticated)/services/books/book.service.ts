@@ -1,12 +1,7 @@
 "use server";
 import { Book, BookStatus, GetBooksParams } from "@/app/common/types/book.type";
 import { BooksGoogleApi } from "@/app/common/types/books-google-api";
-import {
-  authDelete,
-  authPatch,
-  authPost,
-  get,
-} from "@/app/common/utils/fetchWrapper";
+import { request } from "@/app/common/utils/request";
 import revalidateTag from "@/app/common/utils/revalidate-tag";
 
 import { bookMapper } from "./book.mapper";
@@ -24,25 +19,44 @@ export async function getAllBooks({
   isFavorite,
   orderBy = "newest",
 }: GetBooksParams): Promise<GetBooksDomain> {
-  const params: Record<string, any> = {
-    page,
-    size,
-    ...(status && { status }),
-    ...(isFavorite && { isFavorite }),
-    ...(bookName && { bookName }),
-    ...(orderBy && { orderBy }),
-  };
+  try {
+    // Definindo os parâmetros da requisição
+    const params: Record<string, any> = {
+      page,
+      size,
+      ...(status && { status }),
+      ...(isFavorite && { isFavorite }),
+      ...(bookName && { bookName }),
+      ...(orderBy && { orderBy }),
+    };
 
-  const resp = await get<GetBooksDomain>("books", params, ["books"]);
-  const data = bookMapper.toDomainGetAllBooks(resp);
-  return data;
+    // Fazendo a requisição GET usando a função genérica `request`
+    const resp = await request<GetBooksDomain>({
+      method: "GET",
+      input: "books",
+      body: undefined,
+      init: undefined,
+      tags: ["books"],
+      params,
+    });
+
+    console.log(resp);
+    const data = bookMapper.toDomainGetAllBooks(resp.result);
+    return data;
+  } catch (error) {
+    throw new Error("Não foi possível buscar os livros.");
+  }
 }
 
 export default async function createBook(formData: CreateBookPersistence) {
   const form = bookMapper.toPersistenceCreateBook(formData);
 
   // Preciso tratar melhor os erros aqui...
-  const res = await authPost<CreateBookResponse>("books", form);
+  const res = await request<CreateBookResponse>({
+    method: "POST",
+    input: "books",
+    body: form,
+  });
 
   if (!res.data.ok) {
     const error = new Error(res.result.message);
@@ -58,23 +72,26 @@ export default async function createBook(formData: CreateBookPersistence) {
 }
 
 export async function getBookById(id: string): Promise<Book> {
-  const resp = await get<Book>(`books/get-by-id/${id}`, ["book-by-id"]);
-  const data = bookMapper.toDomainGetBookById(resp);
-  return data;
+  // Tratar erros
+  const { result } = await request<Book>({
+    method: "GET",
+    input: `books/get-by-id/${id}`,
+    tags: ["book-by-id"],
+  });
+
+  return bookMapper.toDomainGetBookById(result);
 }
 
 export async function deleteBook(bookId: number) {
-  const res = await authDelete<FavoriteBookResponse>(
-    `books/delete-book/${bookId}`,
-  );
+  const res = await request<FavoriteBookResponse>({
+    method: "DELETE",
+    input: `books/delete-book/${bookId}`,
+  });
 
-  if (!!res.result.message) {
-    return {
-      message: res.result.message,
-      statusCode: res.result.statusCode,
-      timestamp: res.result.timestamp,
-      path: res.result.path,
-    };
+  if (!res.data.ok) {
+    const error = new Error(res.result.message);
+    (error as any).statusCode = res.result.statusCode;
+    throw error;
   } else {
     revalidateTag("books");
     return {
@@ -87,27 +104,32 @@ export async function deleteBook(bookId: number) {
 export async function getBooksOnGoogleApi(
   name: string,
 ): Promise<BooksGoogleApi[]> {
-  const resp = await get<BooksGoogleApi[]>("books/googleBookApi", { name }, [
-    "books",
-  ]);
-  const data = resp.map((book) => bookMapper.toDomainGetBooksGoogleApi(book));
+  // const resp = await get<BooksGoogleApi[]>("books/googleBookApi", { name }, [
+  //   "books",
+  // ]);
 
-  return data;
+  const { result } = await request<BooksGoogleApi[]>({
+    method: "GET",
+    input: "books/googleBookApi",
+    params: { name },
+  });
+
+  return result.map((book: BooksGoogleApi) =>
+    bookMapper.toDomainGetBooksGoogleApi(book),
+  );
 }
 
 export async function patchBook(bookData: Book, bookId: number) {
-  const res = await authPatch<PatchBookResponse>(
-    `books/updateBook/${bookId}`,
-    bookData,
-  );
+  const res = await request<PatchBookResponse>({
+    input: `books/updateBook/${bookId}`,
+    method: "PATCH",
+    body: bookData,
+  });
 
-  if (!!res.result.message) {
-    return {
-      message: res.result.message,
-      statusCode: res.result.statusCode,
-      timestamp: res.result.timestamp,
-      path: res.result.path,
-    };
+  if (!res.data.ok) {
+    const error = new Error(res.result.message);
+    (error as any).statusCode = res.result.statusCode;
+    throw error;
   } else {
     revalidateTag("books");
     return {
@@ -118,18 +140,17 @@ export async function patchBook(bookData: Book, bookId: number) {
 }
 
 export async function patchBookStatus(status: BookStatus, bookId: number) {
-  const res = await authPatch<PatchBookResponse>(
-    `books/updateBookStatus/${bookId}`,
-    { status },
-  );
-
-  if (!!res.result.message) {
-    return {
-      message: res.result.message,
-      statusCode: res.result.statusCode,
-      timestamp: res.result.timestamp,
-      path: res.result.path,
-    };
+  const res = await request<PatchBookResponse>({
+    input: `books/updateBookStatus/${bookId}`,
+    body: {
+      status,
+    },
+    method: "PATCH",
+  });
+  if (!res.data.ok) {
+    const error = new Error(res.result.message);
+    (error as any).statusCode = res.result.statusCode;
+    throw error;
   } else {
     revalidateTag("books");
     return {

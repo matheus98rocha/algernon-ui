@@ -42,6 +42,8 @@ export const get = async <T>(
     );
   }
 
+  console.log("fetchWrapper", url);
+
   try {
     const res = await fetch(url.toString(), {
       headers: { ...getHeader() },

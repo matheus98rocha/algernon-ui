@@ -35,7 +35,6 @@ export function Header({ logout }: HeaderProps) {
         })
         .finally(() => setLoading(false));
     },
-
     queryKey: ["user-details"], //Array according to Documentation
   });
 
