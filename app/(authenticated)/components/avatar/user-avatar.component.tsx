@@ -36,8 +36,8 @@ export function UserAvatar({ type = "full" }: UserAvatarProps) {
           <>
             <S.UserImageWrapper>
               {isUndefinedAvatar ? (
-                <S.WrapperNoAvatarImage>
-                  <S.NoAvatarIcon />
+                <S.WrapperNoAvatarImage isSmall={type === "small"}>
+                  <S.NoAvatarIcon isSmall={type === "small"} />
                 </S.WrapperNoAvatarImage>
               ) : (
                 <S.UserAvatarSytled

@@ -22,18 +22,28 @@ export const UserImageWrapper = styled(Box)(() => ({
   boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.2)",
 }));
 
-export const WrapperNoAvatarImage = styled(Box)(() => ({
-  width: "300px",
-  height: "300px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
+interface WrapperNoAvatarImageProps {
+  isSmall?: boolean;
+}
 
-export const NoAvatarIcon = styled(PersonOutlinedIcon)(() => ({
-  fontSize: "240px",
-}));
+interface NoAvatarIconProps {
+  isSmall?: boolean;
+}
 
+export const WrapperNoAvatarImage = styled(Box)<WrapperNoAvatarImageProps>(
+  ({ isSmall }) => ({
+    width: isSmall ? "50px" : "300px",
+    height: isSmall ? "50px" : "300px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  }),
+);
+export const NoAvatarIcon = styled(PersonOutlinedIcon)<NoAvatarIconProps>(
+  ({ isSmall }) => ({
+    fontSize: isSmall ? "30px" : "240px",
+  }),
+);
 export const UserAvatarSytled = styled(Image)(() => ({
   borderRadius: "50%",
   paddingBottom: "10px",
